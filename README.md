@@ -20,7 +20,9 @@ This library is hosted on [maven central](https://mvnrepository.com/artifact/eu.
 ### Maven
 
 _Adding dependency in Maven:_
+
 ````xml
+
 <dependency>
     <groupId>eu.koboo</groupId>
     <artifactId>minestom-invue</artifactId>
@@ -31,6 +33,7 @@ _Adding dependency in Maven:_
 ### Gradle
 
 _Adding dependency in Gradle (Groovy):_
+
 ````groovy
 implementation 'eu.koboo:minestom-invue:1.0.0'
 ````

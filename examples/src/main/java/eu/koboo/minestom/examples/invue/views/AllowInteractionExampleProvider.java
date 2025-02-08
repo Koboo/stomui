@@ -5,6 +5,7 @@ import eu.koboo.minestom.invue.api.ViewBuilder;
 import eu.koboo.minestom.invue.api.ViewRegistry;
 import eu.koboo.minestom.invue.api.ViewType;
 import eu.koboo.minestom.invue.api.component.RootViewComponent;
+import eu.koboo.minestom.invue.api.flags.Flags;
 import eu.koboo.minestom.invue.api.item.ViewItem;
 import eu.koboo.minestom.invue.api.slots.ViewPattern;
 import lombok.Getter;
@@ -21,7 +22,8 @@ public class AllowInteractionExampleProvider extends RootViewComponent {
 
     public AllowInteractionExampleProvider(ViewRegistry registry) {
         super(registry, ViewBuilder.of(ViewType.SIZE_6_X_9)
-            .title("Allow interactions example"));
+            .title("Allow interactions example")
+            .withFlags(Flags.ALLOW_BOTTOM_INTERACTION));
         pattern = registry.pattern(
             "#########",
             "#       #",

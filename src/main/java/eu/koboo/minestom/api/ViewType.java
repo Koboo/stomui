@@ -16,55 +16,46 @@ import java.util.List;
 public enum ViewType {
 
     SIZE_1_X_9(
-        9,
         InventoryType.CHEST_1_ROW,
         1,
         9
     ),
     SIZE_2_X_9(
-        2 * 9,
         InventoryType.CHEST_2_ROW,
         2,
         9
     ),
     SIZE_3_X_9(
-        3 * 9,
         InventoryType.CHEST_3_ROW,
         3,
         9
     ),
     SIZE_4_X_9(
-        4 * 9,
         InventoryType.CHEST_4_ROW,
         4,
         9
     ),
     SIZE_5_X_9(
-        5 * 9,
         InventoryType.CHEST_5_ROW,
         5,
         9
     ),
     SIZE_6_X_9(
-        6 * 9,
         InventoryType.CHEST_6_ROW,
         6,
         9
     ),
     SIZE_3_X_3(
-        3 * 3,
         InventoryType.CRAFTER_3X3,
         3,
         3
     ),
     SIZE_5_X_1(
-        5,
         InventoryType.HOPPER,
         1,
         5
     ),
     ANVIL(
-        3,
         InventoryType.ANVIL,
         1,
         3
@@ -90,8 +81,8 @@ public enum ViewType {
     List<List<Integer>> topHorizontalSlots;
     List<List<Integer>> topVerticalSlots;
 
-    ViewType(int size, InventoryType inventoryType, int topSlotsPerRow, int topSlotsPerColumn) {
-        this.size = size;
+    ViewType(InventoryType inventoryType, int topSlotsPerRow, int topSlotsPerColumn) {
+        this.size = topSlotsPerRow * topSlotsPerColumn;
         this.inventoryType = inventoryType;
         this.topSlotsPerRow = topSlotsPerRow;
         this.topRowIndex = topSlotsPerRow - 1;

@@ -3,8 +3,8 @@ package eu.koboo.minestom.api.interaction;
 import eu.koboo.minestom.api.ViewBuilder;
 import eu.koboo.minestom.api.component.RootViewComponent;
 import eu.koboo.minestom.api.pagination.ViewPagination;
-import eu.koboo.minestom.core.SimplePlayerView;
-import eu.koboo.minestom.core.SimpleViewRegistry;
+import eu.koboo.minestom.core.CorePlayerView;
+import eu.koboo.minestom.core.CoreViewRegistry;
 import lombok.experimental.UtilityClass;
 import net.minestom.server.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -62,8 +62,8 @@ public class Interactions {
     public Interaction forwardToNextView() {
         return action -> {
             Player player = action.getPlayer();
-            SimpleViewRegistry registry = (SimpleViewRegistry) action.getRegistry();
-            SimplePlayerView nextView = (SimplePlayerView) registry.getNextView(player);
+            CoreViewRegistry registry = (CoreViewRegistry) action.getRegistry();
+            CorePlayerView nextView = (CorePlayerView) registry.getNextView(player);
             if (nextView == null) {
                 return;
             }
@@ -74,8 +74,8 @@ public class Interactions {
     public Interaction backToLastView() {
         return action -> {
             Player player = action.getPlayer();
-            SimpleViewRegistry registry = (SimpleViewRegistry) action.getRegistry();
-            SimplePlayerView lastView = (SimplePlayerView) registry.getLastView(player);
+            CoreViewRegistry registry = (CoreViewRegistry) action.getRegistry();
+            CorePlayerView lastView = (CorePlayerView) registry.getLastView(player);
             if (lastView == null) {
                 return;
             }

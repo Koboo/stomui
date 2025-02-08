@@ -44,6 +44,8 @@ public class SearchExampleProvider extends RootViewComponent implements AnvilInp
 
     @Override
     public void onOpen(@NotNull PlayerView view, @NotNull Player player) {
+        view.getBottomInventory().clear();
+
         ViewItem.bySlot(view, 0)
             .material(Material.PAPER)
             .name("")
@@ -58,8 +60,12 @@ public class SearchExampleProvider extends RootViewComponent implements AnvilInp
     }
 
     @Override
+    public void onClose(@NotNull PlayerView view, @NotNull Player player) {
+        view.getBottomInventory().clear();
+    }
+
+    @Override
     public void onStateUpdate(@NotNull PlayerView view, @NotNull Player player) {
-        System.out.println("Update buttons");
         String nextName = "<green>Next (" + pagination.getCurrentPage() + ")";
         if (!pagination.hasNextPage()) {
             nextName = "<red> No next page";

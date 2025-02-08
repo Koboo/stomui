@@ -19,6 +19,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
+/**
+ * This component can be added to any component and will render
+ * the annotated methods. For more information see {@link Slot} documentation
+ */
 @Slf4j
 @ComponentPriority(Priority.HIGHEST)
 public final class AnnotationRenderComponent extends ViewComponent {

@@ -22,12 +22,6 @@ import java.util.Map;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public abstract class ModifiableItem {
 
-    Map<MetaKey, Object> itemMetaMap;
-
-    public ModifiableItem() {
-        this.itemMetaMap = new HashMap<>();
-    }
-
     public abstract @NotNull ItemStack getItem();
 
     public abstract @NotNull Interaction getInteraction();
@@ -164,26 +158,5 @@ public abstract class ModifiableItem {
             ret = removeComponent(ItemComponent.HIDE_TOOLTIP);
         }
         return ret;
-    }
-
-    @SuppressWarnings("unchecked")
-    public <T extends ModifiableItem> T addMeta(MetaKey metaKey, Object value) {
-        itemMetaMap.put(metaKey, value);
-        return (T) this;
-    }
-
-    @SuppressWarnings("unchecked")
-    public <T extends ModifiableItem> T removeMeta(MetaKey metaKey) {
-        itemMetaMap.remove(metaKey);
-        return (T) this;
-    }
-
-    public boolean hasMeta(MetaKey metaKey) {
-        return itemMetaMap.containsKey(metaKey);
-    }
-
-    @SuppressWarnings("unchecked")
-    public <M> M getMeta(MetaKey metaKey) {
-        return (M) itemMetaMap.get(metaKey);
     }
 }

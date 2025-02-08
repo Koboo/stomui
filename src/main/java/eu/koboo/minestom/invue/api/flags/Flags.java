@@ -1,5 +1,8 @@
 package eu.koboo.minestom.invue.api.flags;
 
+/**
+ * This class holds the instances of several default {@link Flag}s.
+ */
 public final class Flags {
 
     /**

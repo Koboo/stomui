@@ -176,17 +176,39 @@ public abstract class ViewComponent {
         return Priority.MEDIUM;
     }
 
+    /**
+     * Gets called, with the defined {@link ViewBuilder} and can be used
+     * to modify the {@link ViewBuilder} according to the {@link ViewComponent} and it's
+     * respective {@link Player}
+     * @param viewBuilder The instance of the {@link ViewBuilder}
+     * @param player The instance of the {@link Player}
+     */
     public void modifyBuilder(@NotNull ViewBuilder viewBuilder, @NotNull Player player) {
         // Default implementation
     }
 
+    /**
+     * Gets called, everytime {@link PlayerView#updateState()} is called.
+     * @param view The instance of the containing {@link PlayerView}.
+     * @param player The instance of the {@link Player} of the {@link PlayerView}.
+     */
     public void onStateUpdate(@NotNull PlayerView view, @NotNull Player player) {
         // Default implementation
     }
 
+    /**
+     * Gets called, if the {@link PlayerView} is closed for the {@link Player}.
+     * @param view The instance of the containing {@link PlayerView}.
+     * @param player The instance of the {@link Player} of the {@link PlayerView}.
+     */
     public void onClose(@NotNull PlayerView view, @NotNull Player player) {
         // Default implementation
     }
 
+    /**
+     * Gets called, if the {@link PlayerView} is opened for the {@link Player}.
+     * @param view The instance of the containing {@link PlayerView}.
+     * @param player The instance of the {@link Player} of the {@link PlayerView}.
+     */
     public abstract void onOpen(@NotNull PlayerView view, @NotNull Player player);
 }

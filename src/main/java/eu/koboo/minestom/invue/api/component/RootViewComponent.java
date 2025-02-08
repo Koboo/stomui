@@ -21,10 +21,24 @@ public abstract class RootViewComponent extends ViewComponent {
     ViewRegistry registry;
     ViewBuilder builder;
 
-    public RootViewComponent(ViewRegistry registry, ViewType viewType) {
-        this(registry, ViewBuilder.of(viewType));
+    /**
+     * Creates a new {@link RootViewComponent} by the given {@link ViewRegistry}
+     * and {@link ViewType}.
+     * @param viewRegistry An instance of {@link ViewRegistry}.
+     * @param viewType A value of {@link ViewType}.
+     */
+    public RootViewComponent(ViewRegistry viewRegistry, ViewType viewType) {
+        this(viewRegistry, ViewBuilder.of(viewType));
     }
 
+    /**
+     * Creates a new {@link RootViewComponent} by the given {@link ViewRegistry}
+     * and {@link ViewBuilder}.
+     * It also adds this {@link RootViewComponent} as component to the given
+     * {@link ViewBuilder}.
+     * @param viewRegistry An instance of {@link ViewRegistry}.
+     * @param viewBuilder An instance of {@link ViewBuilder}.
+     */
     public RootViewComponent(ViewRegistry viewRegistry, ViewBuilder viewBuilder) {
         this.registry = viewRegistry;
         this.builder = viewBuilder.component(this);
@@ -39,6 +53,9 @@ public abstract class RootViewComponent extends ViewComponent {
         registry.open(player, builder);
     }
 
+    /**
+     * See documentation on {@link ViewComponent#onOpen(PlayerView, Player)}.
+     */
     @Override
     public void onOpen(@NotNull PlayerView view, @NotNull Player player) {
         // Default implementation

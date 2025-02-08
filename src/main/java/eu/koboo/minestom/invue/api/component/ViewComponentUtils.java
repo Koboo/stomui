@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Set;
 
 /**
- * Some utilities, to keep the class size of {@link ViewComponent} small.
+ * Some utilities to keep the class size of {@link ViewComponent} small.
  */
 @UtilityClass
 public final class ViewComponentUtils {

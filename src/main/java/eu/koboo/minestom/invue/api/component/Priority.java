@@ -6,10 +6,12 @@ package eu.koboo.minestom.invue.api.component;
  */
 public enum Priority implements Comparable<Priority> {
 
-    LOW, // Gets executed first
+    // Gets executed first
+    LOW,
     LOWEST,
     MEDIUM,
     HIGH,
     HIGHEST,
-    MONITOR; // Gets executed last
+    // Gets executed last
+    MONITOR
 }

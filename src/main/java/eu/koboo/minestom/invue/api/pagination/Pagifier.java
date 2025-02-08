@@ -10,6 +10,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Internal pagination class, used by {@link ViewPagination}
+ * @param <T> The paged object
+ */
 @Getter
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public final class Pagifier<T> {

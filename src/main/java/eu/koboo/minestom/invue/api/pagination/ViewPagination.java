@@ -1,12 +1,21 @@
 package eu.koboo.minestom.invue.api.pagination;
 
 import eu.koboo.minestom.invue.api.PlayerView;
+import eu.koboo.minestom.invue.api.ViewRegistry;
 import eu.koboo.minestom.invue.api.component.ViewComponent;
 import eu.koboo.minestom.invue.api.item.PrebuiltItem;
 import net.minestom.server.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
+/**
+ * Represents the abstraction of any implementing {@link ViewPagination}.
+ * See more information, on how to create or use it:
+ * - {@link ViewRegistry#pageable(ItemLoader, List, ItemStack)}
+ * - {@link ViewRegistry#scrollable(ItemLoader, ItemStack, List)}
+ */
 public abstract class ViewPagination extends ViewComponent {
 
     /**
@@ -37,6 +46,7 @@ public abstract class ViewPagination extends ViewComponent {
 
     /**
      * Increments the current page and updates the view to show the items of that page.
+     * @param playerView The {@link PlayerView}, which changes page of the pagination.
      */
     public abstract void toNextPage(@NotNull PlayerView playerView);
 
@@ -47,6 +57,7 @@ public abstract class ViewPagination extends ViewComponent {
 
     /**
      * Decrements the current page and updates the view to show the items of that page.
+     * @param playerView The {@link PlayerView}, which changes page of the pagination.
      */
     public abstract void toPreviousPage(@NotNull PlayerView playerView);
 
@@ -66,6 +77,7 @@ public abstract class ViewPagination extends ViewComponent {
      * an exception is thrown.
      *
      * @param newPage must be 1 or greater.
+     * @param playerView The {@link PlayerView}, which changes page of the pagination.
      */
     public abstract void toPage(@NotNull PlayerView playerView, int newPage);
 
@@ -74,6 +86,7 @@ public abstract class ViewPagination extends ViewComponent {
      * and sets the current page to 1.
      * It automatically calls the method toPage(1),
      * after finishing loading.
+     * @param playerView The {@link PlayerView}, which reloads the pagination.
      */
     public abstract void reloadItems(@NotNull PlayerView playerView);
 

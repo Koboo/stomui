@@ -11,6 +11,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * This class can be used, to create an instance of {@link List<Integer>},
+ * which holds filtered / specific slots.
+ * It works with rawSlots, instead of inventory-specific slots.
+ */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public final class SlotBuilder {
 
@@ -106,6 +111,11 @@ public final class SlotBuilder {
         return Collections.unmodifiableList(blacklist);
     }
 
+    /**
+     * Applies all filters, the blacklist and iterations to build the wanted List<Integer>,
+     * containing rawSlots.
+     * @return The list with wanted rawSlots.
+     */
     public List<Integer> toList() {
         List<Integer> baseSlots = new ArrayList<>();
         if (slotList.isEmpty()) {
@@ -137,22 +147,42 @@ public final class SlotBuilder {
         return baseSlots;
     }
 
+    /**
+     * @return An empty instance of {@link SlotBuilder}.
+     */
     public static SlotBuilder builder() {
         return new SlotBuilder();
     }
 
+    /**
+     * @param startSlot The slot, where the list should start.
+     * @param endSlot The slot, where the list should end.
+     * @return A new instance of {@link SlotBuilder}.
+     */
     public static SlotBuilder builder(int startSlot, int endSlot) {
         return builder().startSlot(startSlot).endSlot(endSlot);
     }
 
+    /**
+     * @param slotList A list, which is hard-defined
+     * @return A new instance of {@link SlotBuilder}.
+     */
     public static SlotBuilder builder(List<Integer> slotList) {
         return builder().slots(slotList);
     }
 
+    /**
+     * @param type The {@link ViewType}, which provides all top slots of an inventory.
+     * @return A new instance of {@link SlotBuilder}.
+     */
     public static SlotBuilder allTopSlots(ViewType type) {
         return builder(0, type.getLastTopSlot());
     }
 
+    /**
+     * @param type The {@link ViewType}, which provides all bottom slots of an inventory.
+     * @return A new instance of {@link SlotBuilder}.
+     */
     public static SlotBuilder allBottomSlots(ViewType type) {
         return builder().startSlot(type.getFirstBottomSlot()).endSlot(type.getLastBottomSlot());
     }

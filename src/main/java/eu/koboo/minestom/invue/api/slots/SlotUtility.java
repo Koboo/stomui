@@ -6,6 +6,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Several slot utility methods to be used.
+ */
 @UtilityClass
 public class SlotUtility {
 

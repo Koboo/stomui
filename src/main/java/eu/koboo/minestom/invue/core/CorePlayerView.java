@@ -8,7 +8,7 @@ import eu.koboo.minestom.invue.api.flags.Flag;
 import eu.koboo.minestom.invue.api.flags.Flags;
 import eu.koboo.minestom.invue.api.interaction.Interaction;
 import eu.koboo.minestom.invue.api.interaction.Interactions;
-import eu.koboo.minestom.invue.api.slots.BottomSlotUtility;
+import eu.koboo.minestom.invue.api.utils.BottomSlotUtility;
 import eu.koboo.minestom.invue.api.utils.IdGenerator;
 import lombok.AccessLevel;
 import lombok.Getter;

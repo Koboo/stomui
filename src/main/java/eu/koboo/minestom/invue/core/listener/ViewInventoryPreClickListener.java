@@ -7,7 +7,7 @@ import eu.koboo.minestom.invue.api.interaction.Interaction;
 import eu.koboo.minestom.invue.api.interaction.Interactions;
 import eu.koboo.minestom.invue.api.interaction.ViewAction;
 import eu.koboo.minestom.invue.api.item.ViewItem;
-import eu.koboo.minestom.invue.api.slots.BottomSlotUtility;
+import eu.koboo.minestom.invue.api.utils.BottomSlotUtility;
 import eu.koboo.minestom.invue.core.CorePlayerView;
 import eu.koboo.minestom.invue.core.CoreViewRegistry;
 import lombok.AccessLevel;

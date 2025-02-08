@@ -27,7 +27,7 @@ public class PaginationActionButtons extends ViewComponent {
     @Override
     public void onStateUpdate(@NotNull PlayerView view, @NotNull Player player) {
         String nextName = "<green>Next (" + pagination.getCurrentPage() + ")";
-        if (pagination.hasNextPage()) {
+        if (!pagination.hasNextPage()) {
             nextName = "<red> No next page";
         }
         ViewItem.bySlot(view, pattern.getSlot('>'))
@@ -36,7 +36,7 @@ public class PaginationActionButtons extends ViewComponent {
             .interaction(Interactions.toNextPage(pagination));
 
         String previousName = "<green>Previous (" + pagination.getCurrentPage() + ")";
-        if (pagination.hasPreviousPage()) {
+        if (!pagination.hasPreviousPage()) {
             previousName = "<red>No previous page";
         }
         ViewItem.bySlot(view, pattern.getSlot('<'))

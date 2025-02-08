@@ -73,9 +73,9 @@ mavenPublishing {
 
     pom {
         name = project.name
-        description = 'DESCRIPTION_PLACE_HOLDER'
+        description = 'Flexible inventory framework for minestom'
         inceptionYear = '2025'
-        url = 'GIT_PLACEHOLDER'
+        url = 'https://github.com/Koboo/minestom-invue'
         licenses {
             license {
                 name = 'The Apache License, Version 2.0'
@@ -92,9 +92,9 @@ mavenPublishing {
             }
         }
         scm {
-            url = 'GIT_PLACEHOLDER'
-            connection = 'scm:git:GIT_PLACEHOLDER'
-            developerConnection = 'scm:git:GIT_PLACEHOLDER'
+            url = 'https://github.com/Koboo/minestom-invue'
+            connection = 'scm:git:https://github.com/Koboo/minestom-invue'
+            developerConnection = 'scm:git:https://github.com/Koboo/minestom-invue'
         }
     }
 

@@ -23,7 +23,7 @@ public abstract class RootViewComponent extends ViewComponent {
 
     public RootViewComponent(ViewRegistry viewRegistry, ViewBuilder viewBuilder) {
         this.registry = viewRegistry;
-        this.builder = viewBuilder;
+        this.builder = viewBuilder.component(this);
     }
 
     public void open(Player player) {

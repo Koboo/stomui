@@ -10,6 +10,10 @@ import lombok.experimental.FieldDefaults;
 import net.minestom.server.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * This class represents the root of a component tree and provides
+ * an easy {@link RootViewComponent#open(Player)} method.
+ */
 @Getter
 @FieldDefaults(level = AccessLevel.PROTECTED, makeFinal = true)
 public abstract class RootViewComponent extends ViewComponent {
@@ -26,6 +30,11 @@ public abstract class RootViewComponent extends ViewComponent {
         this.builder = viewBuilder.component(this);
     }
 
+    /**
+     * Creates a new {@link PlayerView} for the given {@link Player}
+     * and opens it.
+     * @param player The {@link Player}, which gets the open inventory.
+     */
     public void open(Player player) {
         registry.open(player, builder);
     }

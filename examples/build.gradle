@@ -29,7 +29,7 @@ dependencies {
 shadowJar {
     manifest {
         attributes(
-            "Main-Class": "eu.koboo.minestom.examples.views.Launcher",
+            "Main-Class": "eu.koboo.minestom.examples.Launcher",
             "Implementation-Title": rootProject.name,
             "Implementation-Version": rootProject.version,
             "Implementation-Group": rootProject.group,

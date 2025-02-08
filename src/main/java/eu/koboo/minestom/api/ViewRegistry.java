@@ -16,6 +16,10 @@ import java.util.function.Consumer;
 
 public interface ViewRegistry {
 
+    void enable();
+
+    void disable();
+
     @NotNull PlayerView open(@NotNull Player player, @NotNull ViewBuilder viewBuilder);
 
     @NotNull PlayerView open(@NotNull Player player, @NotNull PlayerView playerView);

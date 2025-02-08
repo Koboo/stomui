@@ -3,8 +3,8 @@ package eu.koboo.minestom.examples.invue.command;
 import dev.rollczi.litecommands.annotations.command.Command;
 import dev.rollczi.litecommands.annotations.context.Context;
 import dev.rollczi.litecommands.annotations.execute.Execute;
-import eu.koboo.minestom.invue.api.ViewRegistry;
 import eu.koboo.minestom.examples.invue.views.multiview.MultiViewExampleProvider;
+import eu.koboo.minestom.invue.api.ViewRegistry;
 import net.minestom.server.entity.Player;
 
 @Command(name = "test")

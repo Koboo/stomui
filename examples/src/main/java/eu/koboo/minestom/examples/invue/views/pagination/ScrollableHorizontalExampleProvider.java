@@ -1,13 +1,13 @@
 package eu.koboo.minestom.examples.invue.views.pagination;
 
+import eu.koboo.minestom.examples.invue.views.pagination.components.PaginationBorder;
+import eu.koboo.minestom.examples.invue.views.pagination.loader.ExampleItemLoader;
 import eu.koboo.minestom.invue.api.ViewBuilder;
 import eu.koboo.minestom.invue.api.ViewRegistry;
 import eu.koboo.minestom.invue.api.ViewType;
 import eu.koboo.minestom.invue.api.component.RootViewComponent;
 import eu.koboo.minestom.invue.api.pagination.ViewPagination;
 import eu.koboo.minestom.invue.api.slots.ViewPattern;
-import eu.koboo.minestom.examples.invue.views.pagination.components.PaginationBorder;
-import eu.koboo.minestom.examples.invue.views.pagination.loader.ExampleItemLoader;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import net.minestom.server.entity.Player;

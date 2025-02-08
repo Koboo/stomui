@@ -5,8 +5,6 @@ import dev.rollczi.litecommands.annotations.command.Command;
 import dev.rollczi.litecommands.annotations.context.Context;
 import dev.rollczi.litecommands.annotations.execute.Execute;
 import dev.rollczi.litecommands.annotations.execute.ExecuteDefault;
-import eu.koboo.minestom.invue.api.ViewRegistry;
-import eu.koboo.minestom.invue.api.component.RootViewComponent;
 import eu.koboo.minestom.examples.invue.views.AllowInteractionExampleProvider;
 import eu.koboo.minestom.examples.invue.views.AnnotatedTabExampleProvider;
 import eu.koboo.minestom.examples.invue.views.AnvilInputExampleProvider;
@@ -16,6 +14,8 @@ import eu.koboo.minestom.examples.invue.views.pagination.ScrollableVerticalExamp
 import eu.koboo.minestom.examples.invue.views.search.SearchExampleProvider;
 import eu.koboo.minestom.examples.invue.views.switching.MultiLayersExampleProvider;
 import eu.koboo.minestom.examples.invue.views.switching.SwitchOneExampleProvider;
+import eu.koboo.minestom.invue.api.ViewRegistry;
+import eu.koboo.minestom.invue.api.component.RootViewComponent;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;

@@ -11,7 +11,7 @@ allprojects {
     apply plugin: "com.gradleup.shadow"
 
     group "eu.koboo"
-    version "1.0-SNAPSHOT"
+    version "1.0.0"
     def javaVersion = JavaVersion.VERSION_21
 
     repositories {

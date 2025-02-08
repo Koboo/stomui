@@ -1,0 +1,112 @@
+import com.vanniktech.maven.publish.SonatypeHost
+
+plugins {
+    id("java-library")
+    id("com.gradleup.shadow") version("8.3.5")
+    id("com.vanniktech.maven.publish") version("0.30.0")
+}
+
+allprojects {
+    apply plugin: "java"
+    apply plugin: "com.gradleup.shadow"
+
+    group "eu.koboo"
+    version "1.0-SNAPSHOT"
+    def javaVersion = JavaVersion.VERSION_21
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+        def lombokVersion = "1.18.36"
+        compileOnly("org.projectlombok:lombok:$lombokVersion")
+        annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+    }
+
+    compileJava {
+        version = javaVersion
+        targetCompatibility = javaVersion
+        sourceCompatibility = javaVersion
+        options.encoding("UTF-8")
+    }
+
+    java {
+        toolchain.languageVersion.set(JavaLanguageVersion.of(javaVersion.getMajorVersion()))
+    }
+
+    sourceSets {
+        test {
+            java.setSrcDirs([])
+            resources.setSrcDirs([])
+        }
+    }
+}
+
+dependencies {
+    compileOnlyApi("net.minestom:minestom-snapshots:$minestomVersion")
+}
+
+tasks.register('sourcesJar', Jar) {
+    from sourceSets.main.allJava
+    archiveClassifier.set('sources')
+}
+tasks.register('javadocJar', Jar) {
+    from javadoc.destinationDir
+    archiveClassifier.set('javadoc')
+}
+
+artifacts {
+    archives(shadowJar)
+    archives(sourcesJar)
+    archives(javadocJar)
+}
+
+mavenPublishing {
+    coordinates(
+        project.group.toString(),
+        project.name.toString(),
+        project.version.toString()
+    )
+
+    pom {
+        name = project.name
+        description = 'DESCRIPTION_PLACE_HOLDER'
+        inceptionYear = '2025'
+        url = 'GIT_PLACEHOLDER'
+        licenses {
+            license {
+                name = 'The Apache License, Version 2.0'
+                url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                distribution = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+            }
+        }
+        developers {
+            developer {
+                id = 'koboo'
+                name = 'Koboo'
+                email = 'admin@koboo.eu'
+                url = 'https://github.com/Koboo/'
+            }
+        }
+        scm {
+            url = 'GIT_PLACEHOLDER'
+            connection = 'scm:git:GIT_PLACEHOLDER'
+            developerConnection = 'scm:git:GIT_PLACEHOLDER'
+        }
+    }
+
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    signAllPublications()
+}
+
+sourceSets {
+    main {
+        resources.setSrcDirs([])
+    }
+    test {
+        java.setSrcDirs([])
+        resources.setSrcDirs([])
+    }
+}

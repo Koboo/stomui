@@ -1,0 +1,19 @@
+plugins {
+    id("application")
+}
+
+dependencies {
+    implementation(rootProject)
+    implementation("net.minestom:minestom-snapshots:$minestomVersion")
+}
+
+shadowJar {
+    manifest {
+        attributes(
+            "Main-Class": "eu.koboo.minestom.examples.Launch",
+            "Implementation-Title": rootProject.name,
+            "Implementation-Version": rootProject.version,
+            "Implementation-Group": rootProject.group,
+        )
+    }
+}

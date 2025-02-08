@@ -116,7 +116,7 @@ public abstract class ViewComponent {
         return getClass().getSimpleName() + "{id=" + getId() + ", parentId=" + parentId + "}";
     }
 
-    // Inventory methods, the user could be overriding.
+    // Inventory methods, can safely be overridden.
 
     public @NotNull Priority getPriority() {
         ComponentPriority annotation = this.getClass().getAnnotation(ComponentPriority.class);

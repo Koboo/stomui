@@ -42,12 +42,13 @@ public final class CoreViewRegistry implements ViewRegistry {
     Map<Player, CorePlayerView> playerViewRegistry;
     Map<UUID, List<CorePlayerView>> playerViewHistoryRegistry;
 
-    public CoreViewRegistry() {
+    CoreViewRegistry() {
         this.eventListeners = new ArrayList<>();
         this.playerViewRegistry = new ConcurrentHashMap<>();
         this.playerViewHistoryRegistry = new ConcurrentHashMap<>();
     }
 
+    @Override
     public void enable() {
         registerListener(PlayerPacketEvent.class, new ViewPlayerPacketNameItemListener(this));
         registerListener(InventoryPreClickEvent.class, new ViewInventoryPreClickListener(this));
@@ -55,6 +56,7 @@ public final class CoreViewRegistry implements ViewRegistry {
         registerListener(PlayerDisconnectEvent.class, new ViewPlayerDisconnectListener(this));
     }
 
+    @Override
     public void disable() {
         for (Player player : playerViewRegistry.keySet()) {
             player.closeInventory();

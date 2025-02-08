@@ -41,3 +41,7 @@ Unfortunately, there is no documentation yet.
 
 However, documentation will be created in the GitHub wiki in
 the near future and JavaDocs will be added to the API classes.
+
+## Template
+
+This project is a copy of [minestom-library-template](https://github.com/Koboo/minestom-library-template).

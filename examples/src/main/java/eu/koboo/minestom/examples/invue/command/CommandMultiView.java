@@ -7,12 +7,12 @@ import eu.koboo.minestom.examples.invue.views.multiview.MultiViewExampleProvider
 import eu.koboo.minestom.invue.api.ViewRegistry;
 import net.minestom.server.entity.Player;
 
-@Command(name = "test")
-public final class ExampleMultiViewCommand {
+@Command(name = "multiview")
+public final class CommandMultiView {
 
     MultiViewExampleProvider multiViewComponent;
 
-    public ExampleMultiViewCommand(ViewRegistry registry) {
+    public CommandMultiView(ViewRegistry registry) {
         multiViewComponent = new MultiViewExampleProvider(registry);
     }
 

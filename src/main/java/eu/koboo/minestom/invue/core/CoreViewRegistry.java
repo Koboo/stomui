@@ -186,7 +186,7 @@ public final class CoreViewRegistry implements ViewRegistry {
     }
 
     @ApiStatus.Internal
-    public void clearPlayer(Player player) {
+    public void resetPlayer(Player player) {
         playerViewRegistry.remove(player);
         List<CorePlayerView> history = playerViewHistoryRegistry.remove(player.getUuid());
         if (history != null) {

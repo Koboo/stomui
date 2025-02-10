@@ -29,7 +29,7 @@ public final class ViewInventoryCloseListener implements Consumer<InventoryClose
         if (playerView == null) {
             return;
         }
-        registry.clearPlayer(player);
+        registry.resetPlayer(player);
         playerView.closeView();
     }
 }

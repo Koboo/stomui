@@ -29,7 +29,7 @@ public final class ViewPlayerDisconnectListener implements Consumer<PlayerDiscon
         if (playerView == null) {
             return;
         }
-        registry.clearPlayer(player);
+        registry.resetPlayer(player);
         playerView.closeView();
     }
 }

@@ -10,6 +10,10 @@ import lombok.experimental.FieldDefaults;
 import net.minestom.server.entity.Player;
 import net.minestom.server.event.inventory.InventoryPreClickEvent;
 
+/**
+ * This class is a wrapper, to be passed into {@link Interaction}.
+ * It just provides getters for some properties.
+ */
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @AllArgsConstructor

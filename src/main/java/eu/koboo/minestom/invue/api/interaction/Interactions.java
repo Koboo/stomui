@@ -14,6 +14,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
 
+/**
+ * This class provides several default {@link Interaction}s.
+ * For now, you need to check out their implementation, if you want to know what they do.
+ * Documentation will follow.
+ */
 @UtilityClass
 public class Interactions {
 

@@ -73,7 +73,7 @@ public final class CoreViewPattern implements ViewPattern {
             }
             return slot;
         }
-        throw new NullPointerException("No slot found for character " + slotCharacter);
+        throw new IllegalArgumentException("No slot found for character " + slotCharacter);
     }
 
     @Override
@@ -89,15 +89,6 @@ public final class CoreViewPattern implements ViewPattern {
     @Override
     public @NotNull List<Integer> getMergedSlots(@NotNull Character... slotCharacters) {
         return SlotUtility.mergeSlotLists(getListOfSlots(slotCharacters));
-    }
-
-    @Override
-    public @NotNull SlotBuilder toSlots(@NotNull Character... slotCharacters) {
-        SlotBuilder slotBuilder = new SlotBuilder();
-        for (Character slotCharacter : slotCharacters) {
-            slotBuilder.slots(getSlots(slotCharacter));
-        }
-        return slotBuilder;
     }
 
     @Override

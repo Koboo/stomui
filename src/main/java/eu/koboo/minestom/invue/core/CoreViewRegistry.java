@@ -99,6 +99,7 @@ public final class CoreViewRegistry implements ViewRegistry {
         return playerView;
     }
 
+    @Override
     public @NotNull PlayerView open(@NotNull Player player, @NotNull PlayerView playerView) {
         openViewInternal(player, (CorePlayerView) playerView, false, false);
         return playerView;
@@ -206,10 +207,10 @@ public final class CoreViewRegistry implements ViewRegistry {
     }
 
     @Override
-    public @NotNull ViewPagination scrollable(@NotNull ItemLoader loader,
+    public @NotNull ViewPagination scrollable(@NotNull ItemLoader itemLoader,
                                               @Nullable ItemStack fillerItem,
                                               @NotNull List<List<Integer>> listOfSlotLists) {
-        return new ScrollComponent(loader, fillerItem, listOfSlotLists);
+        return new ScrollComponent(itemLoader, fillerItem, listOfSlotLists);
     }
 
     @Override

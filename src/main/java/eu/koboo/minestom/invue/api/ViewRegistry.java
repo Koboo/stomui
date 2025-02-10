@@ -65,6 +65,11 @@ public interface ViewRegistry {
     @Nullable PlayerView getCurrentView(@NotNull Player player);
 
     /**
+     * @return An unmodifiable Collection of all currently open {@link PlayerView}s.
+     */
+    @NotNull Collection<PlayerView> getAllViews();
+
+    /**
      * Returns the last opened {@link PlayerView} by the provided {@link Player}.
      * <p>
      * Imagine it like a browser-history.

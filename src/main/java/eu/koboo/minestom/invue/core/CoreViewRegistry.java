@@ -138,6 +138,11 @@ public final class CoreViewRegistry implements ViewRegistry {
     }
 
     @Override
+    public @NotNull Collection<PlayerView> getAllViews() {
+        return List.copyOf(playerViewRegistry.values());
+    }
+
+    @Override
     public @Nullable PlayerView getLastView(@NotNull Player player) {
         if (!player.isOnline()) {
             throw new IllegalArgumentException("Player is not online");

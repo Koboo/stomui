@@ -122,17 +122,17 @@ public final class CorePlayerView implements PlayerView {
 
     @Override
     public void addFlags(@NotNull Flag... flags) {
-        addedFlags.addAll(Arrays.asList(flags));
+        addedFlags.addAll(List.of(flags));
     }
 
     @Override
     public boolean hasFlags(@NotNull Flag... flags) {
-        return addedFlags.containsAll(Arrays.asList(flags));
+        return addedFlags.containsAll(List.of(flags));
     }
 
     @Override
     public void removeFlags(@NotNull Flag... flags) {
-        Arrays.asList(flags).forEach(addedFlags::remove);
+        List.of(flags).forEach(addedFlags::remove);
     }
 
     @Override

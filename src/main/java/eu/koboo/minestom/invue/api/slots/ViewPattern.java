@@ -74,10 +74,19 @@ public interface ViewPattern {
     @NotNull List<Integer> getMergedSlots(@NotNull Character... slotCharacters);
 
     /**
+     * Offset all pattern slots by the given slot.
+     * So basically it does:
+     * patternSlot + slotOffset = newPatternSlot.
+     *
+     * @param slotOffset The offset to add to all pattern slots.
+     */
+    void offsetSlots(int slotOffset);
+
+    /**
      * Offset all pattern slots, so that the returned slots are translated to
      * bottom inventory slots.
      *
-     * @param viewType the view type
+     * @param viewType The {@link ViewType} to calculate top offset.
      */
-    void offsetTop(@NotNull ViewType viewType);
+    void offsetTopInventory(@NotNull ViewType viewType);
 }

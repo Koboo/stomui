@@ -92,8 +92,7 @@ public final class CoreViewPattern implements ViewPattern {
     }
 
     @Override
-    public void offsetTop(@NotNull ViewType viewType) {
-        int firstBottom = viewType.getFirstBottomSlot();
+    public void offsetSlots(int slotOffset) {
         List<Integer> slotList = getAllSlots();
         Map<Integer, Character> newSlotByCharacterMapping = new HashMap<>();
         for (Integer slot : slotList) {
@@ -101,11 +100,16 @@ public final class CoreViewPattern implements ViewPattern {
             if (character == null) {
                 continue;
             }
-            int offsetSlot = slot + firstBottom;
+            int offsetSlot = slot + slotOffset;
             newSlotByCharacterMapping.put(offsetSlot, character);
         }
         slotByCharacterMapping.clear();
         slotByCharacterMapping.putAll(newSlotByCharacterMapping);
+    }
+
+    @Override
+    public void offsetTopInventory(@NotNull ViewType viewType) {
+        offsetSlots(viewType.getFirstBottomSlot());
     }
 
     @ApiStatus.Internal

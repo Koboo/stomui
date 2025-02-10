@@ -109,7 +109,7 @@ public final class ViewInventoryPreClickListener implements Consumer<InventoryPr
                 if (!(component instanceof CooldownInteraction interaction)) {
                     return;
                 }
-                interaction.onSlotCooldown(playerView.getPlayer(), rawSlot);
+                interaction.onSlotCooldown(playerView, playerView.getPlayer(), rawSlot);
             }
         );
     }

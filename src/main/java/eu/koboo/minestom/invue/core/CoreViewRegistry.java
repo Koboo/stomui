@@ -127,7 +127,6 @@ public final class CoreViewRegistry implements ViewRegistry {
 
         playerViewRegistry.put(player, playerView);
         playerView.openView(callComponentOpen);
-//        printHistory(player, playerView);
     }
 
     @Override

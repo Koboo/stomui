@@ -95,22 +95,23 @@ public final class CoreViewRegistry implements ViewRegistry {
         );
 
         CorePlayerView playerView = new CorePlayerView(this, player, newViewBuilder);
-        openViewInternal(player, playerView, true, false);
+        openViewInternal(playerView, true, false);
         return playerView;
     }
 
     @Override
-    public @NotNull PlayerView open(@NotNull Player player, @NotNull PlayerView playerView) {
-        openViewInternal(player, (CorePlayerView) playerView, false, false);
+    public @NotNull PlayerView open(@NotNull PlayerView playerView) {
+        openViewInternal(
+            (CorePlayerView) playerView,
+            false,
+            false
+        );
         return playerView;
     }
 
-    public void openViewInternal(@NotNull Player player, @NotNull CorePlayerView playerView,
+    public void openViewInternal(@NotNull CorePlayerView playerView,
                                  boolean callComponentOpen, boolean excludeHistory) {
-        if (!player.isOnline()) {
-            throw new IllegalArgumentException("Player is not online");
-        }
-
+        Player player = playerView.getPlayer();
         CorePlayerView previousView = getCurrentView(player);
         if (previousView != null) {
             // Don't reopen the same view again

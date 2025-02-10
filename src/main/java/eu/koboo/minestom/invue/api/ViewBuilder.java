@@ -159,7 +159,7 @@ public final class ViewBuilder {
     }
 
     /**
-     * Called by {@link ViewRegistry#open(Player, PlayerView)}, to validate the properties of
+     * Called by {@link ViewRegistry#open(PlayerView)}, to validate the properties of
      * this current instance of {@link ViewBuilder}.
      */
     public void validate() {

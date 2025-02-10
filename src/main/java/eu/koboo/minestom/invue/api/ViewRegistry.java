@@ -47,15 +47,14 @@ public interface ViewRegistry {
     @NotNull PlayerView open(@NotNull Player player, @NotNull ViewBuilder viewBuilder);
 
     /**
-     * Opens an existing {@link PlayerView} for the given {@link Player}.
+     * Reopens an existing {@link PlayerView}.
      * You can't open a {@link PlayerView} to another {@link Player} than the {@link Player},
      * who was provided on creating the {@link PlayerView}.
      * This method also doesn't call {@link ViewComponent#onOpen(PlayerView, Player)}.
-     * @param player The provided {@link Player}.
      * @param playerView The provided {@link PlayerView}.
      * @return The provided instance of {@link PlayerView}.
      */
-    @NotNull PlayerView open(@NotNull Player player, @NotNull PlayerView playerView);
+    @NotNull PlayerView open(@NotNull PlayerView playerView);
 
     /**
      * Returns the currently open {@link PlayerView} by the provided {@link Player}.

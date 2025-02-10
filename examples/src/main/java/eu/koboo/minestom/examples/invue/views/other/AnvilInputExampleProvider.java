@@ -1,4 +1,4 @@
-package eu.koboo.minestom.examples.invue.views;
+package eu.koboo.minestom.examples.invue.views.other;
 
 import eu.koboo.minestom.invue.api.PlayerView;
 import eu.koboo.minestom.invue.api.ViewBuilder;

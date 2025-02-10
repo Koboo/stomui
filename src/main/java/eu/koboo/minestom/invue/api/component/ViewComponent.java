@@ -41,6 +41,7 @@ public abstract class ViewComponent {
     /**
      * Adds a new child to this component. The given instance of the {@link ViewComponent}
      * needs to be unique within the whole component tree.
+     *
      * @param child The {@link ViewComponent} you want to add as child
      * @return This {@link ViewComponent}
      */
@@ -61,6 +62,7 @@ public abstract class ViewComponent {
     /**
      * Removes the given {@link ViewComponent} child from this {@link ViewComponent}.
      * This method doesn't revert any item/inventory changes done by the given {@link ViewComponent}.
+     *
      * @param child The {@link ViewComponent} you want to remove.
      * @return This {@link ViewComponent}
      */
@@ -80,6 +82,7 @@ public abstract class ViewComponent {
 
     /**
      * Checks if the given {@link ViewComponent} is a direct child of this {@link ViewComponent}.
+     *
      * @param child The {@link ViewComponent} you want to check.
      * @return true, if the {@link ViewComponent} is direct child.
      */
@@ -98,6 +101,7 @@ public abstract class ViewComponent {
 
     /**
      * Resolves the root {@link ViewComponent} of the current component tree.
+     *
      * @return The root {@link ViewComponent}.
      */
     public @NotNull ViewComponent findRootAncestor() {
@@ -114,9 +118,10 @@ public abstract class ViewComponent {
     /**
      * Returns a single {@link ViewComponent}, which is assignable from the given class.
      * This method searches through the whole component tree.
+     *
      * @param type The class of the {@link ViewComponent} you want to find.
+     * @param <T>  The generic type reference of the searched {@link ViewComponent}.
      * @return An instance of a {@link ViewComponent}.
-     * @param <T> The generic type reference of the searched {@link ViewComponent}.
      */
     public @Nullable <T extends ViewComponent> T findComponentByType(Class<T> type) {
         Set<T> componentSet = new LinkedHashSet<>();
@@ -130,9 +135,10 @@ public abstract class ViewComponent {
     /**
      * Returns a List of {@link ViewComponent}s, which are assignable from the given class.
      * This method searches through the whole component tree.
+     *
      * @param type The class of the {@link ViewComponent}s you want to find.
+     * @param <T>  The generic type reference of the searched {@link ViewComponent}s.
      * @return A List with {@link ViewComponent}s.
-     * @param <T> The generic type reference of the searched {@link ViewComponent}s.
      */
     public @NotNull <T extends ViewComponent> Set<T> findComponentsByType(Class<T> type) {
         Set<T> componentSet = new LinkedHashSet<>();
@@ -143,6 +149,7 @@ public abstract class ViewComponent {
 
     /**
      * The returned List is not modifiable.
+     *
      * @return The List with all direct {@link ViewComponent} children.
      */
     public @NotNull List<ViewComponent> getChildren() {
@@ -151,6 +158,7 @@ public abstract class ViewComponent {
 
     /**
      * Returns null, if this is the root {@link ViewComponent}.
+     *
      * @return The parent of this {@link ViewComponent}.
      */
     public @Nullable ViewComponent getParent() {
@@ -180,8 +188,9 @@ public abstract class ViewComponent {
      * Gets called, with the defined {@link ViewBuilder} and can be used
      * to modify the {@link ViewBuilder} according to the {@link ViewComponent} and it's
      * respective {@link Player}
+     *
      * @param viewBuilder The instance of the {@link ViewBuilder}
-     * @param player The instance of the {@link Player}
+     * @param player      The instance of the {@link Player}
      */
     public void modifyBuilder(@NotNull ViewBuilder viewBuilder, @NotNull Player player) {
         // Default implementation
@@ -189,7 +198,8 @@ public abstract class ViewComponent {
 
     /**
      * Gets called, everytime {@link PlayerView#updateState()} is called.
-     * @param view The instance of the containing {@link PlayerView}.
+     *
+     * @param view   The instance of the containing {@link PlayerView}.
      * @param player The instance of the {@link Player} of the {@link PlayerView}.
      */
     public void onStateUpdate(@NotNull PlayerView view, @NotNull Player player) {
@@ -198,7 +208,8 @@ public abstract class ViewComponent {
 
     /**
      * Gets called, if the {@link PlayerView} is closed for the {@link Player}.
-     * @param view The instance of the containing {@link PlayerView}.
+     *
+     * @param view   The instance of the containing {@link PlayerView}.
      * @param player The instance of the {@link Player} of the {@link PlayerView}.
      */
     public void onClose(@NotNull PlayerView view, @NotNull Player player) {
@@ -207,7 +218,8 @@ public abstract class ViewComponent {
 
     /**
      * Gets called, if the {@link PlayerView} is opened for the {@link Player}.
-     * @param view The instance of the containing {@link PlayerView}.
+     *
+     * @param view   The instance of the containing {@link PlayerView}.
      * @param player The instance of the {@link Player} of the {@link PlayerView}.
      */
     public abstract void onOpen(@NotNull PlayerView view, @NotNull Player player);

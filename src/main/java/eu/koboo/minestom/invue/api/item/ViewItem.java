@@ -24,8 +24,9 @@ public final class ViewItem extends ModifiableItem {
 
     /**
      * Returns a List will all items within the given List of slots, for the given view.
+     *
      * @param playerView The {@link PlayerView} to pass into the {@link ViewItem}s.
-     * @param slotList The List of slots passed into the {@link ViewItem}.
+     * @param slotList   The List of slots passed into the {@link ViewItem}.
      * @return An unmodifiable List of {@link ViewItem}s.
      */
     public static @NotNull List<ViewItem> bySlotList(PlayerView playerView, List<Integer> slotList) {
@@ -38,8 +39,9 @@ public final class ViewItem extends ModifiableItem {
 
     /**
      * Returns a new instance of the item, with the given slot, for the given view.
-     * @param playerView The {@link PlayerView} to pass into the {@link ViewItem}s.
-     * @param pattern The instance of the mapping {@link ViewPagination}.
+     *
+     * @param playerView    The {@link PlayerView} to pass into the {@link ViewItem}s.
+     * @param pattern       The instance of the mapping {@link ViewPagination}.
      * @param slotCharacter The character to the wanted raw slot within the {@link ViewPagination}.
      * @return A new instance of {@link ViewItem}.
      */
@@ -49,8 +51,9 @@ public final class ViewItem extends ModifiableItem {
 
     /**
      * Returns a new instance of the item, with the given slot, for the given view.
+     *
      * @param playerView The {@link PlayerView} to pass into the {@link ViewItem}s.
-     * @param position The position within the inventory.
+     * @param position   The position within the inventory.
      * @return A new instance of {@link ViewItem}.
      */
     public static @NotNull ViewItem byPosition(PlayerView playerView, Position position) {
@@ -60,9 +63,10 @@ public final class ViewItem extends ModifiableItem {
 
     /**
      * Returns a new instance of the item, with the given slot, for the given view.
+     *
      * @param playerView The {@link PlayerView} to pass into the {@link ViewItem}s.
-     * @param row The row within the inventory, starts at 0.
-     * @param column The column within the inventory, starts at 0.
+     * @param row        The row within the inventory, starts at 0.
+     * @param column     The column within the inventory, starts at 0.
      * @return A new instance of {@link ViewItem}.
      */
     public static @NotNull ViewItem byRowColumn(PlayerView playerView, int row, int column) {
@@ -72,8 +76,9 @@ public final class ViewItem extends ModifiableItem {
 
     /**
      * Returns a new instance of the item, with the given slot, for the given view.
+     *
      * @param playerView The {@link PlayerView} to pass into the {@link ViewItem}s.
-     * @param rawSlot The raw slot within the inventory.
+     * @param rawSlot    The raw slot within the inventory.
      * @return A new instance of {@link ViewItem}.
      */
     public static @NotNull ViewItem bySlot(PlayerView playerView, int rawSlot) {
@@ -115,6 +120,7 @@ public final class ViewItem extends ModifiableItem {
     /**
      * Applies the {@link ItemStack} and the {@link Interaction} of the {@link PrebuiltItem}
      * onto the instance of this {@link ViewItem}.
+     *
      * @param prebuiltItem The {@link PrebuiltItem} to apply onto this {@link ViewItem}.
      */
     public void applyPrebuilt(PrebuiltItem prebuiltItem) {

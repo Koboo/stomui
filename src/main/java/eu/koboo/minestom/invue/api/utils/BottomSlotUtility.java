@@ -19,6 +19,7 @@ public class BottomSlotUtility {
      * 3 row  = 18 - 26 -> +  9 = 35
      * hotbar = 27 - 35 -> - 27 = 8
      * <p>
+     *
      * @param conversionSlot the conversion slot
      * @return the int
      */
@@ -38,6 +39,7 @@ public class BottomSlotUtility {
      * 3 row  = 27 - 35 -> -  9 = 26
      * hotbar = 0  -  8 -> + 27 = 35
      * <p>
+     *
      * @param conversionSlot the conversion slot
      * @return the int
      */

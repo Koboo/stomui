@@ -24,8 +24,9 @@ public abstract class RootViewComponent extends ViewComponent {
     /**
      * Creates a new {@link RootViewComponent} by the given {@link ViewRegistry}
      * and {@link ViewType}.
+     *
      * @param viewRegistry An instance of {@link ViewRegistry}.
-     * @param viewType A value of {@link ViewType}.
+     * @param viewType     A value of {@link ViewType}.
      */
     public RootViewComponent(ViewRegistry viewRegistry, ViewType viewType) {
         this(viewRegistry, ViewBuilder.of(viewType));
@@ -36,8 +37,9 @@ public abstract class RootViewComponent extends ViewComponent {
      * and {@link ViewBuilder}.
      * It also adds this {@link RootViewComponent} as component to the given
      * {@link ViewBuilder}.
+     *
      * @param viewRegistry An instance of {@link ViewRegistry}.
-     * @param viewBuilder An instance of {@link ViewBuilder}.
+     * @param viewBuilder  An instance of {@link ViewBuilder}.
      */
     public RootViewComponent(ViewRegistry viewRegistry, ViewBuilder viewBuilder) {
         this.registry = viewRegistry;
@@ -47,6 +49,7 @@ public abstract class RootViewComponent extends ViewComponent {
     /**
      * Creates a new {@link PlayerView} for the given {@link Player}
      * and opens it.
+     *
      * @param player The {@link Player}, which gets the open inventory.
      */
     public void open(Player player) {

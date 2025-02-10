@@ -1,7 +1,6 @@
 package eu.koboo.minestom.invue.core.slots;
 
 import eu.koboo.minestom.invue.api.ViewType;
-import eu.koboo.minestom.invue.api.slots.SlotBuilder;
 import eu.koboo.minestom.invue.api.slots.SlotUtility;
 import eu.koboo.minestom.invue.api.slots.ViewPattern;
 import lombok.AccessLevel;

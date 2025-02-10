@@ -114,6 +114,7 @@ public final class SlotBuilder {
     /**
      * Applies all filters, the blacklist and iterations to build the wanted List<Integer>,
      * containing rawSlots.
+     *
      * @return The list with wanted rawSlots.
      */
     public List<Integer> toList() {
@@ -156,7 +157,7 @@ public final class SlotBuilder {
 
     /**
      * @param startSlot The slot, where the list should start.
-     * @param endSlot The slot, where the list should end.
+     * @param endSlot   The slot, where the list should end.
      * @return A new instance of {@link SlotBuilder}.
      */
     public static SlotBuilder builder(int startSlot, int endSlot) {

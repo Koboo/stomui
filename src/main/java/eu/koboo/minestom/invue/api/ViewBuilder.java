@@ -38,6 +38,7 @@ public final class ViewBuilder {
 
     /**
      * Required private constructor
+     *
      * @param type The {@link ViewType}, which has to be any value of the enum.
      */
     private ViewBuilder(@NotNull ViewType type) {
@@ -52,6 +53,7 @@ public final class ViewBuilder {
 
     /**
      * Sets the title as {@link Component} of the opened {@link Inventory}.
+     *
      * @param title The title of the {@link Inventory}.
      * @return This {@link ViewBuilder} instance.
      */
@@ -63,6 +65,7 @@ public final class ViewBuilder {
     /**
      * Sets the title as {@link String} to be deserialized by {@link MiniMessage}
      * of the opened {@link Inventory}.
+     *
      * @param miniMessageText The title of the {@link Inventory}.
      * @return This {@link ViewBuilder} instance.
      */
@@ -73,6 +76,7 @@ public final class ViewBuilder {
 
     /**
      * Sets the {@link RootViewComponent} to be used as start point of the component tree.
+     *
      * @param component The root component.
      * @return This {@link ViewBuilder} instance.
      */
@@ -86,6 +90,7 @@ public final class ViewBuilder {
 
     /**
      * Sets the cooldown for every slot of the opened inventory.
+     *
      * @param millis The cooldown in milliseconds. Needs to be greater or equal to 0.
      * @return This {@link ViewBuilder} instance.
      */
@@ -96,6 +101,7 @@ public final class ViewBuilder {
 
     /**
      * Sets the cooldown for a specific slot of the opened inventory.
+     *
      * @param millis The cooldown in milliseconds. Needs to be greater or equal to 0.
      * @return This {@link ViewBuilder} instance.
      */
@@ -106,6 +112,7 @@ public final class ViewBuilder {
 
     /**
      * Adds the given {@link Flag} into the new instance of {@link PlayerView}.
+     *
      * @param flags The {@link Flag}s, which will be added.
      * @return This {@link ViewBuilder} instance.
      */
@@ -118,6 +125,7 @@ public final class ViewBuilder {
      * Adds the given {@link ClickType}s as disabled/cancelled, which results in
      * ignoring any {@link Interaction} if the specific {@link ClickType} is used
      * and just cancelling the {@link InventoryPreClickEvent}.
+     *
      * @param clickTypes The {@link ClickType}s, which will be cancelled.
      * @return This {@link ViewBuilder} instance.
      */
@@ -128,6 +136,7 @@ public final class ViewBuilder {
 
     /**
      * Adds the {@link Flag} {@link Flags#ALLOW_BOTTOM_INTERACTION}.
+     *
      * @return This {@link ViewBuilder} instance.
      */
     public @NotNull ViewBuilder allowBottomInteractions() {
@@ -136,6 +145,7 @@ public final class ViewBuilder {
 
     /**
      * Adds the {@link Flag} {@link Flags#CLOSE_ON_BOTTOM_INTERACTION}.
+     *
      * @return This {@link ViewBuilder} instance.
      */
     public @NotNull ViewBuilder closeOnBottomInteractions() {
@@ -144,6 +154,7 @@ public final class ViewBuilder {
 
     /**
      * Adds the {@link Flag} {@link Flags#ALLOW_OUTSIDE_INTERACTION}.
+     *
      * @return This {@link ViewBuilder} instance.
      */
     public @NotNull ViewBuilder allowOutsideInteractions() {
@@ -152,6 +163,7 @@ public final class ViewBuilder {
 
     /**
      * Adds the {@link Flag} {@link Flags#ALLOW_OUTSIDE_INTERACTION}.
+     *
      * @return This {@link ViewBuilder} instance.
      */
     public @NotNull ViewBuilder closeOutsideOnInteractions() {
@@ -179,6 +191,7 @@ public final class ViewBuilder {
 
     /**
      * Creates a new {@link ViewBuilder} with the given {@link ViewType}.
+     *
      * @param type The given {@link ViewType}, to create a new {@link ViewBuilder}.
      * @return A new instance of {@link ViewBuilder}
      */
@@ -188,6 +201,7 @@ public final class ViewBuilder {
 
     /**
      * Create a new copied instance of{@link ViewBuilder} by the given {@link ViewBuilder}.
+     *
      * @param builder The instance of {@link ViewBuilder} to copy.
      * @return A new instance of {@link ViewBuilder} with all properties copied.
      */

@@ -48,6 +48,7 @@ public abstract class ViewPagination extends ViewComponent {
 
     /**
      * Increments the current page and updates the view to show the items of that page.
+     *
      * @param playerView The {@link PlayerView}, which changes page of the pagination.
      */
     public abstract void toNextPage(@NotNull PlayerView playerView);
@@ -59,6 +60,7 @@ public abstract class ViewPagination extends ViewComponent {
 
     /**
      * Decrements the current page and updates the view to show the items of that page.
+     *
      * @param playerView The {@link PlayerView}, which changes page of the pagination.
      */
     public abstract void toPreviousPage(@NotNull PlayerView playerView);
@@ -78,7 +80,7 @@ public abstract class ViewPagination extends ViewComponent {
      * If the page doesn't exist, is too high or too less
      * an exception is thrown.
      *
-     * @param newPage must be 1 or greater.
+     * @param newPage    must be 1 or greater.
      * @param playerView The {@link PlayerView}, which changes page of the pagination.
      */
     public abstract void toPage(@NotNull PlayerView playerView, int newPage);
@@ -88,6 +90,7 @@ public abstract class ViewPagination extends ViewComponent {
      * and sets the current page to 1.
      * It automatically calls the method toPage(1),
      * after finishing loading.
+     *
      * @param playerView The {@link PlayerView}, which reloads the pagination.
      */
     public abstract void reloadItems(@NotNull PlayerView playerView);

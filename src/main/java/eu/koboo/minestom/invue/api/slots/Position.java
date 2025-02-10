@@ -18,7 +18,8 @@ public final class Position {
 
     /**
      * Creates a new instance of {@link Position}.
-     * @param row The row within the inventory, starts at 0.
+     *
+     * @param row    The row within the inventory, starts at 0.
      * @param column The column within the inventory, starts at 0.
      * @return A new instance of {@link Position}.
      */

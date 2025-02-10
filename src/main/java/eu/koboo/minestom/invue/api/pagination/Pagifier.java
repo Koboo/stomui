@@ -14,6 +14,7 @@ import java.util.List;
 /**
  * Internal pagination class, used by {@link ViewPagination}
  * to enable pagination.
+ *
  * @param <T> The paged object, primarily {@link PrebuiltItem}
  */
 @Getter

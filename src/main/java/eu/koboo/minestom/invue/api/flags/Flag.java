@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
  * - {@link PlayerView#addFlags(Flag...)}
  * - {@link PlayerView#hasFlags(Flag...)}
  * - {@link PlayerView#removeFlags(Flag...)}
+ *
  * @param name
  */
 public record Flag(String name) {
@@ -30,11 +31,12 @@ public record Flag(String name) {
      * The name needs to
      * - be 3 or more characters long
      * - only contain lowercase letters, "_" or "-" symbols
+     *
      * @param name The name of the created {@link Flag}
      * @return A new instance of {@link Flag}
      */
     public static @NotNull Flag of(@NotNull String name) {
-        if(!FLAG_REGEX_PATTERN.matcher(name).matches()) {
+        if (!FLAG_REGEX_PATTERN.matcher(name).matches()) {
             throw new NullPointerException("Flag name doesnt match expected pattern!");
         }
         return new Flag(name.toLowerCase(Locale.ROOT));

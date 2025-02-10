@@ -40,7 +40,8 @@ public interface ViewRegistry {
      * using the provided {@link ViewBuilder}. This method also executes
      * the {@link ViewComponent#modifyBuilder(ViewBuilder, Player)} method
      * before the {@link PlayerView} created.
-     * @param player The provided {@link Player}.
+     *
+     * @param player      The provided {@link Player}.
      * @param viewBuilder The provided {@link ViewBuilder}.
      * @return A new created instance of {@link PlayerView}.
      */
@@ -51,6 +52,7 @@ public interface ViewRegistry {
      * You can't open a {@link PlayerView} to another {@link Player} than the {@link Player},
      * who was provided on creating the {@link PlayerView}.
      * This method also doesn't call {@link ViewComponent#onOpen(PlayerView, Player)}.
+     *
      * @param playerView The provided {@link PlayerView}.
      * @return The provided instance of {@link PlayerView}.
      */
@@ -58,6 +60,7 @@ public interface ViewRegistry {
 
     /**
      * Returns the currently open {@link PlayerView} by the provided {@link Player}.
+     *
      * @param player The provided {@link Player}.
      * @return An instance of {@link PlayerView}, if the {@link Player} has any open.
      * Otherwise, null.
@@ -74,6 +77,7 @@ public interface ViewRegistry {
      * <p>
      * Imagine it like a browser-history.
      * Reference documentation: {@link Interactions#backToLastView()}
+     *
      * @param player The provided {@link Player}.
      * @return An instance of {@link PlayerView}, if the {@link Player} has any last view.
      * Otherwise, null.
@@ -85,6 +89,7 @@ public interface ViewRegistry {
      * <p>
      * Imagine it like a browser-history.
      * Reference documentation: {@link Interactions#forwardToNextView()}
+     *
      * @param player The provided {@link Player}.
      * @return An instance of {@link PlayerView}, if the {@link Player} has any next view.
      * Otherwise, null.
@@ -121,8 +126,9 @@ public interface ViewRegistry {
      * The returned instance needs to be added as child to any {@link ViewComponent}.
      * - {@link ViewComponent#addChild(ViewComponent)}.
      * <p>
+     *
      * @param itemLoader The {@link ItemLoader}, which fills the pagination with items.
-     * @param slotList The list of slots, which are part of the pagination.
+     * @param slotList   The list of slots, which are part of the pagination.
      * @param fillerItem The filler item, if no item is present for the specific page. Defaults to Air.
      * @return A new instance of {@link ViewPagination}.
      */
@@ -152,8 +158,9 @@ public interface ViewRegistry {
      * The returned instance needs to be added as child to any {@link ViewComponent}.
      * - {@link ViewComponent#addChild(ViewComponent)}.
      * <p>
-     * @param itemLoader The {@link ItemLoader}, which fills the pagination with items.
-     * @param fillerItem The filler item, if no item is present for the specific page. Defaults to Air.
+     *
+     * @param itemLoader      The {@link ItemLoader}, which fills the pagination with items.
+     * @param fillerItem      The filler item, if no item is present for the specific page. Defaults to Air.
      * @param listOfSlotLists The list of all slot-lists, which are part of the pagination.
      * @return A new instance of {@link ViewPagination}.
      */
@@ -171,6 +178,7 @@ public interface ViewRegistry {
     /**
      * Creates a new {@link ViewPattern} instance.
      * See {@link ViewPattern} for more information.
+     *
      * @param pattern The pattern of the inventory.
      * @return A new instance of {@link ViewPattern}
      */
@@ -179,8 +187,9 @@ public interface ViewRegistry {
     /**
      * Executes the given Function recursively on all components,
      * starting with the given component and traversing down the component tree.
+     *
      * @param component The starting point of execution.
-     * @param function The execution function.
+     * @param function  The execution function.
      */
     void executeComponents(ViewComponent component, Consumer<ViewComponent> function);
 }

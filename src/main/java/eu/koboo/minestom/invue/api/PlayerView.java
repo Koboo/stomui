@@ -58,12 +58,14 @@ public interface PlayerView {
 
     /**
      * Adds all provided {@link Flag}s to this view.
+     *
      * @param flags All {@link Flag}s, which should be added.
      */
     void addFlags(@NotNull Flag... flags);
 
     /**
      * Checks if the view has all provided {@link Flag}s.
+     *
      * @param flags All {@link Flag}s, which should be checked.
      * @return true, if the view contains all {@link Flag}s.
      */
@@ -71,6 +73,7 @@ public interface PlayerView {
 
     /**
      * Removes all provided {@link Flag}s from this view.
+     *
      * @param flags All {@link Flag}s, which should be removed.
      */
     void removeFlags(@NotNull Flag... flags);
@@ -78,7 +81,8 @@ public interface PlayerView {
     /**
      * Sets the interaction on a specific raw slot.
      * The raw slot supports slots of the top- and the bottom-inventory.
-     * @param rawSlot The slot you want to set.
+     *
+     * @param rawSlot     The slot you want to set.
      * @param interaction The interaction, which gets executed by clicking the given rawSlot.
      */
     void setInteraction(int rawSlot, @NotNull Interaction interaction);
@@ -86,7 +90,8 @@ public interface PlayerView {
     /**
      * Sets the {@link ItemStack} on a specific raw slot.
      * The raw slot supports slots of the top- and the bottom-inventory.
-     * @param rawSlot The slot you want to set.
+     *
+     * @param rawSlot   The slot you want to set.
      * @param itemStack The {@link ItemStack}, which gets set in the given slot.
      */
     void setItemStack(int rawSlot, @NotNull ItemStack itemStack);
@@ -94,6 +99,7 @@ public interface PlayerView {
     /**
      * Returns the {@link ItemStack}, which is set in the given raw slot.
      * The raw slot supports slots of the top- and the bottom-inventory.
+     *
      * @param rawSlot The slot you want to get.
      * @return {@link ItemStack}, in the provided raw slot.
      */
@@ -102,6 +108,7 @@ public interface PlayerView {
     /**
      * Returns the {@link Interaction}, which is set in the given raw slot.
      * The raw slot supports slots of the top- and the bottom-inventory.
+     *
      * @param rawSlot The slot you want to get.
      * @return {@link Interaction}, in the provided raw slot.
      */

@@ -5,9 +5,10 @@ import dev.rollczi.litecommands.annotations.command.Command;
 import dev.rollczi.litecommands.annotations.context.Context;
 import dev.rollczi.litecommands.annotations.execute.Execute;
 import dev.rollczi.litecommands.annotations.execute.ExecuteDefault;
-import eu.koboo.minestom.examples.invue.views.AllowInteractionExampleProvider;
-import eu.koboo.minestom.examples.invue.views.AnnotatedTabExampleProvider;
-import eu.koboo.minestom.examples.invue.views.AnvilInputExampleProvider;
+import eu.koboo.minestom.examples.invue.views.other.AllowInteractionExampleProvider;
+import eu.koboo.minestom.examples.invue.views.other.AnnotatedTabExampleProvider;
+import eu.koboo.minestom.examples.invue.views.other.AnvilInputExampleProvider;
+import eu.koboo.minestom.examples.invue.views.SimpleExampleProvider;
 import eu.koboo.minestom.examples.invue.views.pagination.PageableExampleProvider;
 import eu.koboo.minestom.examples.invue.views.pagination.ScrollableHorizontalExampleProvider;
 import eu.koboo.minestom.examples.invue.views.pagination.ScrollableVerticalExampleProvider;
@@ -39,6 +40,7 @@ public final class CommandView {
         put("allow", AllowInteractionExampleProvider::new);
         put("anvil", AnvilInputExampleProvider::new);
         put("search", SearchExampleProvider::new);
+        put("simple", SimpleExampleProvider::new);
         put("depth", registry -> new MultiLayersExampleProvider(registry, 1));
     }};
 

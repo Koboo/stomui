@@ -11,9 +11,11 @@ import eu.koboo.minestom.invue.api.item.PrebuiltItem;
 public interface ItemLoader {
 
     /**
-     * Gets called by the {@link ViewPagination#reloadItems(PlayerView)} method.
+     * Gets called by the {@link ViewPagination#reloadItems(PlayerView)} method,
+     * to load all items in the given {@link Pagifier}. The given {@link Pagifier}
+     * is always empty and needs to be filled by the user.
      *
-     * @param pagifier An instance of the {@link Pagifier}, which is used in {@link ViewPagination}.
+     * @param pagifier An instance of {@link Pagifier}, which is used in {@link ViewPagination}.
      */
     void load(Pagifier<PrebuiltItem> pagifier);
 }

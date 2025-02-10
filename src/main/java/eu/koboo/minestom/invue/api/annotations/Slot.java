@@ -25,7 +25,7 @@ import java.lang.annotation.Target;
  * }
  * </pre>
  * <p>
- * Require method signature is:
+ * Required method signature is:
  * <pre>
  * {@code
  *      @Slot(0) // first slot in inventory

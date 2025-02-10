@@ -15,6 +15,8 @@ import java.util.List;
  * See more information, on how to create or use it:
  * - {@link ViewRegistry#pageable(ItemLoader, List, ItemStack)}
  * - {@link ViewRegistry#scrollable(ItemLoader, ItemStack, List)}
+ * To use the created instance of {@link ViewPagination} you need to add it
+ * as child to any {@link ViewComponent} Using {@link ViewComponent#addChild(ViewComponent)}.
  */
 public abstract class ViewPagination extends ViewComponent {
 

@@ -1,5 +1,6 @@
 package eu.koboo.minestom.invue.api.pagination;
 
+import eu.koboo.minestom.invue.api.item.PrebuiltItem;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
@@ -12,7 +13,8 @@ import java.util.List;
 
 /**
  * Internal pagination class, used by {@link ViewPagination}
- * @param <T> The paged object
+ * to enable pagination.
+ * @param <T> The paged object, primarily {@link PrebuiltItem}
  */
 @Getter
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)

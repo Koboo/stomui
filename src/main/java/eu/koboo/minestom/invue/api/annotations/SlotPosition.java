@@ -1,7 +1,5 @@
 package eu.koboo.minestom.invue.api.annotations;
 
-import eu.koboo.minestom.invue.api.item.PrebuiltItem;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

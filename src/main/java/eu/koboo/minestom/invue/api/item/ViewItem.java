@@ -2,6 +2,7 @@ package eu.koboo.minestom.invue.api.item;
 
 import eu.koboo.minestom.invue.api.PlayerView;
 import eu.koboo.minestom.invue.api.interaction.Interaction;
+import eu.koboo.minestom.invue.api.pagination.ViewPagination;
 import eu.koboo.minestom.invue.api.slots.Position;
 import eu.koboo.minestom.invue.api.slots.ViewPattern;
 import lombok.AccessLevel;
@@ -13,10 +14,20 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class represents the actual {@link ItemStack} and {@link Interaction} of
+ * a specific slot within the opened top- or bottom-inventory.
+ */
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public final class ViewItem extends ModifiableItem {
 
+    /**
+     * Returns a List will all items within the given List of slots, for the given view.
+     * @param playerView The {@link PlayerView} to pass into the {@link ViewItem}s.
+     * @param slotList The List of slots passed into the {@link ViewItem}.
+     * @return An unmodifiable List of {@link ViewItem}s.
+     */
     public static @NotNull List<ViewItem> bySlotList(PlayerView playerView, List<Integer> slotList) {
         List<ViewItem> viewItems = new ArrayList<>();
         for (Integer slot : slotList) {
@@ -25,20 +36,46 @@ public final class ViewItem extends ModifiableItem {
         return List.copyOf(viewItems);
     }
 
+    /**
+     * Returns a new instance of the item, with the given slot, for the given view.
+     * @param playerView The {@link PlayerView} to pass into the {@link ViewItem}s.
+     * @param pattern The instance of the mapping {@link ViewPagination}.
+     * @param slotCharacter The character to the wanted raw slot within the {@link ViewPagination}.
+     * @return A new instance of {@link ViewItem}.
+     */
     public static @NotNull ViewItem byPattern(PlayerView playerView, ViewPattern pattern, Character slotCharacter) {
         return bySlot(playerView, pattern.getSlot(slotCharacter));
     }
 
+    /**
+     * Returns a new instance of the item, with the given slot, for the given view.
+     * @param playerView The {@link PlayerView} to pass into the {@link ViewItem}s.
+     * @param position The position within the inventory.
+     * @return A new instance of {@link ViewItem}.
+     */
     public static @NotNull ViewItem byPosition(PlayerView playerView, Position position) {
         int slot = playerView.getType().toSlot(position.getRow(), position.getColumn());
         return bySlot(playerView, slot);
     }
 
+    /**
+     * Returns a new instance of the item, with the given slot, for the given view.
+     * @param playerView The {@link PlayerView} to pass into the {@link ViewItem}s.
+     * @param row The row within the inventory, starts at 0.
+     * @param column The column within the inventory, starts at 0.
+     * @return A new instance of {@link ViewItem}.
+     */
     public static @NotNull ViewItem byRowColumn(PlayerView playerView, int row, int column) {
         int slot = playerView.getType().toSlot(row, column);
         return bySlot(playerView, slot);
     }
 
+    /**
+     * Returns a new instance of the item, with the given slot, for the given view.
+     * @param playerView The {@link PlayerView} to pass into the {@link ViewItem}s.
+     * @param rawSlot The raw slot within the inventory.
+     * @return A new instance of {@link ViewItem}.
+     */
     public static @NotNull ViewItem bySlot(PlayerView playerView, int rawSlot) {
         return new ViewItem(playerView, rawSlot);
     }
@@ -75,6 +112,11 @@ public final class ViewItem extends ModifiableItem {
         return (T) this;
     }
 
+    /**
+     * Applies the {@link ItemStack} and the {@link Interaction} of the {@link PrebuiltItem}
+     * onto the instance of this {@link ViewItem}.
+     * @param prebuiltItem The {@link PrebuiltItem} to apply onto this {@link ViewItem}.
+     */
     public void applyPrebuilt(PrebuiltItem prebuiltItem) {
         item(prebuiltItem.getItem());
         interaction(prebuiltItem.getInteraction());

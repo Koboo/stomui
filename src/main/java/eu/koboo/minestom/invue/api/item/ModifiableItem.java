@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public abstract class ModifiableItem {
+public abstract sealed class ModifiableItem permits PrebuiltItem, ViewItem {
 
     public abstract @NotNull ItemStack getItem();
 

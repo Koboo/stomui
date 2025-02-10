@@ -10,6 +10,16 @@ import net.minestom.server.inventory.InventoryType;
 
 import java.util.List;
 
+/**
+ * Represents the size and type of the inventory.
+ * It's also used to do a lot of slot utility calculations,
+ * like the following:
+ * - top-slot to bottom-slot
+ * - all top-/bottom-slots
+ * - all top-/bottom-border-slots
+ * - toSlot(Position)
+ * - toPosition(Slot)
+ */
 @Getter
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)

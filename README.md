@@ -50,3 +50,7 @@ the near future and JavaDocs will be added to the API classes.
 ## Template
 
 This project is a copy of [minestom-library-template](https://github.com/Koboo/minestom-library-template).
+
+## Links
+
+- [Minestom](https://minestom.net)

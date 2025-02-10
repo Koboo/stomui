@@ -67,7 +67,7 @@ public class Interactions {
             if (nextView == null) {
                 return;
             }
-            registry.openViewInternal(player, nextView, false, true);
+            registry.openViewInternal(nextView, false, true);
         };
     }
 
@@ -79,7 +79,7 @@ public class Interactions {
             if (lastView == null) {
                 return;
             }
-            registry.openViewInternal(player, lastView, false, true);
+            registry.openViewInternal(lastView, false, true);
         };
     }
 

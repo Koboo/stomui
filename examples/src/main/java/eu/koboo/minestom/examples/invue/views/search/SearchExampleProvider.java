@@ -33,7 +33,7 @@ public class SearchExampleProvider extends RootViewComponent implements AnvilInp
             "#########",
             "A <   >  "
         );
-        pattern.offsetTop(VIEW_TYPE);
+        pattern.offsetTopInventory(VIEW_TYPE);
         loader = new SearchItemLoader();
         pagination = registry.pageable(
             loader,

@@ -7,7 +7,6 @@ import eu.koboo.minestom.invue.api.ViewType;
 import eu.koboo.minestom.invue.api.component.Priority;
 import eu.koboo.minestom.invue.api.component.RootViewComponent;
 import eu.koboo.minestom.invue.api.item.ViewItem;
-import lombok.Getter;
 import net.minestom.server.entity.Player;
 import net.minestom.server.item.Material;
 import org.jetbrains.annotations.NotNull;

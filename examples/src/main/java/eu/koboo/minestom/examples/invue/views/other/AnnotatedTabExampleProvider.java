@@ -105,13 +105,13 @@ public class AnnotatedTabExampleProvider extends ViewProvider {
             .material(settingsTab.getMaterial())
             .displayName(settingsTab.getName())
             .glint(currentTab == settingsTab)
-            .interaction(interaction -> {
+            .interaction(action -> {
                 // If the user clicks this item,
                 // we update the current tab field in this component instance,
                 // and we call updateState(), to ensure the tab item,
                 // which was selected starts glinting (enchantment glow)
                 this.currentTab = settingsTab;
-                interaction.getView().updateState();
+                action.getView().updateState();
             });
     }
 

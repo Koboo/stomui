@@ -14,7 +14,7 @@ public interface Interaction {
     /**
      * Gets called everytime the player interacts with the {@link PlayerView}.
      *
-     * @param interaction The wrapper of interaction relevant properties. See more at {@link ViewAction}.
+     * @param action The wrapper of the interaction relevant properties. See more all: {@link ViewAction}
      */
-    void interact(ViewAction interaction);
+    void interact(ViewAction action);
 }

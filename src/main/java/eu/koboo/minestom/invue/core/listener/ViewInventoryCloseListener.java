@@ -3,20 +3,18 @@ package eu.koboo.minestom.invue.core.listener;
 import eu.koboo.minestom.invue.core.CorePlayerView;
 import eu.koboo.minestom.invue.core.CoreViewRegistry;
 import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import net.minestom.server.entity.Player;
 import net.minestom.server.event.inventory.InventoryCloseEvent;
 
 import java.util.function.Consumer;
 
+@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public final class ViewInventoryCloseListener implements Consumer<InventoryCloseEvent> {
 
     CoreViewRegistry registry;
-
-    public ViewInventoryCloseListener(CoreViewRegistry registry) {
-        this.registry = registry;
-    }
 
     // Only fired by the following scenarios:
     // - Client-side inventory close

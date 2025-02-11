@@ -11,6 +11,7 @@ import eu.koboo.minestom.invue.api.utils.BottomSlotUtility;
 import eu.koboo.minestom.invue.core.CorePlayerView;
 import eu.koboo.minestom.invue.core.CoreViewRegistry;
 import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import net.minestom.server.entity.Player;
 import net.minestom.server.event.inventory.InventoryPreClickEvent;
@@ -19,6 +20,7 @@ import net.minestom.server.inventory.PlayerInventory;
 
 import java.util.function.Consumer;
 
+@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public final class ViewInventoryPreClickListener implements Consumer<InventoryPreClickEvent> {
 
@@ -26,10 +28,6 @@ public final class ViewInventoryPreClickListener implements Consumer<InventoryPr
     private static final int CURSOR = -1;
 
     CoreViewRegistry registry;
-
-    public ViewInventoryPreClickListener(CoreViewRegistry registry) {
-        this.registry = registry;
-    }
 
     @Override
     public void accept(InventoryPreClickEvent event) {

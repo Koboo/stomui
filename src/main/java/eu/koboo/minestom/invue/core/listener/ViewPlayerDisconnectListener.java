@@ -3,24 +3,19 @@ package eu.koboo.minestom.invue.core.listener;
 import eu.koboo.minestom.invue.core.CorePlayerView;
 import eu.koboo.minestom.invue.core.CoreViewRegistry;
 import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import net.minestom.server.entity.Player;
 import net.minestom.server.event.player.PlayerDisconnectEvent;
 
 import java.util.function.Consumer;
 
+@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public final class ViewPlayerDisconnectListener implements Consumer<PlayerDisconnectEvent> {
 
     CoreViewRegistry registry;
 
-    public ViewPlayerDisconnectListener(CoreViewRegistry registry) {
-        this.registry = registry;
-    }
-
-    // Only fired by the following scenarios:
-    // - Client-side inventory close
-    // - Server-side Player#closeInventory() call
     @Override
     public void accept(PlayerDisconnectEvent event) {
         Player player = event.getPlayer();

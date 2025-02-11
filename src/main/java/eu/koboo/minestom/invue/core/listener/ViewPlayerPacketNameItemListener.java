@@ -6,6 +6,7 @@ import eu.koboo.minestom.invue.api.interaction.AnvilInputInteraction;
 import eu.koboo.minestom.invue.core.CorePlayerView;
 import eu.koboo.minestom.invue.core.CoreViewRegistry;
 import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import net.minestom.server.entity.Player;
 import net.minestom.server.event.player.PlayerPacketEvent;
@@ -13,14 +14,11 @@ import net.minestom.server.network.packet.client.play.ClientNameItemPacket;
 
 import java.util.function.Consumer;
 
+@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public final class ViewPlayerPacketNameItemListener implements Consumer<PlayerPacketEvent> {
 
     CoreViewRegistry registry;
-
-    public ViewPlayerPacketNameItemListener(CoreViewRegistry registry) {
-        this.registry = registry;
-    }
 
     @Override
     public void accept(PlayerPacketEvent event) {

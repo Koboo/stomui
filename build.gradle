@@ -26,7 +26,6 @@ allprojects {
     }
 
     compileJava {
-        version = javaVersion
         targetCompatibility = javaVersion
         sourceCompatibility = javaVersion
         options.encoding("UTF-8")

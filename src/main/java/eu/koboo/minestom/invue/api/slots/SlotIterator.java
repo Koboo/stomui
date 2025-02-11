@@ -331,6 +331,7 @@ public final class SlotIterator implements Iterable<Integer> {
 
     /**
      * Creates a new instance of {@link SlotIterator}.
+     *
      * @return An empty instance of {@link SlotIterator}.
      */
     public static SlotIterator of(@NotNull ViewType viewType) {
@@ -339,6 +340,7 @@ public final class SlotIterator implements Iterable<Integer> {
 
     /**
      * Creates a new instance of {@link SlotIterator}.
+     *
      * @return An empty instance of {@link SlotIterator}.
      */
     public static SlotIterator of(@NotNull ViewBuilder viewBuilder) {
@@ -347,6 +349,7 @@ public final class SlotIterator implements Iterable<Integer> {
 
     /**
      * Creates a new instance of {@link SlotIterator}.
+     *
      * @return An empty instance of {@link SlotIterator}.
      */
     public static SlotIterator of(@NotNull RootViewComponent rootViewComponent) {
@@ -355,6 +358,7 @@ public final class SlotIterator implements Iterable<Integer> {
 
     /**
      * Creates a new instance of {@link SlotIterator}.
+     *
      * @return An empty instance of {@link SlotIterator}.
      */
     public static SlotIterator of(@NotNull PlayerView playerView) {
@@ -363,6 +367,7 @@ public final class SlotIterator implements Iterable<Integer> {
 
     /**
      * Creates a new instance of {@link SlotIterator}.
+     *
      * @param startSlot The slot, where the list should start.
      * @param endSlot   The slot, where the list should end.
      * @return A new instance of {@link SlotIterator}.
@@ -373,6 +378,7 @@ public final class SlotIterator implements Iterable<Integer> {
 
     /**
      * Creates a new instance of {@link SlotIterator}.
+     *
      * @param slotList A list, which is hard-defined
      * @return A new instance of {@link SlotIterator}.
      */
@@ -382,6 +388,7 @@ public final class SlotIterator implements Iterable<Integer> {
 
     /**
      * Creates a new instance of {@link SlotIterator}.
+     *
      * @param viewType The {@link ViewType}, which provides all top slots of an inventory.
      * @return A new instance of {@link SlotIterator}.
      */
@@ -391,6 +398,7 @@ public final class SlotIterator implements Iterable<Integer> {
 
     /**
      * Creates a new instance of {@link SlotIterator}.
+     *
      * @param viewType The {@link ViewType}, which provides all bottom slots of an inventory.
      * @return A new instance of {@link SlotIterator}.
      */
@@ -400,6 +408,7 @@ public final class SlotIterator implements Iterable<Integer> {
 
     /**
      * Creates a new instance of {@link SlotIterator}.
+     *
      * @param viewType The {@link ViewType}, which provides all slots (top and bottom) of an inventory.
      * @return A new instance of {@link SlotIterator}.
      */
@@ -409,8 +418,9 @@ public final class SlotIterator implements Iterable<Integer> {
 
     /**
      * Creates a new instance of {@link SlotIterator}.
+     *
      * @param playerView The {@link PlayerView} to check the items in.
-     * @param material The included {@link Material}.
+     * @param material   The included {@link Material}.
      * @return A new instance of {@link SlotIterator}.
      */
     public static SlotIterator allTopMaterialSlots(@NotNull PlayerView playerView, @NotNull Material material) {
@@ -419,8 +429,9 @@ public final class SlotIterator implements Iterable<Integer> {
 
     /**
      * Creates a new instance of {@link SlotIterator}.
+     *
      * @param playerView The {@link PlayerView} to check the items in.
-     * @param material The included {@link Material}.
+     * @param material   The included {@link Material}.
      * @return A new instance of {@link SlotIterator}.
      */
     public static SlotIterator allBottomMaterialSlots(@NotNull PlayerView playerView, @NotNull Material material) {
@@ -429,8 +440,9 @@ public final class SlotIterator implements Iterable<Integer> {
 
     /**
      * Creates a new instance of {@link SlotIterator}.
+     *
      * @param playerView The {@link PlayerView} to check the items in.
-     * @param material The included {@link Material}.
+     * @param material   The included {@link Material}.
      * @return A new instance of {@link SlotIterator}.
      */
     public static SlotIterator allMaterialSlots(@NotNull PlayerView playerView, @NotNull Material material) {

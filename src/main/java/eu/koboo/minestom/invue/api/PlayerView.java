@@ -1,7 +1,7 @@
 package eu.koboo.minestom.invue.api;
 
-import eu.koboo.minestom.invue.api.component.ViewProvider;
 import eu.koboo.minestom.invue.api.component.ViewComponent;
+import eu.koboo.minestom.invue.api.component.ViewProvider;
 import eu.koboo.minestom.invue.api.flags.Flag;
 import eu.koboo.minestom.invue.api.interaction.AnvilInputInteraction;
 import eu.koboo.minestom.invue.api.interaction.Interaction;

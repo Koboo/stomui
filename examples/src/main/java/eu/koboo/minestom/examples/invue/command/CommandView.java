@@ -13,8 +13,8 @@ import eu.koboo.minestom.examples.invue.views.pagination.PageableExampleProvider
 import eu.koboo.minestom.examples.invue.views.pagination.ScrollableHorizontalExampleProvider;
 import eu.koboo.minestom.examples.invue.views.pagination.ScrollableVerticalExampleProvider;
 import eu.koboo.minestom.examples.invue.views.search.SearchExampleProvider;
-import eu.koboo.minestom.examples.invue.views.switching.ViewHistoryExampleProvider;
 import eu.koboo.minestom.examples.invue.views.switching.SwitchOneExampleProvider;
+import eu.koboo.minestom.examples.invue.views.switching.ViewHistoryExampleProvider;
 import eu.koboo.minestom.invue.api.ViewRegistry;
 import eu.koboo.minestom.invue.api.component.ViewProvider;
 import lombok.AccessLevel;

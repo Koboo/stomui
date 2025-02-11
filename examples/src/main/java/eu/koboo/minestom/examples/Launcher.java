@@ -2,7 +2,7 @@ package eu.koboo.minestom.examples;
 
 import dev.rollczi.litecommands.LiteCommands;
 import dev.rollczi.litecommands.minestom.LiteMinestomFactory;
-import eu.koboo.minestom.examples.invue.command.CommandMultiView;
+import eu.koboo.minestom.examples.invue.command.CommandComponentForTwoPlayer;
 import eu.koboo.minestom.examples.invue.command.CommandView;
 import eu.koboo.minestom.invue.api.ViewRegistry;
 import eu.koboo.minestom.invue.core.MinestomInvue;
@@ -50,7 +50,7 @@ public class Launcher {
         LiteCommands<CommandSender> liteCommands = LiteMinestomFactory.builder()
             .commands(
                 new CommandView(viewRegistry),
-                new CommandMultiView(viewRegistry)
+                new CommandComponentForTwoPlayer(viewRegistry)
             )
             .settings(configurator ->
                 configurator.permissionResolver((sender, permission) -> true)

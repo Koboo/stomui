@@ -13,7 +13,7 @@ import eu.koboo.minestom.examples.invue.views.pagination.PageableExampleProvider
 import eu.koboo.minestom.examples.invue.views.pagination.ScrollableHorizontalExampleProvider;
 import eu.koboo.minestom.examples.invue.views.pagination.ScrollableVerticalExampleProvider;
 import eu.koboo.minestom.examples.invue.views.search.SearchExampleProvider;
-import eu.koboo.minestom.examples.invue.views.switching.MultiLayersExampleProvider;
+import eu.koboo.minestom.examples.invue.views.switching.ViewHistoryExampleProvider;
 import eu.koboo.minestom.examples.invue.views.switching.SwitchOneExampleProvider;
 import eu.koboo.minestom.invue.api.ViewRegistry;
 import eu.koboo.minestom.invue.api.component.RootViewComponent;
@@ -41,7 +41,7 @@ public final class CommandView {
         put("anvil", AnvilInputExampleProvider::new);
         put("search", SearchExampleProvider::new);
         put("simple", SimpleExampleProvider::new);
-        put("depth", registry -> new MultiLayersExampleProvider(registry, 1));
+        put("history", registry -> new ViewHistoryExampleProvider(registry, 1));
     }};
 
     ViewRegistry registry;

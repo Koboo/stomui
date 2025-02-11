@@ -16,15 +16,15 @@ import org.jetbrains.annotations.NotNull;
 
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class MultiLayersExampleProvider extends RootViewComponent {
+public class ViewHistoryExampleProvider extends RootViewComponent {
 
     int layerDepth;
     String title;
 
-    public MultiLayersExampleProvider(ViewRegistry registry, int layerDepth) {
+    public ViewHistoryExampleProvider(ViewRegistry registry, int layerDepth) {
         super(registry, ViewBuilder.of(ViewType.SIZE_5_X_9));
         this.layerDepth = layerDepth;
-        this.title = "Depth: " + layerDepth;
+        this.title = "History: " + layerDepth;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class MultiLayersExampleProvider extends RootViewComponent {
         ViewItem.byRowColumn(view, 3, 4)
             .material(Material.ARROW)
             .displayName("New depth " + nextLayerDepth)
-            .interaction(Interactions.open(new MultiLayersExampleProvider(registry, nextLayerDepth)));
+            .interaction(Interactions.open(new ViewHistoryExampleProvider(registry, nextLayerDepth)));
     }
 
     @Override

@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
  * an easy {@link RootViewComponent#open(Player)} method.
  */
 @Getter
-@FieldDefaults(level = AccessLevel.PACKAGE, makeFinal = true)
+@FieldDefaults(level = AccessLevel.PROTECTED, makeFinal = true)
 public abstract class RootViewComponent extends ViewComponent {
 
     ViewRegistry registry;

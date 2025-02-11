@@ -24,10 +24,6 @@ public class SlotUtility {
         return toSlot(position.getRow(), position.getColumn(), slotsPerColumn);
     }
 
-    public int toSlot(int row, int column) {
-        return toSlot(row, column, 9);
-    }
-
     public int toSlot(int row, int column, int slotsPerColumn) {
         return row * slotsPerColumn + column;
     }
@@ -58,8 +54,8 @@ public class SlotUtility {
 
     public @NotNull List<Integer> mergeSlotLists(List<List<Integer>> slotLists) {
         List<Integer> mergedList = new ArrayList<>();
-        for (int i = 0; i < slotLists.size(); i++) {
-            mergedList.addAll(slotLists.get(i));
+        for (List<Integer> slotList : slotLists) {
+            mergedList.addAll(slotList);
         }
         return mergedList;
     }
@@ -116,8 +112,7 @@ public class SlotUtility {
         if (!horizontalSlotLists.isEmpty()) {
             borderSlots.addAll(horizontalSlotLists.removeLast());
         }
-        for (int i = 0; i < horizontalSlotLists.size(); i++) {
-            List<Integer> allSlots = horizontalSlotLists.get(i);
+        for (List<Integer> allSlots : horizontalSlotLists) {
             if (allSlots.isEmpty()) {
                 continue;
             }
@@ -130,8 +125,7 @@ public class SlotUtility {
     public @NotNull List<Integer> getContentSlots(int rowIndex, int columnIndex) {
         List<List<Integer>> horizontalSlotList = getSlotLists(SlotDirection.HORIZONTAL, rowIndex, columnIndex);
         List<Integer> contentSlots = new ArrayList<>();
-        for (int i = 0; i < horizontalSlotList.size(); i++) {
-            List<Integer> allSlots = horizontalSlotList.get(i);
+        for (List<Integer> allSlots : horizontalSlotList) {
             allSlots.removeFirst();
             allSlots.removeLast();
             contentSlots.addAll(allSlots);
@@ -238,8 +232,7 @@ public class SlotUtility {
 
     public int getHighestSlot(@NotNull List<Integer> slotList) {
         int highestSlot = 0;
-        for (int i = 0; i < slotList.size(); i++) {
-            int slot = slotList.get(i);
+        for (int slot : slotList) {
             if (slot <= highestSlot) {
                 continue;
             }
@@ -250,8 +243,7 @@ public class SlotUtility {
 
     public int getLowestSlot(@NotNull List<Integer> slotList) {
         int lowestSlot = Integer.MAX_VALUE;
-        for (int i = 0; i < slotList.size(); i++) {
-            int slot = slotList.get(i);
+        for (int slot : slotList) {
             if (slot >= lowestSlot) {
                 continue;
             }

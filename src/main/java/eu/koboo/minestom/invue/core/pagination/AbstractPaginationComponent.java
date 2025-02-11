@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @FieldDefaults(level = AccessLevel.PROTECTED)
-abstract class AbstractPaginationComponent extends ViewPagination {
+public abstract sealed class AbstractPaginationComponent extends ViewPagination permits PageComponent, ScrollComponent {
 
     final ItemLoader itemLoader;
     final ItemStack fillerItem;

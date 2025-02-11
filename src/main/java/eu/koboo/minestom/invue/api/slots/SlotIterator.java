@@ -3,7 +3,7 @@ package eu.koboo.minestom.invue.api.slots;
 import eu.koboo.minestom.invue.api.PlayerView;
 import eu.koboo.minestom.invue.api.ViewBuilder;
 import eu.koboo.minestom.invue.api.ViewType;
-import eu.koboo.minestom.invue.api.component.RootViewComponent;
+import eu.koboo.minestom.invue.api.component.ViewProvider;
 import eu.koboo.minestom.invue.api.item.ViewItem;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -352,8 +352,8 @@ public final class SlotIterator implements Iterable<Integer> {
      *
      * @return An empty instance of {@link SlotIterator}.
      */
-    public static SlotIterator of(@NotNull RootViewComponent rootViewComponent) {
-        return of(rootViewComponent.getBuilder());
+    public static SlotIterator of(@NotNull ViewProvider viewProvider) {
+        return of(viewProvider.getBuilder());
     }
 
     /**

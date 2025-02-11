@@ -7,7 +7,7 @@ import eu.koboo.minestom.invue.api.ViewType;
 import eu.koboo.minestom.invue.api.annotations.Slot;
 import eu.koboo.minestom.invue.api.annotations.Stateful;
 import eu.koboo.minestom.invue.api.annotations.components.AnnotationRenderComponent;
-import eu.koboo.minestom.invue.api.component.RootViewComponent;
+import eu.koboo.minestom.invue.api.component.ViewProvider;
 import eu.koboo.minestom.invue.api.item.PrebuiltItem;
 import eu.koboo.minestom.invue.api.item.ViewItem;
 import eu.koboo.minestom.invue.api.slots.SlotIterator;
@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 @Getter
-public class AnnotatedTabExampleProvider extends RootViewComponent {
+public class AnnotatedTabExampleProvider extends ViewProvider {
 
     SettingsTab currentTab;
     SlotIterator tabContentSlots;

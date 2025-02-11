@@ -5,7 +5,7 @@ import eu.koboo.minestom.invue.api.ViewBuilder;
 import eu.koboo.minestom.invue.api.ViewRegistry;
 import eu.koboo.minestom.invue.api.ViewType;
 import eu.koboo.minestom.invue.api.component.Priority;
-import eu.koboo.minestom.invue.api.component.RootViewComponent;
+import eu.koboo.minestom.invue.api.component.ViewProvider;
 import eu.koboo.minestom.invue.api.item.ViewItem;
 import net.minestom.server.entity.Player;
 import net.minestom.server.item.Material;
@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class SimpleExampleProvider extends RootViewComponent {
+public class SimpleExampleProvider extends ViewProvider {
 
     public SimpleExampleProvider(ViewRegistry registry) {
         super(registry, ViewBuilder.of(ViewType.SIZE_6_X_9));

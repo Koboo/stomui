@@ -4,11 +4,11 @@ import eu.koboo.minestom.invue.api.PlayerView;
 import eu.koboo.minestom.invue.api.ViewBuilder;
 import eu.koboo.minestom.invue.api.ViewRegistry;
 import eu.koboo.minestom.invue.api.ViewType;
-import eu.koboo.minestom.invue.api.component.RootViewComponent;
+import eu.koboo.minestom.invue.api.component.ViewProvider;
 import net.minestom.server.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class MultiViewExampleProvider extends RootViewComponent {
+public class MultiViewExampleProvider extends ViewProvider {
 
     public MultiViewExampleProvider(ViewRegistry viewRegistry) {
         super(viewRegistry, ViewBuilder.of(ViewType.SIZE_6_X_9)

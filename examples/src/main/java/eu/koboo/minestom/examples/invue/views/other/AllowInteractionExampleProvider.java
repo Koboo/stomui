@@ -4,7 +4,7 @@ import eu.koboo.minestom.invue.api.PlayerView;
 import eu.koboo.minestom.invue.api.ViewBuilder;
 import eu.koboo.minestom.invue.api.ViewRegistry;
 import eu.koboo.minestom.invue.api.ViewType;
-import eu.koboo.minestom.invue.api.component.RootViewComponent;
+import eu.koboo.minestom.invue.api.component.ViewProvider;
 import eu.koboo.minestom.invue.api.flags.Flags;
 import eu.koboo.minestom.invue.api.item.ViewItem;
 import eu.koboo.minestom.invue.api.slots.ViewPattern;
@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 @Getter
-public class AllowInteractionExampleProvider extends RootViewComponent {
+public class AllowInteractionExampleProvider extends ViewProvider {
 
     ViewPattern pattern;
 

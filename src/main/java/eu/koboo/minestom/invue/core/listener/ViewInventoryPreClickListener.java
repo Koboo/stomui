@@ -102,7 +102,7 @@ public final class ViewInventoryPreClickListener implements Consumer<InventoryPr
 
     private void cooldownExecution(PlayerView playerView, int rawSlot) {
         registry.executeComponents(
-            playerView.getRootComponent(),
+            playerView.getProvider(),
             component -> {
                 if (!(component instanceof CooldownInteraction interaction)) {
                     return;

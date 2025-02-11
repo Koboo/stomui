@@ -30,7 +30,7 @@ public final class AnnotationRenderComponent extends ViewComponent {
     @Override
     public void onOpen(@NotNull PlayerView view, @NotNull Player player) {
         view.getRegistry().executeComponents(
-            view.getRootComponent(),
+            view.getProvider(),
             component -> executeItemMethods(view, component, false)
         );
     }
@@ -38,7 +38,7 @@ public final class AnnotationRenderComponent extends ViewComponent {
     @Override
     public void onStateUpdate(@NotNull PlayerView view, @NotNull Player player) {
         view.getRegistry().executeComponents(
-            view.getRootComponent(),
+            view.getProvider(),
             component -> executeItemMethods(view, component, true)
         );
     }

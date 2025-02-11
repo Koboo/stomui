@@ -3,7 +3,7 @@ package eu.koboo.minestom.invue.core;
 import eu.koboo.minestom.invue.api.PlayerView;
 import eu.koboo.minestom.invue.api.ViewBuilder;
 import eu.koboo.minestom.invue.api.ViewType;
-import eu.koboo.minestom.invue.api.component.RootViewComponent;
+import eu.koboo.minestom.invue.api.component.ViewProvider;
 import eu.koboo.minestom.invue.api.flags.Flag;
 import eu.koboo.minestom.invue.api.flags.Flags;
 import eu.koboo.minestom.invue.api.interaction.Interaction;
@@ -39,7 +39,7 @@ public final class CorePlayerView implements PlayerView {
     final Inventory topInventory;
     final PlayerInventory bottomInventory;
 
-    final RootViewComponent rootComponent;
+    final ViewProvider provider;
     final Map<Integer, Interaction> interactions;
     final Set<Flag> addedFlags;
     final Set<ClickType> disabledClickTypes;
@@ -61,7 +61,7 @@ public final class CorePlayerView implements PlayerView {
         this.topInventory = new Inventory(builder.getType().getInventoryType(), builder.getTitle());
         this.bottomInventory = player.getInventory();
 
-        this.rootComponent = builder.getRootComponent();
+        this.provider = builder.getProvider();
 
         this.interactions = new HashMap<>();
 
@@ -84,7 +84,7 @@ public final class CorePlayerView implements PlayerView {
     public void openView(boolean callComponentOpen) {
         if (callComponentOpen) {
             registry.executeComponents(
-                rootComponent,
+                provider,
                 component -> component.onOpen(this, player)
             );
         }
@@ -95,7 +95,7 @@ public final class CorePlayerView implements PlayerView {
     @ApiStatus.Internal
     public void closeView() {
         registry.executeComponents(
-            rootComponent,
+            provider,
             component -> component.onClose(this, player)
         );
         registry.unregisterPlayerView(player);
@@ -175,7 +175,7 @@ public final class CorePlayerView implements PlayerView {
     @Override
     public void updateState() {
         registry.executeComponents(
-            rootComponent,
+            provider,
             component -> component.onStateUpdate(this, player)
         );
     }
@@ -184,7 +184,7 @@ public final class CorePlayerView implements PlayerView {
     public String toString() {
         return "PlayerView{" +
             "id=" + id + ", " +
-            "component=" + rootComponent.toString() + ", " +
+            "component=" + provider.toString() + ", " +
             "player=" + player.getUsername() +
             "}";
     }

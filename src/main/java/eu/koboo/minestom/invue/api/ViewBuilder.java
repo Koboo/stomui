@@ -1,6 +1,6 @@
 package eu.koboo.minestom.invue.api;
 
-import eu.koboo.minestom.invue.api.component.RootViewComponent;
+import eu.koboo.minestom.invue.api.component.ViewProvider;
 import eu.koboo.minestom.invue.api.flags.Flag;
 import eu.koboo.minestom.invue.api.flags.Flags;
 import eu.koboo.minestom.invue.api.interaction.Interaction;
@@ -31,7 +31,7 @@ public final class ViewBuilder {
     final ViewType type;
     final Set<Flag> flags;
     final Set<ClickType> disabledClickTypes;
-    RootViewComponent rootComponent;
+    ViewProvider provider;
     Component title;
     int clickCooldownInMillis;
     int slotClickCooldownInMillis;
@@ -46,7 +46,7 @@ public final class ViewBuilder {
         this.flags = new HashSet<>();
         this.disabledClickTypes = new HashSet<>();
         this.title = Component.text("A custom view");
-        this.rootComponent = null;
+        this.provider = null;
         this.clickCooldownInMillis = 10;
         this.slotClickCooldownInMillis = 10;
     }
@@ -75,16 +75,16 @@ public final class ViewBuilder {
     }
 
     /**
-     * Sets the {@link RootViewComponent} to be used as start point of the component tree.
+     * Sets the {@link ViewProvider} to be used as the start point of the provider tree.
      *
-     * @param component The root component.
+     * @param provider The root provider.
      * @return This {@link ViewBuilder} instance.
      */
-    public @NotNull ViewBuilder component(@NotNull RootViewComponent component) {
-        if (this.rootComponent != null) {
-            throw new IllegalStateException("Root component has already been set");
+    public @NotNull ViewBuilder provider(@NotNull ViewProvider provider) {
+        if (this.provider != null) {
+            throw new IllegalStateException("ViewProvider has already been set");
         }
-        this.rootComponent = component;
+        this.provider = provider;
         return this;
     }
 
@@ -178,7 +178,7 @@ public final class ViewBuilder {
         if (type == null) {
             throw new NullPointerException("ViewType is null");
         }
-        if (rootComponent == null) {
+        if (provider == null) {
             throw new NullPointerException("RootViewComponent is null");
         }
         if (clickCooldownInMillis < 0) {
@@ -208,7 +208,7 @@ public final class ViewBuilder {
     public static ViewBuilder copyOf(ViewBuilder builder) {
         ViewBuilder copy = new ViewBuilder(builder.type);
         copy.title(builder.title);
-        copy.component(builder.rootComponent);
+        copy.provider(builder.provider);
         copy.clickCooldown(builder.clickCooldownInMillis);
         copy.slotClickCooldown(builder.slotClickCooldownInMillis);
         copy.flags.addAll(builder.flags);

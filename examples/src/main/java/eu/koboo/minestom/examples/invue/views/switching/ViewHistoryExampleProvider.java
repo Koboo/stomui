@@ -4,7 +4,7 @@ import eu.koboo.minestom.invue.api.PlayerView;
 import eu.koboo.minestom.invue.api.ViewBuilder;
 import eu.koboo.minestom.invue.api.ViewRegistry;
 import eu.koboo.minestom.invue.api.ViewType;
-import eu.koboo.minestom.invue.api.component.RootViewComponent;
+import eu.koboo.minestom.invue.api.component.ViewProvider;
 import eu.koboo.minestom.invue.api.interaction.Interactions;
 import eu.koboo.minestom.invue.api.item.ViewItem;
 import lombok.AccessLevel;
@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class ViewHistoryExampleProvider extends RootViewComponent {
+public class ViewHistoryExampleProvider extends ViewProvider {
 
     int layerDepth;
     String title;

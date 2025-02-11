@@ -16,7 +16,7 @@ import eu.koboo.minestom.examples.invue.views.search.SearchExampleProvider;
 import eu.koboo.minestom.examples.invue.views.switching.ViewHistoryExampleProvider;
 import eu.koboo.minestom.examples.invue.views.switching.SwitchOneExampleProvider;
 import eu.koboo.minestom.invue.api.ViewRegistry;
-import eu.koboo.minestom.invue.api.component.RootViewComponent;
+import eu.koboo.minestom.invue.api.component.ViewProvider;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -31,7 +31,7 @@ import java.util.function.Function;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public final class CommandView {
 
-    private static final Map<String, Function<ViewRegistry, RootViewComponent>> VIEWS = new HashMap<>() {{
+    private static final Map<String, Function<ViewRegistry, ViewProvider>> VIEWS = new HashMap<>() {{
         put("annotated", AnnotatedTabExampleProvider::new);
         put("page", PageableExampleProvider::new);
         put("scrollhorizontal", ScrollableHorizontalExampleProvider::new);
@@ -53,14 +53,14 @@ public final class CommandView {
 
     @Execute
     public void onExecute(@Context Player player, @Arg("ViewName") String viewName) {
-        Function<ViewRegistry, RootViewComponent> viewSupplier = VIEWS.get(viewName);
+        Function<ViewRegistry, ViewProvider> viewSupplier = VIEWS.get(viewName);
         if (viewSupplier == null) {
             printUsage(player);
             player.sendMessage("View with name " + viewName + " not found.");
             return;
         }
 
-        RootViewComponent viewProvider = viewSupplier.apply(registry);
+        ViewProvider viewProvider = viewSupplier.apply(registry);
         viewProvider.open(player);
     }
 

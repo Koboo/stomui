@@ -42,7 +42,7 @@ public final class ViewPlayerPacketNameItemListener implements Consumer<PlayerPa
 
     private void anvilInputExecution(PlayerView playerView, String input) {
         registry.executeComponents(
-            playerView.getRootComponent(),
+            playerView.getProvider(),
             component -> {
                 if (!(component instanceof AnvilInputInteraction interaction)) {
                     return;

@@ -5,7 +5,7 @@ import eu.koboo.minestom.examples.invue.views.pagination.loader.ExampleItemLoade
 import eu.koboo.minestom.invue.api.ViewBuilder;
 import eu.koboo.minestom.invue.api.ViewRegistry;
 import eu.koboo.minestom.invue.api.ViewType;
-import eu.koboo.minestom.invue.api.component.RootViewComponent;
+import eu.koboo.minestom.invue.api.component.ViewProvider;
 import eu.koboo.minestom.invue.api.pagination.ViewPagination;
 import eu.koboo.minestom.invue.api.slots.ViewPattern;
 import lombok.AccessLevel;
@@ -14,7 +14,7 @@ import net.minestom.server.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class ScrollableHorizontalExampleProvider extends RootViewComponent {
+public class ScrollableHorizontalExampleProvider extends ViewProvider {
 
     // Render order of components:
     // - this

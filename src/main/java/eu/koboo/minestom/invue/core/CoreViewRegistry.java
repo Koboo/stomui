@@ -90,7 +90,7 @@ public final class CoreViewRegistry implements ViewRegistry {
         ViewBuilder newViewBuilder = ViewBuilder.copyOf(viewBuilder);
         newViewBuilder.validate();
         executeComponents(
-            newViewBuilder.getRootComponent(),
+            newViewBuilder.getProvider(),
             component -> component.modifyBuilder(newViewBuilder, player)
         );
 

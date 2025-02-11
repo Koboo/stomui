@@ -1,6 +1,6 @@
 package eu.koboo.minestom.invue.api;
 
-import eu.koboo.minestom.invue.api.component.RootViewComponent;
+import eu.koboo.minestom.invue.api.component.ViewProvider;
 import eu.koboo.minestom.invue.api.component.ViewComponent;
 import eu.koboo.minestom.invue.api.flags.Flag;
 import eu.koboo.minestom.invue.api.interaction.AnvilInputInteraction;
@@ -27,7 +27,7 @@ public interface PlayerView {
     @NotNull String getId();
 
     /**
-     * @return The provided {@link ViewRegistry} of the {@link RootViewComponent}.
+     * @return The provided {@link ViewRegistry} of the {@link ViewProvider}.
      */
     @NotNull ViewRegistry getRegistry();
 
@@ -42,9 +42,9 @@ public interface PlayerView {
     @NotNull ViewType getType();
 
     /**
-     * @return The configured {@link RootViewComponent}, provided by the {@link ViewBuilder}.
+     * @return The configured {@link ViewProvider}, provided by the {@link ViewBuilder}.
      */
-    @NotNull RootViewComponent getRootComponent();
+    @NotNull ViewProvider getProvider();
 
     /**
      * @return The instance of the {@link Inventory}, which is the open top-inventory.

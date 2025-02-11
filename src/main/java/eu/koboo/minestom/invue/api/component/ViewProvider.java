@@ -8,42 +8,41 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 import net.minestom.server.entity.Player;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * This class represents the root of a component tree and provides
- * an easy {@link RootViewComponent#open(Player)} method.
+ * an easy {@link ViewProvider#open(Player)} method.
  */
 @Getter
 @FieldDefaults(level = AccessLevel.PROTECTED, makeFinal = true)
-public abstract class RootViewComponent extends ViewComponent {
+public abstract class ViewProvider extends ViewComponent {
 
     ViewRegistry registry;
     ViewBuilder builder;
 
     /**
-     * Creates a new {@link RootViewComponent} by the given {@link ViewRegistry}
+     * Creates a new {@link ViewProvider} by the given {@link ViewRegistry}
      * and {@link ViewType}.
      *
      * @param viewRegistry An instance of {@link ViewRegistry}.
      * @param viewType     A value of {@link ViewType}.
      */
-    public RootViewComponent(ViewRegistry viewRegistry, ViewType viewType) {
+    public ViewProvider(ViewRegistry viewRegistry, ViewType viewType) {
         this(viewRegistry, ViewBuilder.of(viewType));
     }
 
     /**
-     * Creates a new {@link RootViewComponent} by the given {@link ViewRegistry}
+     * Creates a new {@link ViewProvider} by the given {@link ViewRegistry}
      * and {@link ViewBuilder}.
-     * It also adds this {@link RootViewComponent} as component to the given
+     * It also adds this {@link ViewProvider} as component to the given
      * {@link ViewBuilder}.
      *
      * @param viewRegistry An instance of {@link ViewRegistry}.
      * @param viewBuilder  An instance of {@link ViewBuilder}.
      */
-    public RootViewComponent(ViewRegistry viewRegistry, ViewBuilder viewBuilder) {
+    public ViewProvider(ViewRegistry viewRegistry, ViewBuilder viewBuilder) {
         this.registry = viewRegistry;
-        this.builder = viewBuilder.component(this);
+        this.builder = viewBuilder.provider(this);
     }
 
     /**
@@ -54,13 +53,5 @@ public abstract class RootViewComponent extends ViewComponent {
      */
     public void open(Player player) {
         registry.open(player, builder);
-    }
-
-    /**
-     * See documentation on {@link ViewComponent#onOpen(PlayerView, Player)}.
-     */
-    @Override
-    public void onOpen(@NotNull PlayerView view, @NotNull Player player) {
-        // Default implementation
     }
 }

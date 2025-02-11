@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 /**
- * A component is a child of a {@link ViewComponent} or a {@link RootViewComponent}.
+ * A component is a child of a {@link ViewComponent} or a {@link ViewProvider}.
  * You can add as many children to a component as you want. The rendering/execution order of
  * all child components is defined by their specified {@link Priority}.
  * The {@link Priority} is resolved by using the {@link ViewComponent#getPriority()} method,
@@ -222,5 +222,7 @@ public abstract class ViewComponent {
      * @param view   The instance of the containing {@link PlayerView}.
      * @param player The instance of the {@link Player} of the {@link PlayerView}.
      */
-    public abstract void onOpen(@NotNull PlayerView view, @NotNull Player player);
+    public void onOpen(@NotNull PlayerView view, @NotNull Player player) {
+        // Default implementation
+    }
 }

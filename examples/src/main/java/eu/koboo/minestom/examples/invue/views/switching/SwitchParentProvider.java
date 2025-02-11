@@ -4,7 +4,7 @@ import eu.koboo.minestom.invue.api.PlayerView;
 import eu.koboo.minestom.invue.api.ViewBuilder;
 import eu.koboo.minestom.invue.api.ViewRegistry;
 import eu.koboo.minestom.invue.api.ViewType;
-import eu.koboo.minestom.invue.api.component.RootViewComponent;
+import eu.koboo.minestom.invue.api.component.ViewProvider;
 import eu.koboo.minestom.invue.api.interaction.Interactions;
 import eu.koboo.minestom.invue.api.item.ViewItem;
 import lombok.AccessLevel;
@@ -16,11 +16,11 @@ import org.jetbrains.annotations.NotNull;
 
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public abstract class SwitchParentComponent extends RootViewComponent {
+public abstract class SwitchParentProvider extends ViewProvider {
 
     String title;
 
-    public SwitchParentComponent(ViewRegistry registry, String title) {
+    public SwitchParentProvider(ViewRegistry registry, String title) {
         super(registry, ViewType.SIZE_5_X_9);
         this.title = title;
     }
@@ -37,7 +37,7 @@ public abstract class SwitchParentComponent extends RootViewComponent {
             viewItem.material(Material.GRAY_STAINED_GLASS_PANE)
                 .displayName(" ");
         }
-        SwitchParentComponent oppositeViewProvider = oppositeViewProvider();
+        SwitchParentProvider oppositeViewProvider = oppositeViewProvider();
         ViewItem.byRowColumn(view, 1, 4)
             .material(Material.BONE)
             .displayName("Back to \"" + oppositeViewProvider.getTitle() + "\" inventory")
@@ -53,5 +53,5 @@ public abstract class SwitchParentComponent extends RootViewComponent {
         player.sendMessage(">> \"" + title + "\" closed " + view.getId());
     }
 
-    public abstract SwitchParentComponent oppositeViewProvider();
+    public abstract SwitchParentProvider oppositeViewProvider();
 }

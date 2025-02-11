@@ -4,7 +4,7 @@ import eu.koboo.minestom.invue.api.PlayerView;
 import eu.koboo.minestom.invue.api.ViewBuilder;
 import eu.koboo.minestom.invue.api.ViewRegistry;
 import eu.koboo.minestom.invue.api.ViewType;
-import eu.koboo.minestom.invue.api.component.RootViewComponent;
+import eu.koboo.minestom.invue.api.component.ViewProvider;
 import eu.koboo.minestom.invue.api.interaction.AnvilInputInteraction;
 import eu.koboo.minestom.invue.api.interaction.Interactions;
 import eu.koboo.minestom.invue.api.item.ViewItem;
@@ -16,7 +16,7 @@ import net.minestom.server.item.Material;
 import org.jetbrains.annotations.NotNull;
 
 @Getter
-public class SearchExampleProvider extends RootViewComponent implements AnvilInputInteraction {
+public class SearchExampleProvider extends ViewProvider implements AnvilInputInteraction {
 
     private static final ViewType VIEW_TYPE = ViewType.ANVIL;
 

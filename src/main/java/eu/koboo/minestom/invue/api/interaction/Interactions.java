@@ -1,7 +1,7 @@
 package eu.koboo.minestom.invue.api.interaction;
 
 import eu.koboo.minestom.invue.api.ViewBuilder;
-import eu.koboo.minestom.invue.api.component.RootViewComponent;
+import eu.koboo.minestom.invue.api.component.ViewProvider;
 import eu.koboo.minestom.invue.api.pagination.ViewPagination;
 import eu.koboo.minestom.invue.core.CorePlayerView;
 import eu.koboo.minestom.invue.core.CoreViewRegistry;
@@ -34,19 +34,19 @@ public class Interactions {
         return close(null);
     }
 
-    public Interaction close(@Nullable Consumer<Player> afterClose) {
+    public Interaction close(@Nullable Consumer<Player> afterClosing) {
         return action -> {
             action.getPlayer().closeInventory();
             action.getEvent().setCancelled(true);
-            if (afterClose == null) {
+            if (afterClosing == null) {
                 return;
             }
-            afterClose.accept(action.getPlayer());
+            afterClosing.accept(action.getPlayer());
         };
     }
 
-    public Interaction open(@NotNull RootViewComponent newOpener) {
-        return open(newOpener.getBuilder(), null);
+    public Interaction open(@NotNull ViewProvider newProviderToOpen) {
+        return open(newProviderToOpen.getBuilder(), null);
     }
 
     public Interaction open(@NotNull ViewBuilder newBuilderToOpen) {
@@ -54,12 +54,12 @@ public class Interactions {
     }
 
     public Interaction open(@NotNull ViewBuilder newBuilderToOpen,
-                            @Nullable Consumer<Player> afterOpen) {
+                            @Nullable Consumer<Player> afterOpening) {
         return action -> {
             Player player = action.getPlayer();
             action.getRegistry().open(player, newBuilderToOpen);
-            if (afterOpen != null) {
-                afterOpen.accept(player);
+            if (afterOpening != null) {
+                afterOpening.accept(player);
             }
         };
     }
@@ -93,14 +93,14 @@ public class Interactions {
     }
 
     public Interaction reloadPagination(@NotNull ViewPagination pagination,
-                                        @Nullable Consumer<Player> afterRefresh) {
+                                        @Nullable Consumer<Player> afterRefreshing) {
         return action -> {
             action.getEvent().setCancelled(true);
             pagination.reloadItems(action.getView());
-            if (afterRefresh == null) {
+            if (afterRefreshing == null) {
                 return;
             }
-            afterRefresh.accept(action.getPlayer());
+            afterRefreshing.accept(action.getPlayer());
         };
     }
 
@@ -111,14 +111,14 @@ public class Interactions {
 
     public Interaction toPage(@NotNull ViewPagination pagination,
                               @NotNull Integer newPage,
-                              @Nullable Consumer<Player> afterRender) {
+                              @Nullable Consumer<Player> afterNavigating) {
         return action -> {
             action.getEvent().setCancelled(true);
             pagination.toPage(action.getView(), newPage);
-            if (afterRender == null) {
+            if (afterNavigating == null) {
                 return;
             }
-            afterRender.accept(action.getPlayer());
+            afterNavigating.accept(action.getPlayer());
         };
     }
 
@@ -127,27 +127,27 @@ public class Interactions {
     }
 
     public Interaction toNextPage(@NotNull ViewPagination pagination,
-                                  @Nullable Consumer<Player> noNextPage) {
-        return toNextPage(pagination, null, noNextPage);
+                                  @Nullable Consumer<Player> noNavigation) {
+        return toNextPage(pagination, null, noNavigation);
     }
 
     public Interaction toNextPage(@NotNull ViewPagination pagination,
-                                  @Nullable Consumer<Player> afterRenderNextPage,
-                                  @Nullable Consumer<Player> noNextPage) {
+                                  @Nullable Consumer<Player> afterNavigating,
+                                  @Nullable Consumer<Player> noNavigation) {
         return action -> {
             action.getEvent().setCancelled(true);
             if (!pagination.hasNextPage()) {
-                if (noNextPage == null) {
+                if (noNavigation == null) {
                     return;
                 }
-                noNextPage.accept(action.getPlayer());
+                noNavigation.accept(action.getPlayer());
                 return;
             }
             pagination.toNextPage(action.getView());
-            if (afterRenderNextPage == null) {
+            if (afterNavigating == null) {
                 return;
             }
-            afterRenderNextPage.accept(action.getPlayer());
+            afterNavigating.accept(action.getPlayer());
         };
     }
 
@@ -156,27 +156,27 @@ public class Interactions {
     }
 
     public Interaction toPreviousPage(@NotNull ViewPagination pagination,
-                                      @Nullable Consumer<Player> noPreviousPage) {
-        return toPreviousPage(pagination, null, noPreviousPage);
+                                      @Nullable Consumer<Player> noNavigation) {
+        return toPreviousPage(pagination, null, noNavigation);
     }
 
     public Interaction toPreviousPage(@NotNull ViewPagination pagination,
-                                      @Nullable Consumer<Player> afterRenderPreviousPage,
-                                      @Nullable Consumer<Player> noPreviousPage) {
+                                      @Nullable Consumer<Player> afterNavigating,
+                                      @Nullable Consumer<Player> noNavigation) {
         return action -> {
             action.getEvent().setCancelled(true);
             if (!pagination.hasPreviousPage()) {
-                if (noPreviousPage == null) {
+                if (noNavigation == null) {
                     return;
                 }
-                noPreviousPage.accept(action.getPlayer());
+                noNavigation.accept(action.getPlayer());
                 return;
             }
             pagination.toPreviousPage(action.getView());
-            if (afterRenderPreviousPage == null) {
+            if (afterNavigating == null) {
                 return;
             }
-            afterRenderPreviousPage.accept(action.getPlayer());
+            afterNavigating.accept(action.getPlayer());
         };
     }
 

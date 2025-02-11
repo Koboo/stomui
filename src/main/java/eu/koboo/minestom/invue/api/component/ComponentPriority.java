@@ -6,8 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Can be used to define the render priority of a {@link ViewComponent} within its layer.
- * See {@link Priority} for more information.
+ * This annotation is used to define the render/execution priority of a {@link ViewComponent}
+ * within its layer of siblings in the component tree.
+ * Find more information: {@link Priority}
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

@@ -16,11 +16,18 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 /**
- * A component is a child of a {@link ViewComponent} or a {@link ViewProvider}.
- * You can add as many children to a component as you want. The rendering/execution order of
- * all child components is defined by their specified {@link Priority}.
- * The {@link Priority} is resolved by using the {@link ViewComponent#getPriority()} method,
- * which checks can be overridden, but also checks the {@link ComponentPriority} annotation by default.
+ * A {@link ViewComponent} is independent of any {@link PlayerView} or {@link Player}.
+ * That means, a component is not forced to only exist within one {@link PlayerView}.
+ * You can use one {@link ViewComponent} instance to modify multiple
+ * {@link PlayerView} if you want to.
+ * You can also add as many children {@link ViewComponent} as you want.
+ * The rendering/execution order of all children is defined by their specified {@link Priority}.
+ * The {@link Priority} is resolved by using the {@link ViewComponent#getPriority()} method.
+ * <p>
+ * If you override the {@link ViewComponent#getPriority()},
+ * the annotation {@link ComponentPriority} on the {@link ViewComponent} is completely ignored.
+ * By default, it checks if the {@link ComponentPriority} annotation is present and uses
+ * that instead of the default {@link Priority#MEDIUM}.
  */
 @Slf4j
 @Getter

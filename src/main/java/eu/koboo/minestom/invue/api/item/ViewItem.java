@@ -4,6 +4,7 @@ import eu.koboo.minestom.invue.api.PlayerView;
 import eu.koboo.minestom.invue.api.interaction.Interaction;
 import eu.koboo.minestom.invue.api.pagination.ViewPagination;
 import eu.koboo.minestom.invue.api.slots.Position;
+import eu.koboo.minestom.invue.api.slots.SlotIterator;
 import eu.koboo.minestom.invue.api.slots.ViewPattern;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -35,6 +36,17 @@ public final class ViewItem extends ModifiableItem {
             viewItems.add(new ViewItem(playerView, slot));
         }
         return List.copyOf(viewItems);
+    }
+
+    /**
+     * Find more information: {@link ViewItem#bySlotList(PlayerView, List)}.
+     *
+     * @param playerView   The {@link PlayerView} to pass into the {@link ViewItem}s.
+     * @param slotIterator The List of slots passed into the {@link ViewItem}.
+     * @return An unmodifiable List of {@link ViewItem}s.
+     */
+    public static @NotNull List<ViewItem> bySlotIterator(PlayerView playerView, SlotIterator slotIterator) {
+        return bySlotList(playerView, slotIterator.toList());
     }
 
     /**

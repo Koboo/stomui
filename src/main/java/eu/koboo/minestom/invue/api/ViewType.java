@@ -90,6 +90,9 @@ public enum ViewType {
     List<Integer> topSlots;
     List<List<Integer>> topHorizontalSlots;
     List<List<Integer>> topVerticalSlots;
+    List<Integer> bottomSlots;
+    List<List<Integer>> bottomHorizontalSlots;
+    List<List<Integer>> bottomVerticalSlots;
 
     ViewType(InventoryType inventoryType, int topSlotsPerRow, int topSlotsPerColumn) {
         this.size = topSlotsPerRow * topSlotsPerColumn;
@@ -106,6 +109,10 @@ public enum ViewType {
         this.topSlots = SlotUtility.getAllSlots(topRowIndex, topColumnIndex);
         this.topHorizontalSlots = SlotUtility.getSlotLists(SlotDirection.HORIZONTAL, topRowIndex, topColumnIndex);
         this.topVerticalSlots = SlotUtility.getSlotLists(SlotDirection.VERTICAL, topRowIndex, topColumnIndex);
+
+        this.bottomSlots = SlotUtility.getAllSlots(BOTTOM_ROW_INDEX, BOTTOM_COLUMN_INDEX);
+        this.bottomHorizontalSlots = SlotUtility.getSlotLists(SlotDirection.HORIZONTAL, BOTTOM_ROW_INDEX, BOTTOM_COLUMN_INDEX);
+        this.bottomVerticalSlots = SlotUtility.getSlotLists(SlotDirection.VERTICAL, BOTTOM_ROW_INDEX, BOTTOM_COLUMN_INDEX);
     }
 
     public boolean isTopSlot(int slot) {

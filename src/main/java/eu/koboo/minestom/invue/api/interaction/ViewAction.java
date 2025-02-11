@@ -21,7 +21,6 @@ public final class ViewAction {
 
     PlayerView view;
     InventoryPreClickEvent event;
-    int rawSlot;
     ViewItem item;
 
     public ViewRegistry getRegistry() {
@@ -30,5 +29,9 @@ public final class ViewAction {
 
     public Player getPlayer() {
         return view.getPlayer();
+    }
+
+    public int getRawSlot() {
+        return item.getRawSlot();
     }
 }

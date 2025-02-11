@@ -96,7 +96,7 @@ public final class ViewInventoryPreClickListener implements Consumer<InventoryPr
         }
         ViewItem viewItem = ViewItem.bySlot(playerView, rawSlot);
 
-        ViewAction viewAction = new ViewAction(playerView, event, rawSlot, viewItem);
+        ViewAction viewAction = new ViewAction(playerView, event, viewItem);
         interaction.interact(viewAction);
     }
 

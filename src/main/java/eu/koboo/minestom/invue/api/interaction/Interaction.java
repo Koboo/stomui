@@ -5,8 +5,8 @@ import eu.koboo.minestom.invue.api.PlayerView;
 /**
  * This interface is used to define any {@link Interaction} on a single or multiple slots
  * within the top- or bottom-inventory.
- * There are several default {@link Interaction}.
- * See more at {@link Interactions}
+ * <p>
+ * There are several default {@link Interaction}s defined in {@link Interactions}.
  */
 @FunctionalInterface
 public interface Interaction {

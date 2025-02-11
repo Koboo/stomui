@@ -17,6 +17,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementations:
+ * - {@link PrebuiltItem}
+ * - {@link ViewItem}
+ */
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public abstract sealed class ModifiableItem permits PrebuiltItem, ViewItem {
 

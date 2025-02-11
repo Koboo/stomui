@@ -2,6 +2,7 @@ package eu.koboo.minestom.invue.api.slots;
 
 import eu.koboo.minestom.invue.api.ViewRegistry;
 import eu.koboo.minestom.invue.api.ViewType;
+import eu.koboo.minestom.invue.core.slots.CoreViewPattern;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
@@ -18,6 +19,7 @@ import java.util.Map;
  * the actual structure of an inventory. This class is just a utility and is not
  * deeply integrated into the framework itself. So users still can choose,
  * how they want to resolve their wanted slots.
+ * Implementation: {@link CoreViewPattern}
  */
 public interface ViewPattern {
 

@@ -4,6 +4,9 @@ import eu.koboo.minestom.invue.api.PlayerView;
 import eu.koboo.minestom.invue.api.ViewRegistry;
 import eu.koboo.minestom.invue.api.component.ViewComponent;
 import eu.koboo.minestom.invue.api.item.PrebuiltItem;
+import eu.koboo.minestom.invue.core.pagination.AbstractPaginationComponent;
+import eu.koboo.minestom.invue.core.pagination.PageComponent;
+import eu.koboo.minestom.invue.core.pagination.ScrollComponent;
 import net.minestom.server.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -17,6 +20,10 @@ import java.util.List;
  * - {@link ViewRegistry#scrollable(ItemLoader, ItemStack, List)}
  * To use the created instance of {@link ViewPagination} you need to add it
  * as child to any {@link ViewComponent} Using {@link ViewComponent#addChild(ViewComponent)}.
+ * Implementations:
+ * - {@link AbstractPaginationComponent}
+ * - {@link PageComponent}
+ * - {@link ScrollComponent}
  */
 public abstract class ViewPagination extends ViewComponent {
 

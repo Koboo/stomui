@@ -4,8 +4,8 @@ import eu.koboo.minestom.invue.api.component.ViewComponent;
 import eu.koboo.minestom.invue.api.interaction.Interactions;
 import eu.koboo.minestom.invue.api.pagination.ItemLoader;
 import eu.koboo.minestom.invue.api.pagination.ViewPagination;
-import eu.koboo.minestom.invue.api.slots.SlotBuilder;
 import eu.koboo.minestom.invue.api.slots.ViewPattern;
+import eu.koboo.minestom.invue.core.CoreViewRegistry;
 import eu.koboo.minestom.invue.core.MinestomInvue;
 import net.minestom.server.entity.Player;
 import net.minestom.server.item.ItemStack;
@@ -22,6 +22,7 @@ import java.util.function.Consumer;
  * <p>
  * {@link MinestomInvue#create()}
  * <p>
+ * Implementation: {@link CoreViewRegistry}
  */
 public interface ViewRegistry {
 
@@ -103,14 +104,6 @@ public interface ViewRegistry {
                                              @NotNull ViewPattern viewPattern,
                                              @NotNull Character... slotCharacters) {
         return pageable(itemLoader, viewPattern.getMergedSlots(slotCharacters), null);
-    }
-
-    /**
-     * See {@link ViewRegistry#pageable(ItemLoader, List, ItemStack)} for more information.
-     */
-    default @NotNull ViewPagination pageable(@NotNull ItemLoader itemLoader,
-                                             @NotNull SlotBuilder slotBuilder) {
-        return pageable(itemLoader, slotBuilder.toList(), null);
     }
 
     /**

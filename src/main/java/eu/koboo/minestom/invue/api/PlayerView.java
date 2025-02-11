@@ -6,6 +6,7 @@ import eu.koboo.minestom.invue.api.flags.Flag;
 import eu.koboo.minestom.invue.api.interaction.AnvilInputInteraction;
 import eu.koboo.minestom.invue.api.interaction.Interaction;
 import eu.koboo.minestom.invue.api.pagination.ViewPagination;
+import eu.koboo.minestom.invue.core.CorePlayerView;
 import net.minestom.server.entity.Player;
 import net.minestom.server.inventory.Inventory;
 import net.minestom.server.inventory.PlayerInventory;
@@ -16,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
  * This class represents the combination of a {@link Player}, with its open
  * top-inventory {@link Inventory} and bottom-inventory {@link PlayerInventory}.
  * It also holds several view-relevant data and provides several getters.
+ * Implementation: {@link CorePlayerView}
  */
 public interface PlayerView {
 

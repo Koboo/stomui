@@ -10,7 +10,7 @@ import eu.koboo.minestom.invue.api.annotations.components.AnnotationRenderCompon
 import eu.koboo.minestom.invue.api.component.RootViewComponent;
 import eu.koboo.minestom.invue.api.item.PrebuiltItem;
 import eu.koboo.minestom.invue.api.item.ViewItem;
-import eu.koboo.minestom.invue.api.slots.SlotBuilder;
+import eu.koboo.minestom.invue.api.slots.SlotIterator;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -25,24 +25,30 @@ import java.util.List;
 public class AnnotatedTabExampleProvider extends RootViewComponent {
 
     SettingsTab currentTab;
-    List<Integer> currentTabItemSlots;
+    SlotIterator tabContentSlots;
 
     public AnnotatedTabExampleProvider(ViewRegistry registry) {
         super(registry, ViewBuilder.of(ViewType.SIZE_6_X_9)
             .title("Annotated tab example"));
+
+        // Set the default visible tab
         this.currentTab = SettingsTab.PROFILE;
-        this.currentTabItemSlots = new SlotBuilder()
+
+        // Creating a SlotIterator with all slots of the content.
+        tabContentSlots = SlotIterator.of(this)
             .startPosition(1, 1)
             .endPosition(5, 8)
-            .blacklistTopBorder(getBuilder().getType())
-            .toList();
+            .blacklistTopBorder();
 
         addChild(new AnnotationRenderComponent());
     }
 
     @Override
     public void onStateUpdate(@NotNull PlayerView view, @NotNull Player player) {
-        for (ViewItem viewItem : ViewItem.bySlotList(view, currentTabItemSlots)) {
+        // Getting all ViewItems by the slots of the tab content.
+        for (ViewItem viewItem : ViewItem.bySlotIterator(view, tabContentSlots)) {
+
+            // Changing the material and name, just to visual changes in the example
             viewItem.material(currentTab.getMaterial())
                 .displayName(currentTab.getName() + " Settings Name");
         }
@@ -50,6 +56,7 @@ public class AnnotatedTabExampleProvider extends RootViewComponent {
 
     @Slot(0)
     public PrebuiltItem closeItem() {
+        // Closes the inventory
         return PrebuiltItem.empty()
             .material(Material.REDSTONE)
             .displayName("Close")
@@ -59,36 +66,50 @@ public class AnnotatedTabExampleProvider extends RootViewComponent {
     @Slot(2)
     @Stateful
     public PrebuiltItem profileItem() {
+        // Changes the current tab to PROFILE
         return createSettingsItem(SettingsTab.PROFILE);
     }
 
     @Slot(4)
     @Stateful
     public PrebuiltItem clanItem() {
+        // Changes the current tab to CLAN
         return createSettingsItem(SettingsTab.CLAN);
     }
 
     @Slot(6)
     @Stateful
     public PrebuiltItem friendsItem() {
+        // Changes the current tab to FRIEND
         return createSettingsItem(SettingsTab.FRIEND);
     }
 
     @Override
     public void onOpen(@NotNull PlayerView view, @NotNull Player player) {
+        // Getting all topSlots by the ViewType of the view.
         List<Integer> topSlots = view.getType().getTopSlots();
+
+        // Getting all ViewItems by the slot list of the ViewType.
         for (ViewItem viewItem : ViewItem.bySlotList(view, topSlots)) {
+
+            // Setting placeholder items
             viewItem.material(Material.GRAY_STAINED_GLASS_PANE)
-                .displayName(" ");
+                .displayName(" ")
+                .cancelClicking();
         }
     }
 
     private PrebuiltItem createSettingsItem(SettingsTab settingsTab) {
+        // Method to create a tab item, based on the given settingsTab.
         return PrebuiltItem.empty()
             .material(settingsTab.getMaterial())
             .displayName(settingsTab.getName())
             .glint(currentTab == settingsTab)
             .interaction(interaction -> {
+                // If the user clicks this item,
+                // we update the current tab field in this component instance,
+                // and we call updateState(), to ensure the tab item,
+                // which was selected starts glinting (enchantment glow)
                 this.currentTab = settingsTab;
                 interaction.getView().updateState();
             });

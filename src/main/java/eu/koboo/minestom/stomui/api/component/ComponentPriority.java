@@ -7,8 +7,8 @@ import java.lang.annotation.Target;
 
 /**
  * This annotation is used to define the render/execution priority of a {@link ViewComponent}
- * within its layer of siblings in the component tree.
- * Find more information: {@link Priority}
+ * within its layer of siblings in the component tree / hierarchy.
+ * See {@link Priority} for the order.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

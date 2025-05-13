@@ -17,7 +17,9 @@ import java.util.List;
 
 /**
  * This class represents the actual {@link ItemStack} and {@link Interaction} of
- * a specific slot within the opened top- or bottom-inventory.
+ * a specific slot within the opened {@link PlayerView}.
+ * It also provides some static methods to create new instances of {@link ViewItem}
+ * for easier usage.
  */
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)

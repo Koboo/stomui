@@ -8,7 +8,8 @@ import java.lang.annotation.Target;
 /**
  * This annotation has the same usages as the {@link Slot} annotation,
  * but uses row and column. Both values start at 0.
- * See {@link Slot} for more information.
+ * So row=0 and column=0 would be the first slot in the top inventory.
+ * See {@link Slot} for more and detailed information.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

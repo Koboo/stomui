@@ -21,7 +21,10 @@ import java.lang.reflect.Modifier;
 
 /**
  * This component can be added to any component and will render
- * the annotated methods. For more information see {@link Slot} documentation
+ * the methods annotated with one of the following annotations:
+ * - {@link Slot}
+ * - {@link SlotPosition}
+ * - {@link Stateful}
  */
 @Slf4j
 @ComponentPriority(Priority.HIGHEST)

@@ -9,9 +9,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Can be annotated on methods to mark their respective {@link PrebuiltItem}
- * stateful. That means the annotated methods gets executed,
+ * Can be annotated on methods to mark their created {@link PrebuiltItem} stateful.
+ * That means the annotated methods get executed,
  * everytime the {@link PlayerView#updateState()} is called.
+ * That would result in a rebuilt of the {@link PrebuiltItem} returned by the annotated method.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

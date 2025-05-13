@@ -44,7 +44,7 @@ public interface ViewRegistry {
      *
      * @param player      The provided {@link Player}.
      * @param viewBuilder The provided {@link ViewBuilder}.
-     * @return A new created instance of {@link PlayerView}.
+     * @return A newly created instance of {@link PlayerView}.
      */
     @NotNull PlayerView open(@NotNull Player player, @NotNull ViewBuilder viewBuilder);
 

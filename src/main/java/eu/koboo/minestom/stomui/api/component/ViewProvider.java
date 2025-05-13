@@ -11,8 +11,10 @@ import net.minestom.server.entity.Player;
 
 /**
  * This class represents the root of a component tree and provides
- * an easy {@link ViewProvider#open(Player)} method to create a new view
- * by the given {@link ViewRegistry}.
+ * the method {@link ViewProvider#open(Player)} to create a new {@link PlayerView}
+ * and directly open that to the given {@link Player}.
+ * It needs the instance of your created {@link ViewRegistry}, because it registers
+ * the created {@link PlayerView} to the {@link ViewRegistry} before opening it to the {@link Player}.
  */
 @Getter
 @FieldDefaults(level = AccessLevel.PROTECTED, makeFinal = true)

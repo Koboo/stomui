@@ -8,6 +8,9 @@ import net.minestom.server.item.ItemStack;
 import net.minestom.server.item.Material;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * See {@link ViewItem} and {@link ModifiableItem} for more and detailed information.
+ */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public final class PrebuiltItem extends ModifiableItem {
 

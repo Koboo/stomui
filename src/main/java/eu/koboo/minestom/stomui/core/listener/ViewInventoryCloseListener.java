@@ -17,7 +17,7 @@ public final class ViewInventoryCloseListener implements Consumer<InventoryClose
     CoreViewRegistry registry;
 
     // Only fired by the following scenarios:
-    // - Client-side inventory close
+    // - Client-side inventory closes (by opening another inventory e.g., by the server)
     // - Server-side Player#closeInventory() call
     @Override
     public void accept(InventoryCloseEvent event) {

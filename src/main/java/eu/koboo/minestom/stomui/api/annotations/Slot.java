@@ -13,8 +13,7 @@ import java.lang.annotation.Target;
  * to a {@link PrebuiltItem} returned by the annotated method.
  * <p>
  * To enable the rendering of annotated methods, you need to add
- * the {@link AnnotationRenderComponent} component to any component
- * in the tree.
+ * the {@link AnnotationRenderComponent} component to a component in the hierarchy / component tree.
  * Example:
  * <pre>
  * {@code

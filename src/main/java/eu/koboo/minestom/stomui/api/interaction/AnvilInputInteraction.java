@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * This interface can be implemented by any {@link ViewComponent},
- * to get notified about any anvil input the player does.
+ * to get notified about any text input done by the player in the inventory.
  */
 public interface AnvilInputInteraction {
 

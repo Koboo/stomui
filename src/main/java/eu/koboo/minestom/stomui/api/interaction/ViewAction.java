@@ -11,8 +11,9 @@ import net.minestom.server.entity.Player;
 import net.minestom.server.event.inventory.InventoryPreClickEvent;
 
 /**
- * This class is a wrapper, to be passed into {@link Interaction}.
- * It just provides getters for some properties.
+ * This class is a wrapper, which holds the properties and instances, relevant for the context of
+ * a clicked slot.
+ * Basically, it just provides getters for several properties.
  */
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)

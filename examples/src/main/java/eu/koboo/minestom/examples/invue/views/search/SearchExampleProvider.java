@@ -33,7 +33,12 @@ public class SearchExampleProvider extends ViewProvider implements AnvilInputInt
             "#########",
             "A <   >  "
         );
+        // This method allows offsetting the slots of the top inventory,
+        // so the pattern applies to the bottom inventory.
+        // You could also offset the pattern by a specific slot amount,
+        // but this is more convenient and fail-safe.
         pattern.offsetTopInventory(VIEW_TYPE);
+
         loader = new SearchItemLoader();
         pagination = registry.pageable(
             loader,

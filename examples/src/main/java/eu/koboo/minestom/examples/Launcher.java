@@ -2,10 +2,10 @@ package eu.koboo.minestom.examples;
 
 import dev.rollczi.litecommands.LiteCommands;
 import dev.rollczi.litecommands.minestom.LiteMinestomFactory;
-import eu.koboo.minestom.examples.invue.command.CommandComponentForTwoPlayer;
-import eu.koboo.minestom.examples.invue.command.CommandView;
-import eu.koboo.minestom.invue.api.ViewRegistry;
-import eu.koboo.minestom.invue.core.MinestomInvue;
+import eu.koboo.minestom.examples.stomui.command.CommandComponentForTwoPlayer;
+import eu.koboo.minestom.examples.stomui.command.CommandView;
+import eu.koboo.minestom.stomui.api.ViewRegistry;
+import eu.koboo.minestom.stomui.core.MinestomUI;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.command.CommandSender;
 import net.minestom.server.coordinate.Pos;
@@ -39,9 +39,9 @@ public class Launcher {
             });
 
         // Create a new instance of the ViewRegistry.
-        ViewRegistry viewRegistry = MinestomInvue.create();
+        ViewRegistry viewRegistry = MinestomUI.create();
 
-        // Register the listener of invue
+        // Register the listener of stomui
         viewRegistry.enable();
 
         // If your server shuts down, you can disable view registries by:

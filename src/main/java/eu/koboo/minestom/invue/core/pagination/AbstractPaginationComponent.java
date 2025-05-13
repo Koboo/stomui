@@ -51,12 +51,6 @@ public abstract sealed class AbstractPaginationComponent extends ViewPagination 
         itemPager.clear();
         itemLoader.load(itemPager);
 
-        // Maybe the item loader decided to be empty,
-        // but we can always show the first empty page.
-        //if (itemPager.getTotalPages() == 0) {
-        //    return;
-        //}
-
         // Render action!
         toPage(playerView, 1);
     }
@@ -131,8 +125,8 @@ public abstract sealed class AbstractPaginationComponent extends ViewPagination 
 
     @Override
     public void onOpen(@NotNull PlayerView view, @NotNull Player player) {
-        // Check if we have loaded the items yet,
-        // if not load them and return, since the load call will render the page for us.
+        // Check if we haven't loaded the items yet,
+        // if not, load them and return, since the load call will render the page for us.
         if (itemPager == null) {
             reloadItems(view);
             return;

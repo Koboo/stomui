@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * This abstract class represents a {@link PrebuiltItem} or a {@link ViewItem}
+ * and allows to modify the underlying {@link ItemStack} and {@link Interaction}.
  * Implementations:
  * - {@link PrebuiltItem}
  * - {@link ViewItem}

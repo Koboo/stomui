@@ -39,7 +39,7 @@ public final class Pagifier<T> {
             pageItemList = pages.get(pageIndex);
         }
 
-        // Add a new page if last one is full
+        // Add a new page if the last one is full
         if (pageItemList.size() >= maxItemsPerPage) {
             pageItemList = new ArrayList<>();
             pages.add(pageItemList);

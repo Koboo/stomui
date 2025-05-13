@@ -39,7 +39,7 @@ public abstract class ViewPagination extends ViewComponent {
 
     /**
      * @return the number of total pages, this pagination has.
-     * This method only works, after the item loading was triggered.
+     * This method only works after the item loading was triggered.
      */
     public abstract int getTotalPages();
 
@@ -49,7 +49,7 @@ public abstract class ViewPagination extends ViewComponent {
     public abstract int getTotalItemAmount();
 
     /**
-     * @return true, if the there is a next page.
+     * @return true, if there is a next page.
      */
     public abstract boolean hasNextPage();
 
@@ -61,7 +61,7 @@ public abstract class ViewPagination extends ViewComponent {
     public abstract void toNextPage(@NotNull PlayerView playerView);
 
     /**
-     * @return true, if the there is a previous page.
+     * @return true, if there is a previous page.
      */
     public abstract boolean hasPreviousPage();
 
@@ -84,7 +84,7 @@ public abstract class ViewPagination extends ViewComponent {
 
     /**
      * Navigates the pagination to the new given page.
-     * If the page doesn't exist, is too high or too less
+     * If the page doesn't exist, is too high or too less,
      * an exception is thrown.
      *
      * @param newPage    must be 1 or greater.
@@ -93,10 +93,10 @@ public abstract class ViewPagination extends ViewComponent {
     public abstract void toPage(@NotNull PlayerView playerView, int newPage);
 
     /**
-     * Recalls the given itemLoader consumer
-     * and sets the current page to 1.
-     * It automatically calls the method toPage(1),
-     * after finishing loading.
+     * Recalls the given {@link ItemLoader#load(Pagifier)} method
+     * and resets the current page back to 1.
+     * It automatically calls the method {@link ViewPagination#toPage(PlayerView, int)},
+     * after {@link ItemLoader} execution.
      *
      * @param playerView The {@link PlayerView}, which reloads the pagination.
      */
@@ -107,5 +107,9 @@ public abstract class ViewPagination extends ViewComponent {
      */
     public abstract @NotNull ItemStack getFillerItem();
 
+    /**
+     * Returns the {@link Pagifier} instance, which holds the {@link PrebuiltItem} of this pagination.
+     * @return The {@link Pagifier} instance
+     */
     public abstract @Nullable Pagifier<PrebuiltItem> getPager();
 }

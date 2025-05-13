@@ -19,6 +19,7 @@ public class PaginationBorder extends ViewComponent {
 
     @Override
     public void onOpen(@NotNull PlayerView view, @NotNull Player player) {
+        // Sets the material to gray stained-glass pane for all border slots in the top inventory.
         List<Integer> topSlots = view.getType().getTopSlots();
         for (ViewItem viewItem : ViewItem.bySlotList(view, topSlots)) {
             viewItem.material(Material.GRAY_STAINED_GLASS_PANE)

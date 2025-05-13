@@ -13,14 +13,19 @@ public final class CommandComponentForTwoPlayer {
     TwoPlayerComponent multiViewComponent;
 
     public CommandComponentForTwoPlayer(ViewRegistry registry) {
+        // Creates the ViewProvider instance once on server start,
+        // because litecommands we only call the constructor once.
+        // Every player opens the same ViewProvider instance.
         multiViewComponent = new TwoPlayerComponent(registry);
     }
 
     @Execute
     public void onExecute(@Context Player player) {
-        // Opening the same instance of the ViewProvider
-        // for every player, so they get different inventories,
-        // but at the end the same instance handles/renders their items.
+        // Opening the same ViewProvider instance for each player
+        // opens different Inventories and different PlayerViews for each player,
+        // but at the end the same ViewComponent instances handle the logic and render their items.
+        // So all players have a different minestom inventory,
+        // but invue components are shared between all players.
         multiViewComponent.open(player);
     }
 

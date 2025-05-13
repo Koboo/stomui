@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ScrollableVerticalExampleProvider extends ViewProvider {
 
-    // Render order of components:
+    // Hierarchy of components:
     // - this
     //   - PaginationBorder
     //     - PaginationActionButtons

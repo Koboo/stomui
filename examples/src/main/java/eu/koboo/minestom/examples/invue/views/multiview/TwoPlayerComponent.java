@@ -18,7 +18,9 @@ public class TwoPlayerComponent extends ViewProvider {
     public void modifyBuilder(@NotNull ViewBuilder builder, @NotNull Player player) {
         // Because all methods get a provided PlayerView OR Player,
         // you can always update the PlayerView according to the provided player.
-        // That means, a component is not forced to only exist within one view.
+        // That means a component is not forced to only exist within one view.
         builder.title("Welcome, " + player.getName() + " to the component of two players!");
+
+        // Check out CommandComponentForTwoPlayers for an example on how to use that component.
     }
 }

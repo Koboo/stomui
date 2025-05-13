@@ -44,16 +44,13 @@ public class Launcher {
         // Register the listener of invue
         viewRegistry.enable();
 
-        // If ur server shuts down, you can disable view registries by:
+        // If your server shuts down, you can disable view registries by:
         //viewRegistry.disable();
 
         LiteCommands<CommandSender> liteCommands = LiteMinestomFactory.builder()
             .commands(
                 new CommandView(viewRegistry),
                 new CommandComponentForTwoPlayer(viewRegistry)
-            )
-            .settings(configurator ->
-                configurator.permissionResolver((sender, permission) -> true)
             )
             .build();
         liteCommands.register();

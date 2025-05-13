@@ -187,6 +187,12 @@ public final class ViewBuilder {
         if (slotClickCooldownInMillis < 0) {
             throw new IllegalArgumentException("slotClickCooldownInMillis must be positive or 0");
         }
+        if(flags.contains(Flags.ALLOW_BOTTOM_INTERACTION) && flags.contains(Flags.CLOSE_ON_BOTTOM_INTERACTION)) {
+            throw new IllegalArgumentException("Cannot use both Flags ALLOW_BOTTOM_INTERACTION and CLOSE_ON_BOTTOM_INTERACTION at the same time");
+        }
+        if(flags.contains(Flags.ALLOW_OUTSIDE_INTERACTION) && flags.contains(Flags.CLOSE_ON_OUTSIDE_INTERACTION)) {
+            throw new IllegalArgumentException("Cannot use both Flags ALLOW_OUTSIDE_INTERACTION and CLOSE_ON_OUTSIDE_INTERACTION at the same time");
+        }
     }
 
     /**

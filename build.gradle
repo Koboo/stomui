@@ -72,9 +72,9 @@ mavenPublishing {
 
     pom {
         name = project.name
-        description = 'Flexible inventory framework for minestom'
+        description = 'Flexible component-based inventory framework for minestom'
         inceptionYear = '2025'
-        url = 'https://github.com/Koboo/minestom-invue'
+        url = 'https://github.com/Koboo/stomui'
         licenses {
             license {
                 name = 'The Apache License, Version 2.0'
@@ -91,9 +91,9 @@ mavenPublishing {
             }
         }
         scm {
-            url = 'https://github.com/Koboo/minestom-invue'
-            connection = 'scm:git:https://github.com/Koboo/minestom-invue'
-            developerConnection = 'scm:git:https://github.com/Koboo/minestom-invue'
+            url = 'https://github.com/Koboo/stomui'
+            connection = 'scm:git:https://github.com/Koboo/stomui'
+            developerConnection = 'scm:git:https://github.com/Koboo/stomui'
         }
     }
 

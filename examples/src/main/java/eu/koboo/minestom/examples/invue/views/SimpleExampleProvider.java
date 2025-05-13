@@ -17,6 +17,10 @@ public class SimpleExampleProvider extends ViewProvider {
 
     public SimpleExampleProvider(ViewRegistry registry) {
         super(registry, ViewBuilder.of(ViewType.SIZE_6_X_9));
+
+        // Open by calling:
+        // SimpleExampleProvider exampleProvider = new SimpleExampleProvider(registry);
+        // exampleProvider.open(player);
     }
 
     @Override
@@ -31,20 +35,22 @@ public class SimpleExampleProvider extends ViewProvider {
     public void onOpen(@NotNull PlayerView view, @NotNull Player player) {
         // Gets executed before the player opens the inventory.
 
-        // Getting all slots from the top inventory of the provided ViewType.
+        // Getting all slot numbers from the top inventory of the provided ViewType.
         List<Integer> allSlotsOfTopInventory = view.getType().getTopSlots();
 
         // Getting all view items for all slots of the top inventory.
+        // (Makes it easier to change material and names, using the ViewItem api)
         List<ViewItem> allItemsOfTopInventory = ViewItem.bySlotList(view, allSlotsOfTopInventory);
 
-        // Setting all items to gray stained-glass panes and empty their names.
+        // Setting all ItemStacks to material gray stained-glass panes with empty names
+        // and disable any clicking on them.
         for (ViewItem viewItem : allItemsOfTopInventory) {
             viewItem.material(Material.GRAY_STAINED_GLASS_PANE)
                 .name(" ")
                 .cancelClicking();
         }
 
-        // Creating a simple close item at the first slot of the top inventory
+        // Creating a simple close item in the first slot of the top inventory
         ViewItem.bySlot(view, 0)
             .material(Material.REDSTONE)
             .displayName("Close")

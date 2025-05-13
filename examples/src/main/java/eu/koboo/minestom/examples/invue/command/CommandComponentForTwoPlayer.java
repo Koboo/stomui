@@ -19,7 +19,7 @@ public final class CommandComponentForTwoPlayer {
     @Execute
     public void onExecute(@Context Player player) {
         // Opening the same instance of the ViewProvider
-        // for every player, so they get different inventories
+        // for every player, so they get different inventories,
         // but at the end the same instance handles/renders their items.
         multiViewComponent.open(player);
     }

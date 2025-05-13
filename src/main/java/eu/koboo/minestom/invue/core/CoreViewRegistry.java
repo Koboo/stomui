@@ -75,7 +75,7 @@ public final class CoreViewRegistry implements ViewRegistry {
         MinecraftServer.getGlobalEventHandler().addListener(eventListener);
     }
 
-    // Only called by PlayerView#closeInventory()
+    // Only called by PlayerView#closeView()
     @ApiStatus.Internal
     public void unregisterPlayerView(@NotNull Player player) {
         PlayerView playerView = playerViewRegistry.get(player);

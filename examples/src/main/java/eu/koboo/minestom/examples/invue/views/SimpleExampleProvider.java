@@ -21,16 +21,17 @@ public class SimpleExampleProvider extends ViewProvider {
 
     @Override
     public void modifyBuilder(@NotNull ViewBuilder viewBuilder, @NotNull Player player) {
-        // Modify the ViewBuilder, based on the player who will open the modified
-        // ViewBuilder. This ViewBuilder is copy of the ViewBuilder from the constructor.
+        // Modify the ViewBuilder, based on the player who will open the inventory.
+        // The instance of the ViewBuilder parameter is a copy of the ViewBuilder from the constructor,
+        // because every place gets his own instance of the ViewBuilder.
         viewBuilder.title("Welcome, " + player.getUsername());
     }
 
     @Override
     public void onOpen(@NotNull PlayerView view, @NotNull Player player) {
-        // Gets executed if the player opens the inventory.
+        // Gets executed before the player opens the inventory.
 
-        // Getting all slots of top inventory of the provided ViewType.
+        // Getting all slots from the top inventory of the provided ViewType.
         List<Integer> allSlotsOfTopInventory = view.getType().getTopSlots();
 
         // Getting all view items for all slots of the top inventory.
@@ -53,6 +54,10 @@ public class SimpleExampleProvider extends ViewProvider {
     @Override
     public void onClose(@NotNull PlayerView view, @NotNull Player player) {
         // Gets executed if the player closes or swaps the inventory.
+        // Other events that could cause this method to be executed are:
+        // - PlayerDisconnectEvent
+        // - InventoryCloseEvent
+        // - Player gets opened a new PlayerView
         player.sendMessage("You've closed the view");
     }
 
@@ -63,7 +68,7 @@ public class SimpleExampleProvider extends ViewProvider {
 
     @Override
     public @NotNull Priority getPriority() {
-        // Can be used to define rendering order of children within a parent component
+        // Can be used to define the rendering order of children within a parent component
         return Priority.LOW;
     }
 }

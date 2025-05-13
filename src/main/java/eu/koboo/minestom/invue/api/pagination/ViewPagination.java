@@ -102,6 +102,13 @@ public abstract class ViewPagination extends ViewComponent {
      */
     public abstract void reloadItems(@NotNull PlayerView playerView);
 
+    // void                         addItem(PrebuiltItem item)
+    // void                         addItems(Collection<PrebuiltItem> item)
+    // void                         removeItem(PrebuiltItem item)
+    // void                         removeItems(Collection<PrebuiltItem> item)
+    // Collection<PrebuiltItem>     getItems()
+    // void                         clearItems()
+
     /**
      * @return the given fillerItem or AIR if no filler was set.
      */

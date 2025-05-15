@@ -10,6 +10,31 @@ It provides many examples and tries to stay up-to-date.
 - [License](LICENSE)
 - [Documentation](https://github.com/Koboo/stomui/wiki/Documentation)
 
+## FAQ
+
+<details>
+<summary>Can I open an inventory to multiple Players?</summary>
+Yes and no. The actual inventories of Minestom are not really visible and backed by a PlayerView.
+Every player gets an own PlayerView, by opening a ViewComponent, but you could open one ViewComponents
+instance to multiple players, sharing the logic between multiple PlayerViews.
+</details>
+
+<br>
+
+<details>
+<summary>Do I have to use multiple ViewComponents?</summary>
+No, you can create your inventories with only one ViewProvider. You are not forced
+to use multiple ViewComponents, but it makes reusing logic within a ViewComponent easier.
+</details>
+
+<br>
+
+<details>
+<summary>Do you support async adding and removing in pagination?</summary>
+Yes, the pagination is very flexible. There are several examples on how to use it. Just look up the
+examples below.
+</details>
+
 ## Documentation
 
 Unfortunately, the actual documentation is still very small, but available in the [Wiki](https://github.com/Koboo/stomui/wiki/Documentation).
@@ -56,8 +81,6 @@ To understand the usage of `stomui` in detail you can check out the examples.
 - [TwoPlayerExampleProvider](/examples/src/main/java/eu/koboo/minestom/examples/stomui/views/multiview/TwoPlayerExampleProvider.java)
   - Shared `ViewProvider` by multiple `Player`, which shows how to open one provider to multiple players.
   - Allows players to have their own `PlayerView`/inventory but the same logic provided by the `ViewProvider`.
-
-
 
 ## Template
 

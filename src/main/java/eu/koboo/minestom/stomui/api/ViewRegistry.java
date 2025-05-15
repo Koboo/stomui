@@ -109,7 +109,6 @@ public interface ViewRegistry {
      * @return A new instance of {@link ViewPagination}.
      */
     <T> @NotNull ViewPagination<T> pageable(@NotNull ItemRenderer<T> itemRenderer,
-                                            @Nullable Comparator<T> itemSorter,
                                             @Nullable ItemStack fillerItem,
                                             @NotNull List<Integer> slotList);
 
@@ -125,7 +124,6 @@ public interface ViewRegistry {
      * @return A new instance of {@link ViewPagination}.
      */
     <T> @NotNull ViewPagination<T> scrollable(@NotNull ItemRenderer<T> itemRenderer,
-                                              @Nullable Comparator<T> itemSorter,
                                               @Nullable ItemStack fillerItem,
                                               @NotNull List<List<Integer>> listOfSlotLists);
 

@@ -20,7 +20,6 @@ import java.util.*;
 @FieldDefaults(level = AccessLevel.PROTECTED)
 public abstract sealed class AbstractPaginationComponent<T> extends ViewPagination<T> permits PageComponent, ScrollComponent {
 
-    final ItemRenderer<T> intialItemRenderer;
     final ItemStack fillerItem;
 
     final List<T> itemList;
@@ -33,7 +32,6 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
     int currentPage;
 
     public AbstractPaginationComponent(@NotNull ItemRenderer<T> itemRenderer,
-                                       @Nullable Comparator<T> itemSorter,
                                        @Nullable ItemStack fillerItem) {
         if (fillerItem == null) {
             fillerItem = ItemStack.of(Material.AIR);
@@ -42,9 +40,7 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
         this.itemList = new ArrayList<>();
         this.pagedItemList = new ArrayList<>();
 
-        this.intialItemRenderer = itemRenderer;
         this.itemRenderer = itemRenderer;
-        this.itemSorter = itemSorter;
         this.currentPage = 1;
     }
 

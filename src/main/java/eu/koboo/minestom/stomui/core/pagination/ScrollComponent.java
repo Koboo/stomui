@@ -11,7 +11,6 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Comparator;
 import java.util.List;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -21,10 +20,9 @@ public final class ScrollComponent<T> extends AbstractPaginationComponent<T> {
     List<List<Integer>> listOfSlotLists;
 
     public ScrollComponent(@NotNull ItemRenderer<T> itemRenderer,
-                           @Nullable Comparator<T> itemSorter,
                            @Nullable ItemStack fillerItem,
                            @NotNull List<List<Integer>> listOfSlotLists) {
-        super(itemRenderer, itemSorter, fillerItem);
+        super(itemRenderer, fillerItem);
         if (listOfSlotLists.isEmpty()) {
             throw new IllegalArgumentException("slotList is empty!");
         }

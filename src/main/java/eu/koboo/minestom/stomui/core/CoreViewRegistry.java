@@ -206,18 +206,16 @@ public final class CoreViewRegistry implements ViewRegistry {
 
     @Override
     public @NotNull <T> ViewPagination<T> pageable(@NotNull ItemRenderer<T> itemRenderer,
-                                                   @Nullable Comparator<T> itemSorter,
                                                    @Nullable ItemStack fillerItem,
                                                    @NotNull List<Integer> slotList) {
-        return new PageComponent<>(itemRenderer, itemSorter, fillerItem, slotList);
+        return new PageComponent<>(itemRenderer, fillerItem, slotList);
     }
 
     @Override
     public @NotNull <T> ViewPagination<T> scrollable(@NotNull ItemRenderer<T> itemRenderer,
-                                                     @Nullable Comparator<T> itemSorter,
                                                      @Nullable ItemStack fillerItem,
                                                      @NotNull List<List<Integer>> listOfSlotLists) {
-        return new ScrollComponent<>(itemRenderer, itemSorter, fillerItem, listOfSlotLists);
+        return new ScrollComponent<>(itemRenderer, fillerItem, listOfSlotLists);
     }
 
     @Override

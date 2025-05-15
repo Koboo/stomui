@@ -65,6 +65,16 @@ public abstract class ViewPagination<T> extends ViewComponent {
     public abstract void setItemSorter(@Nullable Comparator<T> itemSorter);
 
     /**
+     * This method allows you to change the filtering for the pagination.
+     * If the itemFilter is set to null, the pagination just ignores it.
+     * Keep in mind that you need to call {@link ViewPagination#update(PlayerView)}
+     * to apply the changes on the {@link PlayerView}.
+     * See {@link ItemFilter} for more information how the filter works.
+     * @param itemFilter A {@link ItemFilter} with the pagination generic type item.
+     */
+    public abstract void setItemFilter(@Nullable ItemFilter<T> itemFilter);
+
+    /**
      * This method adds the given items to the pagination,
      * but it doesn't update the inventories of the players.
      * <p>

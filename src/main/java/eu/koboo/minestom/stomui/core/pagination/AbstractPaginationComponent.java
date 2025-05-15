@@ -3,6 +3,7 @@ package eu.koboo.minestom.stomui.core.pagination;
 import eu.koboo.minestom.stomui.api.PlayerView;
 import eu.koboo.minestom.stomui.api.item.PrebuiltItem;
 import eu.koboo.minestom.stomui.api.item.ViewItem;
+import eu.koboo.minestom.stomui.api.pagination.ItemFilter;
 import eu.koboo.minestom.stomui.api.pagination.ItemLoader;
 import eu.koboo.minestom.stomui.api.pagination.ItemRenderer;
 import eu.koboo.minestom.stomui.api.pagination.ViewPagination;
@@ -28,6 +29,7 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
     ItemRenderer<T> itemRenderer;
     Comparator<T> itemSorter;
     ItemLoader<T> itemLoader;
+    ItemFilter<T> itemFilter;
     int currentPage;
 
     public AbstractPaginationComponent(@NotNull ItemRenderer<T> itemRenderer,
@@ -62,6 +64,11 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
     }
 
     @Override
+    public void setItemFilter(ItemFilter<T> itemFilter) {
+        this.itemFilter = itemFilter;
+    }
+
+    @Override
     public void addItems(@NotNull Collection<T> itemCollection) {
         itemList.addAll(itemCollection);
     }
@@ -89,10 +96,15 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
                 "(itemsPerPage=" + maxItemsPerPage + ")");
         }
 
-        int totalItemAmount = itemList.size();
+        List<T> resultItemList = new ArrayList<>(itemList);
+        if(itemFilter != null) {
+            resultItemList.removeIf(item -> !itemFilter.include(item));
+        }
+
+        int totalItemAmount = resultItemList.size();
 
         if (itemSorter != null) {
-            itemList.sort(itemSorter);
+            resultItemList.sort(itemSorter);
         }
 
         pagedItemList.clear();
@@ -100,7 +112,7 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
         if (totalItemAmount > 0) {
             for (int pageIndex = 0; pageIndex < totalItemAmount; pageIndex += maxItemsPerPage) {
                 int end = Math.min(pageIndex + maxItemsPerPage, totalItemAmount);
-                List<T> itemSubList = itemList.subList(pageIndex, end);
+                List<T> itemSubList = resultItemList.subList(pageIndex, end);
                 List<T> page = new ArrayList<>(itemSubList);
                 pagedItemList.add(page);
             }
@@ -110,6 +122,7 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
         }
         playerView.executeRebuild();
         renderCurrentPage(playerView, maxItemsPerPage);
+        resultItemList.clear();
     }
 
     @Override

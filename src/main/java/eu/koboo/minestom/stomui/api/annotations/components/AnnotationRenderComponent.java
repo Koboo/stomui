@@ -4,7 +4,7 @@ import eu.koboo.minestom.stomui.api.PlayerView;
 import eu.koboo.minestom.stomui.api.ViewType;
 import eu.koboo.minestom.stomui.api.annotations.Slot;
 import eu.koboo.minestom.stomui.api.annotations.SlotPosition;
-import eu.koboo.minestom.stomui.api.annotations.Stateful;
+import eu.koboo.minestom.stomui.api.annotations.Rebuildable;
 import eu.koboo.minestom.stomui.api.component.ComponentPriority;
 import eu.koboo.minestom.stomui.api.component.Priority;
 import eu.koboo.minestom.stomui.api.component.ViewComponent;
@@ -24,7 +24,7 @@ import java.lang.reflect.Modifier;
  * the methods annotated with one of the following annotations:
  * - {@link Slot}
  * - {@link SlotPosition}
- * - {@link Stateful}
+ * - {@link Rebuildable}
  */
 @Slf4j
 @ComponentPriority(Priority.HIGHEST)
@@ -49,10 +49,10 @@ public final class AnnotationRenderComponent extends ViewComponent {
     public void executeItemMethods(PlayerView view, ViewComponent component, boolean isStateUpdate) {
         for (Method method : component.getClass().getDeclaredMethods()) {
 
-            if (isStateUpdate && !method.isAnnotationPresent(Stateful.class)) {
+            if (isStateUpdate && !method.isAnnotationPresent(Rebuildable.class)) {
                 continue;
             }
-            if (!isStateUpdate && method.isAnnotationPresent(Stateful.class)) {
+            if (!isStateUpdate && method.isAnnotationPresent(Rebuildable.class)) {
                 continue;
             }
 

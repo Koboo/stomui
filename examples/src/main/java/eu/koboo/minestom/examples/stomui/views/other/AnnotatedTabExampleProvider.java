@@ -5,7 +5,7 @@ import eu.koboo.minestom.stomui.api.ViewBuilder;
 import eu.koboo.minestom.stomui.api.ViewRegistry;
 import eu.koboo.minestom.stomui.api.ViewType;
 import eu.koboo.minestom.stomui.api.annotations.Slot;
-import eu.koboo.minestom.stomui.api.annotations.Stateful;
+import eu.koboo.minestom.stomui.api.annotations.Rebuildable;
 import eu.koboo.minestom.stomui.api.annotations.components.AnnotationRenderComponent;
 import eu.koboo.minestom.stomui.api.component.ViewProvider;
 import eu.koboo.minestom.stomui.api.item.PrebuiltItem;
@@ -65,21 +65,21 @@ public class AnnotatedTabExampleProvider extends ViewProvider {
     }
 
     @Slot(2)
-    @Stateful // Rebuilds with "onStateUpdate"
+    @Rebuildable // Rebuilds with "onStateUpdate"
     public PrebuiltItem profileItem() {
         // Changes the current tab to PROFILE
         return createSettingsItem(SettingsTab.PROFILE);
     }
 
     @Slot(4)
-    @Stateful // Rebuilds with "onStateUpdate"
+    @Rebuildable // Rebuilds with "onStateUpdate"
     public PrebuiltItem clanItem() {
         // Changes the current tab to CLAN
         return createSettingsItem(SettingsTab.CLAN);
     }
 
     @Slot(6)
-    @Stateful // Rebuilds with "onStateUpdate"
+    @Rebuildable // Rebuilds with "onStateUpdate"
     public PrebuiltItem friendsItem() {
         // Changes the current tab to FRIEND
         return createSettingsItem(SettingsTab.FRIEND);

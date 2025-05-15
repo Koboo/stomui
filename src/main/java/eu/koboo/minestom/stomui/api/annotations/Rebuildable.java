@@ -10,11 +10,13 @@ import java.lang.annotation.Target;
 
 /**
  * Can be annotated on methods to mark their created {@link PrebuiltItem} rebuildable.
- * That means the annotated methods get executed,
- * everytime the {@link PlayerView#executeRebuild()} is called.
- * That would result in a rebuilt of the {@link PrebuiltItem} returned by the annotated method.
+ * That means the annotated method gets executed, everytime the method
+ * {@link PlayerView#executeRebuild()} is called.
+ * This results in a rebuilt of the {@link PrebuiltItem} returned by the annotated method.
+ * So you could use stateful variables in the components in the {@link PrebuiltItem}, which
+ * you build in the method.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface Stateful {
+public @interface Rebuildable {
 }

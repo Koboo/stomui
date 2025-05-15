@@ -52,10 +52,7 @@ public final class ScrollComponent<T> extends AbstractPaginationComponent<T> {
     }
 
     @Override
-    void renderCurrentPage(@NotNull PlayerView playerView) {
-        // Define the itemsPerPage once.
-        int itemsPerPage = getMaximumItemsPerPage();
-
+    void renderCurrentPage(@NotNull PlayerView playerView, int maxItemsPerPage) {
         // We treat every slotList as an individual page.
         // So we keep track of the previously rendered pages.
         int scrollPageTracker = currentPage;
@@ -67,7 +64,7 @@ public final class ScrollComponent<T> extends AbstractPaginationComponent<T> {
 
             // Sets the items of the current page.
             List<T> currentPageItemList = getPageByNumber(scrollPageTracker);
-            setItemsInSlotsByPage(playerView, itemsPerPage, currentPageItemList, slotList);
+            updatePageBySlots(playerView, maxItemsPerPage, currentPageItemList, slotList);
             scrollPageTracker += 1;
         }
     }

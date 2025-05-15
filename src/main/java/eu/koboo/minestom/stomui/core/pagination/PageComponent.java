@@ -37,17 +37,14 @@ public final class PageComponent<T> extends AbstractPaginationComponent<T> {
     }
 
     @Override
-    void renderCurrentPage(@NotNull PlayerView playerView) {
+    void renderCurrentPage(@NotNull PlayerView playerView, int maxItemsPerPage) {
         // Clean up the previous mess.
         for (Integer itemSlot : slotList) {
             ViewItem.bySlot(playerView, itemSlot).material(Material.AIR);
         }
 
-        // Define the itemsPerPage once.
-        int itemsPerPage = getMaximumItemsPerPage();
-
         // Sets the items of the current page.
         List<T> currentPageItemList = getPageByNumber(currentPage);
-        setItemsInSlotsByPage(playerView, itemsPerPage, currentPageItemList, slotList);
+        updatePageBySlots(playerView, maxItemsPerPage, currentPageItemList, slotList);
     }
 }

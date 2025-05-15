@@ -3,6 +3,7 @@ package eu.koboo.minestom.stomui.core.pagination;
 import eu.koboo.minestom.stomui.api.PlayerView;
 import eu.koboo.minestom.stomui.api.item.PrebuiltItem;
 import eu.koboo.minestom.stomui.api.item.ViewItem;
+import eu.koboo.minestom.stomui.api.pagination.ItemLoader;
 import eu.koboo.minestom.stomui.api.pagination.ItemRenderer;
 import eu.koboo.minestom.stomui.api.pagination.ViewPagination;
 import lombok.AccessLevel;
@@ -18,13 +19,15 @@ import java.util.*;
 @FieldDefaults(level = AccessLevel.PROTECTED)
 public abstract sealed class AbstractPaginationComponent<T> extends ViewPagination<T> permits PageComponent, ScrollComponent {
 
-    final ItemRenderer<T> itemRenderer;
+    final ItemRenderer<T> intialItemRenderer;
     final ItemStack fillerItem;
 
     final List<T> itemList;
     final List<List<T>> pagedItemList;
 
+    ItemRenderer<T> itemRenderer;
     Comparator<T> itemSorter;
+    ItemLoader<T> itemLoader;
     int currentPage;
 
     public AbstractPaginationComponent(@NotNull ItemRenderer<T> itemRenderer,
@@ -37,9 +40,25 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
         this.itemList = new ArrayList<>();
         this.pagedItemList = new ArrayList<>();
 
+        this.intialItemRenderer = itemRenderer;
         this.itemRenderer = itemRenderer;
         this.itemSorter = itemSorter;
         this.currentPage = 1;
+    }
+
+    @Override
+    public void setItemRenderer(@NotNull ItemRenderer<T> itemRenderer) {
+        this.itemRenderer = itemRenderer;
+    }
+
+    @Override
+    public void setItemLoader(@Nullable ItemLoader<T> itemLoader) {
+        this.itemLoader = itemLoader;
+    }
+
+    @Override
+    public void setItemSorter(@Nullable Comparator<T> itemSorter) {
+        this.itemSorter = itemSorter;
     }
 
     @Override
@@ -59,12 +78,38 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
 
     @Override
     public void update(@NotNull PlayerView playerView) {
-        rebuildPages();
+        if(itemLoader != null) {
+            List<T> loaderItems = itemLoader.loadItems();
+            itemList.addAll(loaderItems);
+        }
+
+        int maxItemsPerPage = getMaximumItemsPerPage();
+        if (maxItemsPerPage < 1) {
+            throw new IllegalArgumentException("itemsPerPage must be set and positive. " +
+                "(itemsPerPage=" + maxItemsPerPage + ")");
+        }
+
+        int totalItemAmount = itemList.size();
+
+        if (itemSorter != null) {
+            itemList.sort(itemSorter);
+        }
+
+        pagedItemList.clear();
+        // No items -> We don't need to rebuild the pagination.
+        if (totalItemAmount > 0) {
+            for (int pageIndex = 0; pageIndex < totalItemAmount; pageIndex += maxItemsPerPage) {
+                int end = Math.min(pageIndex + maxItemsPerPage, totalItemAmount);
+                List<T> itemSubList = itemList.subList(pageIndex, end);
+                List<T> page = new ArrayList<>(itemSubList);
+                pagedItemList.add(page);
+            }
+        }
         if (currentPage > getTotalPages()) {
             currentPage = getTotalPages();
         }
         playerView.updateState();
-        renderCurrentPage(playerView);
+        renderCurrentPage(playerView, maxItemsPerPage);
     }
 
     @Override
@@ -161,36 +206,12 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
         update(playerView);
     }
 
-    private void rebuildPages() {
-        int maxItemsPerPage = getMaximumItemsPerPage();
-        if (maxItemsPerPage < 1) {
-            throw new IllegalArgumentException("itemsPerPage must be set and positive. " +
-                "(itemsPerPage=" + maxItemsPerPage + ")");
-        }
+    abstract void renderCurrentPage(@NotNull PlayerView playerView, int itemsPerPage);
 
-        int totalItemAmount = itemList.size();
-        pagedItemList.clear();
-        if (itemSorter != null) {
-            itemList.sort(itemSorter);
-        }
-
-        // No items mean we don't need to rebuild the pagination.
-        if (totalItemAmount > 0) {
-            for (int pageIndex = 0; pageIndex < totalItemAmount; pageIndex += maxItemsPerPage) {
-                int end = Math.min(pageIndex + maxItemsPerPage, totalItemAmount);
-                List<T> itemSubList = itemList.subList(pageIndex, end);
-                List<T> page = new ArrayList<>(itemSubList);
-                pagedItemList.add(page);
-            }
-        }
-    }
-
-    abstract void renderCurrentPage(@NotNull PlayerView playerView);
-
-    void setItemsInSlotsByPage(PlayerView playerView,
-                               int itemsPerPage,
-                               List<T> currentPageItemList,
-                               List<Integer> slotList) {
+    void updatePageBySlots(PlayerView playerView,
+                           int itemsPerPage,
+                           List<T> currentPageItemList,
+                           List<Integer> slotList) {
         for (int pageItemIndex = 0; pageItemIndex < itemsPerPage; pageItemIndex++) {
             // Get the current slot of the page
             int itemSlot = slotList.get(pageItemIndex);

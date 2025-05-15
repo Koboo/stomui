@@ -3,11 +3,13 @@ package eu.koboo.minestom.stomui.api.pagination;
 import eu.koboo.minestom.stomui.api.PlayerView;
 import eu.koboo.minestom.stomui.api.ViewRegistry;
 import eu.koboo.minestom.stomui.api.component.ViewComponent;
+import eu.koboo.minestom.stomui.api.item.PrebuiltItem;
 import eu.koboo.minestom.stomui.core.pagination.AbstractPaginationComponent;
 import eu.koboo.minestom.stomui.core.pagination.PageComponent;
 import eu.koboo.minestom.stomui.core.pagination.ScrollComponent;
 import net.minestom.server.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.Comparator;
@@ -26,6 +28,41 @@ import java.util.List;
  * - {@link ScrollComponent}
  */
 public abstract class ViewPagination<T> extends ViewComponent {
+
+    /**
+     * This method allows you to update the {@link ItemRenderer} within the pagination.
+     * The {@link ItemRenderer} is responsible to create a {@link PrebuiltItem}
+     * from any generic item added in the pagination.
+     * We can't update the pagination without an {@link ItemRenderer},
+     * that's why the argument is annotated with {@link NotNull}.
+     * Keep in mind that you need to call {@link ViewPagination#update(PlayerView)}
+     * to apply the changes on the {@link PlayerView}.
+     * @param itemRenderer A {@link Comparator} with the pagination generic type item.
+     */
+    public abstract void setItemRenderer(@NotNull ItemRenderer<T> itemRenderer);
+
+    /**
+     * Allows the setting and loading by an {@link ItemLoader},
+     * which should return a list of the given generic type "item".
+     * If the itemLoader is set to null, the pagination just ignores it.
+     * This {@link ItemLoader} doesn't override any item modifications
+     * by {@link ViewPagination#removeItems(Collection)},
+     * {@link ViewPagination#addItems(Collection)} or
+     * {@link ViewPagination#clearItems()}. If any {@link ItemLoader}
+     * was set, it's loaded on the {@link ViewPagination#update(PlayerView)} call.
+     * and just adds the returned list to the pagination.
+     * @param itemLoader A {@link ItemLoader} instance to load from.
+     */
+    public abstract void setItemLoader(@Nullable ItemLoader<T> itemLoader);
+
+    /**
+     * This method allows you to change the sorting for the pagination.
+     * If the itemSorter is set to null, the pagination just ignores it.
+     * Keep in mind that you need to call {@link ViewPagination#update(PlayerView)}
+     * to apply the changes on the {@link PlayerView}.
+     * @param itemSorter A {@link Comparator} with the pagination generic type item.
+     */
+    public abstract void setItemSorter(@Nullable Comparator<T> itemSorter);
 
     /**
      * This method adds the given items to the pagination,

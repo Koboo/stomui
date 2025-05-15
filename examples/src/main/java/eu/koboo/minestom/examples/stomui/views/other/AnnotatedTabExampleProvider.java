@@ -55,6 +55,7 @@ public class AnnotatedTabExampleProvider extends ViewProvider {
     }
 
     @Slot(0)
+    // No @Stateful means, only build on view opening.
     public PrebuiltItem closeItem() {
         // Closes the inventory
         return PrebuiltItem.empty()
@@ -64,24 +65,42 @@ public class AnnotatedTabExampleProvider extends ViewProvider {
     }
 
     @Slot(2)
-    @Stateful
+    @Stateful // Rebuilds with "onStateUpdate"
     public PrebuiltItem profileItem() {
         // Changes the current tab to PROFILE
         return createSettingsItem(SettingsTab.PROFILE);
     }
 
     @Slot(4)
-    @Stateful
+    @Stateful // Rebuilds with "onStateUpdate"
     public PrebuiltItem clanItem() {
         // Changes the current tab to CLAN
         return createSettingsItem(SettingsTab.CLAN);
     }
 
     @Slot(6)
-    @Stateful
+    @Stateful // Rebuilds with "onStateUpdate"
     public PrebuiltItem friendsItem() {
         // Changes the current tab to FRIEND
         return createSettingsItem(SettingsTab.FRIEND);
+    }
+
+    private PrebuiltItem createSettingsItem(SettingsTab ownTab) {
+        // Method to create a tab item, based on the given ownTab.
+        return PrebuiltItem.empty()
+            .material(ownTab.getMaterial())
+            .displayName(ownTab.getName())
+            // Because the item gets rebuild "onStateUpdate" we can just check
+            // the currentTab here.
+            .glint(currentTab == ownTab)
+            .interaction(action -> {
+                // If the user clicks this item,
+                // we update the current tab field in this component instance,
+                // and we call updateState(), to ensure the tab item,
+                // which was selected starts glinting (enchantment glow)
+                this.currentTab = ownTab;
+                action.getView().updateState();
+            });
     }
 
     @Override
@@ -97,22 +116,6 @@ public class AnnotatedTabExampleProvider extends ViewProvider {
                 .displayName(" ")
                 .cancelClicking();
         }
-    }
-
-    private PrebuiltItem createSettingsItem(SettingsTab settingsTab) {
-        // Method to create a tab item, based on the given settingsTab.
-        return PrebuiltItem.empty()
-            .material(settingsTab.getMaterial())
-            .displayName(settingsTab.getName())
-            .glint(currentTab == settingsTab)
-            .interaction(action -> {
-                // If the user clicks this item,
-                // we update the current tab field in this component instance,
-                // and we call updateState(), to ensure the tab item,
-                // which was selected starts glinting (enchantment glow)
-                this.currentTab = settingsTab;
-                action.getView().updateState();
-            });
     }
 
     @Getter

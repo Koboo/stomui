@@ -5,6 +5,7 @@ import dev.rollczi.litecommands.annotations.command.Command;
 import dev.rollczi.litecommands.annotations.context.Context;
 import dev.rollczi.litecommands.annotations.execute.Execute;
 import dev.rollczi.litecommands.annotations.execute.ExecuteDefault;
+import eu.koboo.minestom.examples.stomui.views.CounterExampleProvider;
 import eu.koboo.minestom.examples.stomui.views.SimpleExampleProvider;
 import eu.koboo.minestom.examples.stomui.views.other.AllowInteractionExampleProvider;
 import eu.koboo.minestom.examples.stomui.views.other.AnnotatedTabExampleProvider;
@@ -42,6 +43,7 @@ public final class CommandView {
         put("search", SearchExampleProvider::new);
         put("simple", SimpleExampleProvider::new);
         put("history", registry -> new ViewHistoryExampleProvider(registry, 1));
+        put("counter", CounterExampleProvider::new);
     }};
 
     ViewRegistry registry;

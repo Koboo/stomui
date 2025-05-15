@@ -44,7 +44,7 @@ public class AnnotatedTabExampleProvider extends ViewProvider {
     }
 
     @Override
-    public void onStateUpdate(@NotNull PlayerView view, @NotNull Player player) {
+    public void onRebuild(@NotNull PlayerView view, @NotNull Player player) {
         // Getting all ViewItems by the slots of the tab content.
         for (ViewItem viewItem : ViewItem.bySlotIterator(view, tabContentSlots)) {
 
@@ -99,7 +99,7 @@ public class AnnotatedTabExampleProvider extends ViewProvider {
                 // and we call updateState(), to ensure the tab item,
                 // which was selected starts glinting (enchantment glow)
                 this.currentTab = ownTab;
-                action.getView().updateState();
+                action.getView().executeRebuild();
             });
     }
 

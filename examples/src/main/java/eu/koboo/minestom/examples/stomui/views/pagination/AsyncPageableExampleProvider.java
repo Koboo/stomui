@@ -64,8 +64,8 @@ public class AsyncPageableExampleProvider extends ViewProvider {
         }
 
         // Add close and refresh buttons to the top inventory.
-        // Since these items don't update on state changes (e.g. "next page navigation"),
-        // we can add them in "onOpen" instead of "onStateUpdate".
+        // Since these items don't update on rebuilds (e.g. "next page navigation"),
+        // we can add them in "onOpen" instead of "onRebuild".
         ViewItem.bySlot(view, pattern.getSlot('K'))
             .material(Material.REDSTONE)
             .name("Close")
@@ -105,7 +105,7 @@ public class AsyncPageableExampleProvider extends ViewProvider {
     }
 
     @Override
-    public void onStateUpdate(@NotNull PlayerView view, @NotNull Player player) {
+    public void onRebuild(@NotNull PlayerView view, @NotNull Player player) {
         // Sets the "previous" and "next" page buttons, based on the current page.
         // That's why these items are set in "onStateUpdate" instead of "onOpen".
 

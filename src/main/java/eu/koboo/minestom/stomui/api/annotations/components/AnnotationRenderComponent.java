@@ -39,7 +39,7 @@ public final class AnnotationRenderComponent extends ViewComponent {
     }
 
     @Override
-    public void onStateUpdate(@NotNull PlayerView view, @NotNull Player player) {
+    public void onRebuild(@NotNull PlayerView view, @NotNull Player player) {
         view.getRegistry().executeComponents(
             view.getProvider(),
             component -> executeItemMethods(view, component, true)

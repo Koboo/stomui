@@ -82,7 +82,7 @@ public class SearchExampleProvider extends ViewProvider implements AnvilInputInt
     }
 
     @Override
-    public void onStateUpdate(@NotNull PlayerView view, @NotNull Player player) {
+    public void onRebuild(@NotNull PlayerView view, @NotNull Player player) {
         String nextName = "<green>Next (" + pagination.getCurrentPage() + ")";
         if (!pagination.hasNextPage()) {
             nextName = "<red> No next page";

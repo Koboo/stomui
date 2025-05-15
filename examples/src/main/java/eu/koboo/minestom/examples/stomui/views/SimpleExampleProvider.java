@@ -68,7 +68,7 @@ public class SimpleExampleProvider extends ViewProvider {
     }
 
     @Override
-    public void onStateUpdate(@NotNull PlayerView view, @NotNull Player player) {
+    public void onRebuild(@NotNull PlayerView view, @NotNull Player player) {
         // Gets called everytime view.updateState() is called.
     }
 

@@ -1,5 +1,6 @@
 package eu.koboo.minestom.examples.stomui.views.other;
 
+import eu.koboo.minestom.examples.stomui.utils.SettingsTab;
 import eu.koboo.minestom.stomui.api.PlayerView;
 import eu.koboo.minestom.stomui.api.ViewBuilder;
 import eu.koboo.minestom.stomui.api.ViewRegistry;
@@ -11,10 +12,7 @@ import eu.koboo.minestom.stomui.api.component.ViewProvider;
 import eu.koboo.minestom.stomui.api.item.PrebuiltItem;
 import eu.koboo.minestom.stomui.api.item.ViewItem;
 import eu.koboo.minestom.stomui.api.slots.SlotIterator;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import net.minestom.server.entity.Player;
 import net.minestom.server.item.Material;
 import org.jetbrains.annotations.NotNull;
@@ -116,18 +114,5 @@ public class AnnotatedTabExampleProvider extends ViewProvider {
                 .displayName(" ")
                 .cancelClicking();
         }
-    }
-
-    @Getter
-    @RequiredArgsConstructor
-    @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-    private enum SettingsTab {
-
-        PROFILE(Material.OAK_BOAT, "Profile"),
-        CLAN(Material.ACACIA_BOAT, "Clan"),
-        FRIEND(Material.GOLDEN_APPLE, "Friends");
-
-        Material material;
-        String name;
     }
 }

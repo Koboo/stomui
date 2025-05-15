@@ -20,6 +20,8 @@ import java.util.List;
  * a specific slot within the opened {@link PlayerView}.
  * It also provides some static methods to create new instances of {@link ViewItem}
  * for easier usage.
+ * There are also several methods for easier modifications on the {@link ItemStack},
+ * implemented in {@link ModifiableItem}.
  */
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -134,7 +136,6 @@ public final class ViewItem extends ModifiableItem {
     /**
      * Applies the {@link ItemStack} and the {@link Interaction} of the {@link PrebuiltItem}
      * onto the instance of this {@link ViewItem}.
-     *
      * @param prebuiltItem The {@link PrebuiltItem} to apply onto this {@link ViewItem}.
      */
     public void applyPrebuilt(PrebuiltItem prebuiltItem) {

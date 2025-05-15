@@ -10,6 +10,8 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * See {@link ViewItem} and {@link ModifiableItem} for more and detailed information.
+ * You can apply a {@link PrebuiltItem} on a {@link ViewItem} using the method
+ * {@link ViewItem#applyPrebuilt(PrebuiltItem)}.
  */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public final class PrebuiltItem extends ModifiableItem {

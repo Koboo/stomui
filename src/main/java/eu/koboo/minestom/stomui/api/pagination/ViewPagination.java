@@ -3,21 +3,21 @@ package eu.koboo.minestom.stomui.api.pagination;
 import eu.koboo.minestom.stomui.api.PlayerView;
 import eu.koboo.minestom.stomui.api.ViewRegistry;
 import eu.koboo.minestom.stomui.api.component.ViewComponent;
-import eu.koboo.minestom.stomui.api.item.PrebuiltItem;
 import eu.koboo.minestom.stomui.core.pagination.AbstractPaginationComponent;
 import eu.koboo.minestom.stomui.core.pagination.PageComponent;
 import eu.koboo.minestom.stomui.core.pagination.ScrollComponent;
 import net.minestom.server.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 
 /**
  * Represents the abstraction of any implementing {@link ViewPagination}.
  * See more information, on how to create or use it:
- * - {@link ViewRegistry#pageable(ItemLoader, List, ItemStack)}
- * - {@link ViewRegistry#scrollable(ItemLoader, ItemStack, List)}
+ * - {@link ViewRegistry#pageable(ItemRenderer, Comparator, ItemStack, List)}
+ * - {@link ViewRegistry#scrollable(ItemRenderer, Comparator, ItemStack, List)}
  * To use the created instance of {@link ViewPagination} you need to add it
  * as child to any {@link ViewComponent} Using {@link ViewComponent#addChild(ViewComponent)}.
  * Implementations:
@@ -25,12 +25,59 @@ import java.util.List;
  * - {@link PageComponent}
  * - {@link ScrollComponent}
  */
-public abstract class ViewPagination extends ViewComponent {
+public abstract class ViewPagination<T> extends ViewComponent {
 
     /**
-     * @return the number of calculated items per page of this pagination.
+     * This method adds the given items to the pagination,
+     * but it doesn't update the inventories of the players.
+     * <p>
+     * To update the items within the {@link PlayerView} you
+     * need to call {@link ViewPagination#update(PlayerView)}.
+     * @param items A collection of paginated items, which should be added.
      */
-    public abstract int getItemsPerPage();
+    public abstract void addItems(@NotNull Collection<T> items);
+
+    /**
+     * This method removes the given items from the pagination,
+     * but it doesn't update the inventories of the players.
+     * <p>
+     * To update the items within the {@link PlayerView} you
+     * need to call {@link ViewPagination#update(PlayerView)}.
+     * @param items A collection of paginated items, which should be added.
+     */
+    public abstract void removeItems(@NotNull Collection<T> items);
+
+    /**
+     * This method clears all items in the pagination,
+     * but it doesn't update the inventories of the players.
+     * <p>
+     * To update the items within the {@link PlayerView} you
+     * need to call {@link ViewPagination#update(PlayerView)}.
+     */
+    public abstract void clearItems();
+
+    /**
+     * This method update the items within the given {@link PlayerView}.
+     * Without calling that method, the inventories will not be updated,
+     * no matter how often you modify or update the item list.
+     * @param playerView A {@link PlayerView} which should be updated.
+     */
+    public abstract void update(@NotNull PlayerView playerView);
+
+    /**
+     * @return An unmodifiable List of all items, within the pagination.
+     */
+    public abstract @NotNull List<T> getAllItems();
+
+    /**
+     * @return An unmodifiable List of all items of the given page, using the index. Starts at 0.
+     */
+    public abstract @NotNull List<T> getPageByIndex(int pageIndex);
+
+    /**
+     * @return An unmodifiable List of all items of the given page, using the page number. Starts at 1.
+     */
+    public abstract @NotNull List<T> getPageByNumber(int pageNumber);
 
     /**
      * @return the currently set page. It starts from 1.
@@ -38,15 +85,16 @@ public abstract class ViewPagination extends ViewComponent {
     public abstract int getCurrentPage();
 
     /**
-     * @return the number of total pages, this pagination has.
-     * This method only works after the item loading was triggered.
+     * This method is also an equivalent for "getLastPage()".
+     * So you can use it as that.
+     * @return the number of total pages this pagination has.
      */
     public abstract int getTotalPages();
 
     /**
-     * @return the number of total items, this pagination has.
+     * @return the number of total items this pagination has.
      */
-    public abstract int getTotalItemAmount();
+    public abstract int getTotalItems();
 
     /**
      * @return true, if there is a next page.
@@ -93,30 +141,15 @@ public abstract class ViewPagination extends ViewComponent {
     public abstract void toPage(@NotNull PlayerView playerView, int newPage);
 
     /**
-     * Recalls the given {@link ItemLoader#load(Pagifier)} method
-     * and resets the current page back to 1.
-     * It automatically calls the method {@link ViewPagination#toPage(PlayerView, int)},
-     * after {@link ItemLoader} execution.
-     *
-     * @param playerView The {@link PlayerView}, which reloads the pagination.
-     */
-    public abstract void reloadItems(@NotNull PlayerView playerView);
-
-    // void                         addItem(PrebuiltItem item)
-    // void                         addItems(Collection<PrebuiltItem> item)
-    // void                         removeItem(PrebuiltItem item)
-    // void                         removeItems(Collection<PrebuiltItem> item)
-    // Collection<PrebuiltItem>     getItems()
-    // void                         clearItems()
-
-    /**
      * @return the given fillerItem or AIR if no filler was set.
      */
     public abstract @NotNull ItemStack getFillerItem();
 
     /**
-     * Returns the {@link Pagifier} instance, which holds the {@link PrebuiltItem} of this pagination.
-     * @return The {@link Pagifier} instance
+     * This method returns the calculated slots amount per page
+     * of the implementing pagination. For actual pages it returns
+     * the whole page size. For scroll-component the page size is one scroll row/column.
+     * @return The number of maximum items per page/scroll row/column.
      */
-    public abstract @Nullable Pagifier<PrebuiltItem> getPager();
+    public abstract int getMaximumItemsPerPage();
 }

@@ -4,7 +4,7 @@ import eu.koboo.minestom.stomui.api.PlayerView;
 import eu.koboo.minestom.stomui.api.ViewBuilder;
 import eu.koboo.minestom.stomui.api.ViewRegistry;
 import eu.koboo.minestom.stomui.api.component.ViewComponent;
-import eu.koboo.minestom.stomui.api.pagination.ItemLoader;
+import eu.koboo.minestom.stomui.api.pagination.ItemRenderer;
 import eu.koboo.minestom.stomui.api.pagination.ViewPagination;
 import eu.koboo.minestom.stomui.api.slots.ViewPattern;
 import eu.koboo.minestom.stomui.core.listener.ViewInventoryCloseListener;
@@ -205,17 +205,19 @@ public final class CoreViewRegistry implements ViewRegistry {
     }
 
     @Override
-    public @NotNull ViewPagination pageable(@NotNull ItemLoader itemLoader,
-                                            @NotNull List<Integer> slotList,
-                                            @Nullable ItemStack fillerItem) {
-        return new PageComponent(itemLoader, slotList, fillerItem);
+    public @NotNull <T> ViewPagination<T> pageable(@NotNull ItemRenderer<T> itemRenderer,
+                                                   @Nullable Comparator<T> itemSorter,
+                                                   @Nullable ItemStack fillerItem,
+                                                   @NotNull List<Integer> slotList) {
+        return new PageComponent<>(itemRenderer, itemSorter, fillerItem, slotList);
     }
 
     @Override
-    public @NotNull ViewPagination scrollable(@NotNull ItemLoader itemLoader,
-                                              @Nullable ItemStack fillerItem,
-                                              @NotNull List<List<Integer>> listOfSlotLists) {
-        return new ScrollComponent(itemLoader, fillerItem, listOfSlotLists);
+    public @NotNull <T> ViewPagination<T> scrollable(@NotNull ItemRenderer<T> itemRenderer,
+                                                     @Nullable Comparator<T> itemSorter,
+                                                     @Nullable ItemStack fillerItem,
+                                                     @NotNull List<List<Integer>> listOfSlotLists) {
+        return new ScrollComponent<>(itemRenderer, itemSorter, fillerItem, listOfSlotLists);
     }
 
     @Override

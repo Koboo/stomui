@@ -88,15 +88,15 @@ public class Interactions {
         };
     }
 
-    public Interaction reloadPagination(@NotNull ViewPagination pagination) {
-        return reloadPagination(pagination, null);
+    public <T> Interaction updatePagination(@NotNull ViewPagination<T> pagination) {
+        return updatePagination(pagination, null);
     }
 
-    public Interaction reloadPagination(@NotNull ViewPagination pagination,
-                                        @Nullable Consumer<Player> afterRefreshing) {
+    public <T> Interaction updatePagination(@NotNull ViewPagination<T> pagination,
+                                            @Nullable Consumer<Player> afterRefreshing) {
         return action -> {
             action.getEvent().setCancelled(true);
-            pagination.reloadItems(action.getView());
+            pagination.update(action.getView());
             if (afterRefreshing == null) {
                 return;
             }
@@ -104,14 +104,14 @@ public class Interactions {
         };
     }
 
-    public Interaction toPage(@NotNull ViewPagination pagination,
-                              @NotNull Integer newPage) {
+    public <T> Interaction toPage(@NotNull ViewPagination<T> pagination,
+                                  @NotNull Integer newPage) {
         return toPage(pagination, newPage, null);
     }
 
-    public Interaction toPage(@NotNull ViewPagination pagination,
-                              @NotNull Integer newPage,
-                              @Nullable Consumer<Player> afterNavigating) {
+    public <T> Interaction toPage(@NotNull ViewPagination<T> pagination,
+                                  @NotNull Integer newPage,
+                                  @Nullable Consumer<Player> afterNavigating) {
         return action -> {
             action.getEvent().setCancelled(true);
             pagination.toPage(action.getView(), newPage);
@@ -122,18 +122,18 @@ public class Interactions {
         };
     }
 
-    public Interaction toNextPage(@NotNull ViewPagination pagination) {
+    public <T> Interaction toNextPage(@NotNull ViewPagination<T> pagination) {
         return toNextPage(pagination, null, null);
     }
 
-    public Interaction toNextPage(@NotNull ViewPagination pagination,
-                                  @Nullable Consumer<Player> noNavigation) {
+    public <T> Interaction toNextPage(@NotNull ViewPagination<T> pagination,
+                                      @Nullable Consumer<Player> noNavigation) {
         return toNextPage(pagination, null, noNavigation);
     }
 
-    public Interaction toNextPage(@NotNull ViewPagination pagination,
-                                  @Nullable Consumer<Player> afterNavigating,
-                                  @Nullable Consumer<Player> noNavigation) {
+    public <T> Interaction toNextPage(@NotNull ViewPagination<T> pagination,
+                                      @Nullable Consumer<Player> afterNavigating,
+                                      @Nullable Consumer<Player> noNavigation) {
         return action -> {
             action.getEvent().setCancelled(true);
             if (!pagination.hasNextPage()) {
@@ -151,18 +151,18 @@ public class Interactions {
         };
     }
 
-    public Interaction toPreviousPage(@NotNull ViewPagination pagination) {
+    public <T> Interaction toPreviousPage(@NotNull ViewPagination<T> pagination) {
         return toPreviousPage(pagination, null, null);
     }
 
-    public Interaction toPreviousPage(@NotNull ViewPagination pagination,
-                                      @Nullable Consumer<Player> noNavigation) {
+    public <T> Interaction toPreviousPage(@NotNull ViewPagination<T> pagination,
+                                          @Nullable Consumer<Player> noNavigation) {
         return toPreviousPage(pagination, null, noNavigation);
     }
 
-    public Interaction toPreviousPage(@NotNull ViewPagination pagination,
-                                      @Nullable Consumer<Player> afterNavigating,
-                                      @Nullable Consumer<Player> noNavigation) {
+    public <T> Interaction toPreviousPage(@NotNull ViewPagination<T> pagination,
+                                          @Nullable Consumer<Player> afterNavigating,
+                                          @Nullable Consumer<Player> noNavigation) {
         return action -> {
             action.getEvent().setCancelled(true);
             if (!pagination.hasPreviousPage()) {

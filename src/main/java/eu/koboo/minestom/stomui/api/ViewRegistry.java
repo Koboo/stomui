@@ -2,7 +2,7 @@ package eu.koboo.minestom.stomui.api;
 
 import eu.koboo.minestom.stomui.api.component.ViewComponent;
 import eu.koboo.minestom.stomui.api.interaction.Interactions;
-import eu.koboo.minestom.stomui.api.pagination.ItemLoader;
+import eu.koboo.minestom.stomui.api.pagination.ItemRenderer;
 import eu.koboo.minestom.stomui.api.pagination.ViewPagination;
 import eu.koboo.minestom.stomui.api.slots.ViewPattern;
 import eu.koboo.minestom.stomui.core.CoreViewRegistry;
@@ -13,6 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -98,68 +99,35 @@ public interface ViewRegistry {
     @Nullable PlayerView getNextView(@NotNull Player player);
 
     /**
-     * See {@link ViewRegistry#pageable(ItemLoader, List, ItemStack)} for more information.
-     */
-    default @NotNull ViewPagination pageable(@NotNull ItemLoader itemLoader,
-                                             @NotNull ViewPattern viewPattern,
-                                             @NotNull Character... slotCharacters) {
-        return pageable(itemLoader, viewPattern.getMergedSlots(slotCharacters), null);
-    }
-
-    /**
-     * See {@link ViewRegistry#pageable(ItemLoader, List, ItemStack)} for more information.
-     */
-    default @NotNull ViewPagination pageable(@NotNull ItemLoader itemLoader,
-                                             @NotNull List<Integer> slotList) {
-        return pageable(itemLoader, slotList, null);
-    }
-
-    /**
      * Creates a new instance of {@link ViewPagination} using pages.
      * The returned instance needs to be added as child to any {@link ViewComponent}.
      * - {@link ViewComponent#addChild(ViewComponent)}.
      * <p>
      *
-     * @param itemLoader The {@link ItemLoader}, which fills the pagination with items.
      * @param slotList   The list of slots, which are part of the pagination.
      * @param fillerItem The filler item, if no item is present for the specific page. Defaults to Air.
      * @return A new instance of {@link ViewPagination}.
      */
-    @NotNull ViewPagination pageable(@NotNull ItemLoader itemLoader,
-                                     @NotNull List<Integer> slotList,
-                                     @Nullable ItemStack fillerItem);
+    <T> @NotNull ViewPagination<T> pageable(@NotNull ItemRenderer<T> itemRenderer,
+                                            @Nullable Comparator<T> itemSorter,
+                                            @Nullable ItemStack fillerItem,
+                                            @NotNull List<Integer> slotList);
 
     /**
-     * See {@link ViewRegistry#scrollable(ItemLoader, ItemStack, List)} for more information.
-     */
-    default @NotNull ViewPagination scrollable(@NotNull ItemLoader itemLoader,
-                                               @NotNull ViewPattern viewPattern,
-                                               @NotNull Character... slotCharacters) {
-        return scrollable(itemLoader, null, viewPattern.getListOfSlots(slotCharacters));
-    }
-
-    /**
-     * See {@link ViewRegistry#scrollable(ItemLoader, ItemStack, List)} for more information.
-     */
-    default @NotNull ViewPagination scrollable(@NotNull ItemLoader itemLoader,
-                                               @NotNull List<List<Integer>> listOfSlotLists) {
-        return scrollable(itemLoader, null, listOfSlotLists);
-    }
-
-    /**
-     * Creates a new instance of {@link ViewPagination} using scroll-like pages.
+     * Creates a new instance of {@link ViewPagination} using scrollable row/columns
+     * (depends on how you specify the slots)
      * The returned instance needs to be added as child to any {@link ViewComponent}.
      * - {@link ViewComponent#addChild(ViewComponent)}.
      * <p>
      *
-     * @param itemLoader      The {@link ItemLoader}, which fills the pagination with items.
      * @param fillerItem      The filler item, if no item is present for the specific page. Defaults to Air.
      * @param listOfSlotLists The list of all slot-lists, which are part of the pagination.
      * @return A new instance of {@link ViewPagination}.
      */
-    @NotNull ViewPagination scrollable(@NotNull ItemLoader itemLoader,
-                                       @Nullable ItemStack fillerItem,
-                                       @NotNull List<List<Integer>> listOfSlotLists);
+    <T> @NotNull ViewPagination<T> scrollable(@NotNull ItemRenderer<T> itemRenderer,
+                                              @Nullable Comparator<T> itemSorter,
+                                              @Nullable ItemStack fillerItem,
+                                              @NotNull List<List<Integer>> listOfSlotLists);
 
     /**
      * See {@link ViewRegistry#pattern(Collection)}.

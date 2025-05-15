@@ -1,17 +1,23 @@
 package eu.koboo.minestom.stomui.api.utils;
 
+import eu.koboo.minestom.stomui.core.CorePlayerView;
+import eu.koboo.minestom.stomui.core.CoreViewRegistry;
 import lombok.experimental.UtilityClass;
 import net.minestom.server.event.inventory.InventoryPreClickEvent;
+import net.minestom.server.item.ItemStack;
 
 /**
  * This utility class is used to convert the bottom slots, provided by {@link InventoryPreClickEvent}
- * to raw slots, which define the slot size using both inventory slots.
+ * to raw slots, which define the slot size using both inventory slot numbers.
  */
 @UtilityClass
 public class BottomSlotUtility {
 
     /**
      * Denormalize bottom slot int.
+     * Used to convert the slot back to Minestom compatible
+     * slots for {@link CorePlayerView#setItemStack(int, ItemStack)} and
+     * {@link CorePlayerView#getItemStack(int)}.
      * <p>
      * Expected conversionSlot input:
      * 1 row  = 0  -  8 -> +  9 = 17
@@ -32,6 +38,8 @@ public class BottomSlotUtility {
 
     /**
      * Normalize bottom slot int.
+     * Used to convert the given slot by {@link InventoryPreClickEvent}
+     * to the so called "rawSlot".
      * <p>
      * Expected conversionSlot input:
      * 1 row  = 9  - 17 -> -  9 = 8

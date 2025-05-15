@@ -33,6 +33,7 @@ public abstract class ViewPagination<T> extends ViewComponent {
      * <p>
      * To update the items within the {@link PlayerView} you
      * need to call {@link ViewPagination#update(PlayerView)}.
+     *
      * @param items A collection of paginated items, which should be added.
      */
     public abstract void addItems(@NotNull Collection<T> items);
@@ -43,6 +44,7 @@ public abstract class ViewPagination<T> extends ViewComponent {
      * <p>
      * To update the items within the {@link PlayerView} you
      * need to call {@link ViewPagination#update(PlayerView)}.
+     *
      * @param items A collection of paginated items, which should be added.
      */
     public abstract void removeItems(@NotNull Collection<T> items);
@@ -60,6 +62,7 @@ public abstract class ViewPagination<T> extends ViewComponent {
      * This method update the items within the given {@link PlayerView}.
      * Without calling that method, the inventories will not be updated,
      * no matter how often you modify or update the item list.
+     *
      * @param playerView A {@link PlayerView} which should be updated.
      */
     public abstract void update(@NotNull PlayerView playerView);
@@ -87,6 +90,7 @@ public abstract class ViewPagination<T> extends ViewComponent {
     /**
      * This method is also an equivalent for "getLastPage()".
      * So you can use it as that.
+     *
      * @return the number of total pages this pagination has.
      */
     public abstract int getTotalPages();
@@ -149,6 +153,7 @@ public abstract class ViewPagination<T> extends ViewComponent {
      * This method returns the calculated slots amount per page
      * of the implementing pagination. For actual pages it returns
      * the whole page size. For scroll-component the page size is one scroll row/column.
+     *
      * @return The number of maximum items per page/scroll row/column.
      */
     public abstract int getMaximumItemsPerPage();

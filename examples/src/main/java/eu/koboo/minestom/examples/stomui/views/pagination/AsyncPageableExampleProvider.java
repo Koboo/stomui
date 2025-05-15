@@ -83,12 +83,12 @@ public class AsyncPageableExampleProvider extends ViewProvider {
         CompletableFuture<Collection<Material>> future = loadSomethingAsync();
         future.whenComplete((list, exception) -> {
             // Exception caught. Something went wrong. Notify your players about that.
-            if(exception != null) {
+            if (exception != null) {
                 player.sendMessage("An error occurred while loading async pagination: " + exception.getMessage());
                 return;
             }
             // We got our needed results. Now update the pagination, please!
-            if(list != null) {
+            if (list != null) {
                 pagination.addItems(list);
                 pagination.update(view);
             }

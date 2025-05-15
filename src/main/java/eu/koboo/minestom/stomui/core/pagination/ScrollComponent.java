@@ -1,9 +1,8 @@
 package eu.koboo.minestom.stomui.core.pagination;
 
 import eu.koboo.minestom.stomui.api.PlayerView;
-import eu.koboo.minestom.stomui.api.item.PrebuiltItem;
 import eu.koboo.minestom.stomui.api.item.ViewItem;
-import eu.koboo.minestom.stomui.api.pagination.ItemLoader;
+import eu.koboo.minestom.stomui.api.pagination.ItemRenderer;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import net.minestom.server.item.ItemStack;
@@ -12,18 +11,20 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Comparator;
 import java.util.List;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @ApiStatus.Internal
-public final class ScrollComponent extends AbstractPaginationComponent {
+public final class ScrollComponent<T> extends AbstractPaginationComponent<T> {
 
     List<List<Integer>> listOfSlotLists;
 
-    public ScrollComponent(@NotNull ItemLoader loader,
+    public ScrollComponent(@NotNull ItemRenderer<T> itemRenderer,
+                           @Nullable Comparator<T> itemSorter,
                            @Nullable ItemStack fillerItem,
                            @NotNull List<List<Integer>> listOfSlotLists) {
-        super(loader, fillerItem);
+        super(itemRenderer, itemSorter, fillerItem);
         if (listOfSlotLists.isEmpty()) {
             throw new IllegalArgumentException("slotList is empty!");
         }
@@ -46,42 +47,27 @@ public final class ScrollComponent extends AbstractPaginationComponent {
     }
 
     @Override
-    public int getItemsPerPage() {
+    public int getMaximumItemsPerPage() {
         return listOfSlotLists.getFirst().size();
     }
 
     @Override
-    public void renderPagination(@NotNull PlayerView playerView) {
+    void renderCurrentPage(@NotNull PlayerView playerView) {
         // Define the itemsPerPage once.
-        int itemsPerPage = getItemsPerPage();
+        int itemsPerPage = getMaximumItemsPerPage();
 
         // We treat every slotList as an individual page.
         // So we keep track of the previously rendered pages.
         int scrollPageTracker = currentPage;
         for (List<Integer> slotList : listOfSlotLists) {
-            // Cleanup the previous items.
+            // Clean up the previous items.
             for (Integer itemSlot : slotList) {
                 ViewItem.bySlot(playerView, itemSlot).material(Material.AIR);
             }
 
             // Sets the items of the current page.
-            List<PrebuiltItem> prebuiltItemList = itemPager.getPage(scrollPageTracker);
-            for (int pageItemIndex = 0; pageItemIndex < itemsPerPage; pageItemIndex++) {
-                // Get the current slot of the page
-                int itemSlot = slotList.get(pageItemIndex);
-                ViewItem viewItem = ViewItem.bySlot(playerView, itemSlot);
-
-                // Check if there is an ItemStack present in our itemLoader
-                // for the currently iterated slot?
-                if ((prebuiltItemList.size() - 1) >= pageItemIndex) {
-                    PrebuiltItem prebuiltItem = prebuiltItemList.get(pageItemIndex);
-                    viewItem.applyPrebuilt(prebuiltItem);
-                    continue;
-                }
-
-                // No item, fill up.
-                viewItem.item(getFillerItem());
-            }
+            List<T> currentPageItemList = getPageByNumber(scrollPageTracker);
+            setItemsInSlotsByPage(playerView, itemsPerPage, currentPageItemList, slotList);
             scrollPageTracker += 1;
         }
     }

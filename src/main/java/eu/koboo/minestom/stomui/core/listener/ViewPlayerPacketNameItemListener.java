@@ -36,7 +36,7 @@ public final class ViewPlayerPacketNameItemListener implements Consumer<PlayerPa
         }
         playerView.getTopInventory().update();
         anvilInputExecution(playerView, itemName);
-        playerView.updateState();
+        playerView.executeRebuild();
         event.setCancelled(true);
     }
 

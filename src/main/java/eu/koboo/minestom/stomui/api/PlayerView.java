@@ -7,6 +7,8 @@ import eu.koboo.minestom.stomui.api.interaction.AnvilInputInteraction;
 import eu.koboo.minestom.stomui.api.interaction.Interaction;
 import eu.koboo.minestom.stomui.api.pagination.ViewPagination;
 import eu.koboo.minestom.stomui.core.CorePlayerView;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.minestom.server.entity.Player;
 import net.minestom.server.inventory.Inventory;
 import net.minestom.server.inventory.PlayerInventory;
@@ -117,13 +119,30 @@ public interface PlayerView {
     @NotNull Interaction getInteraction(int rawSlot);
 
     /**
-     * Executes the abstract method of every {@link ViewComponent#onStateUpdate(PlayerView, Player)}
-     * in the component tree.
+     * Executes the abstract method of every {@link ViewComponent#onRebuild(PlayerView, Player)}
+     * in the component tree / hierarchy.
      * <p>
      * This method gets also called by the following actions and conditions:
-     * - Everytime after the {@link PlayerView} was opened.
-     * - Everytime after an {@link AnvilInputInteraction} gets called.
-     * - Everytime after {@link ViewPagination#toPage(PlayerView, int)} gets called.
+     * Everytime after...
+     * - ...the {@link PlayerView} was opened.
+     * - ...an {@link AnvilInputInteraction} gets called.
+     * - ...{@link ViewPagination#update(PlayerView)} gets called.
+     * - ...{@link ViewPagination#toPage(PlayerView, int)} gets called.
+     * - ...the {@link Player} types anything in the anvil text input field.
      */
-    void updateState();
+    void executeRebuild();
+
+    /**
+     * This method allows to change title of the currently
+     * open top-inventory by a given {@link Component}.
+     * @param component The new title as {@link Component}.
+     */
+    void setTitle(@NotNull Component component);
+
+    /**
+     * This method allows to change title of the currently
+     * open top-inventory by a given {@link String} as {@link MiniMessage} text.
+     * @param miniMessage The new title as {@link MiniMessage} text.
+     */
+    void setTitle(@NotNull String miniMessage);
 }

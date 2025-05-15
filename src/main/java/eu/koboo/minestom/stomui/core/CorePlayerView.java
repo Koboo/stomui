@@ -14,6 +14,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.minestom.server.entity.Player;
 import net.minestom.server.inventory.Inventory;
 import net.minestom.server.inventory.PlayerInventory;
@@ -89,7 +91,7 @@ public final class CorePlayerView implements PlayerView {
             );
         }
         player.openInventory(topInventory);
-        updateState();
+        executeRebuild();
     }
 
     @ApiStatus.Internal
@@ -173,11 +175,21 @@ public final class CorePlayerView implements PlayerView {
     }
 
     @Override
-    public void updateState() {
+    public void executeRebuild() {
         registry.executeComponents(
             provider,
-            component -> component.onStateUpdate(this, player)
+            component -> component.onRebuild(this, player)
         );
+    }
+
+    @Override
+    public void setTitle(@NotNull Component component) {
+        topInventory.setTitle(component);
+    }
+
+    @Override
+    public void setTitle(@NotNull String miniMessage) {
+        setTitle(MiniMessage.miniMessage().deserialize(miniMessage));
     }
 
     @Override

@@ -108,7 +108,7 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
         if (currentPage > getTotalPages()) {
             currentPage = getTotalPages();
         }
-        playerView.updateState();
+        playerView.executeRebuild();
         renderCurrentPage(playerView, maxItemsPerPage);
     }
 

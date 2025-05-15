@@ -204,12 +204,12 @@ public abstract class ViewComponent {
     }
 
     /**
-     * Gets called, everytime {@link PlayerView#updateState()} is called.
+     * Gets called, everytime {@link PlayerView#executeRebuild()} is called.
      *
      * @param view   The instance of the containing {@link PlayerView}.
      * @param player The instance of the {@link Player} of the {@link PlayerView}.
      */
-    public void onStateUpdate(@NotNull PlayerView view, @NotNull Player player) {
+    public void onRebuild(@NotNull PlayerView view, @NotNull Player player) {
         // Default implementation
     }
 

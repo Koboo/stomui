@@ -17,13 +17,9 @@ public class CounterExampleProvider extends ViewProvider {
     private int count;
 
     public CounterExampleProvider(ViewRegistry registry) {
-        super(registry, ViewBuilder.of(ViewType.SIZE_5_X_1));
+        super(registry, ViewBuilder.of(ViewType.SIZE_5_X_1)
+            .title("Counter example"));
         this.count = 0;
-    }
-
-    @Override
-    public void modifyBuilder(@NotNull ViewBuilder viewBuilder, @NotNull Player player) {
-        viewBuilder.title("Count: " + count);
     }
 
     @Override

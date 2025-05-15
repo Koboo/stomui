@@ -46,6 +46,10 @@ To understand the usage of `stomui` in detail you can check out the examples.
 #### Simple examples
 - [SimpleExampleProvider](/examples/src/main/java/eu/koboo/minestom/examples/stomui/views/SimpleExampleProvider.java)
   - Shows most of the commonly used `ViewProvider`/`ViewComponent` and `ViewItem` apis and methods.
+- [CounterExampleProvider](/examples/src/main/java/eu/koboo/minestom/examples/stomui/views/CounterExampleProvider.java)
+  - Shows an inventory with a button, which increments an int variable and displays the amount on the items title.
+- [CurrentTimeExampleProvider](/examples/src/main/java/eu/koboo/minestom/examples/stomui/views/CurrentTimeExampleProvider.java)
+  - Shows an inventory, which gets updated using the scheduler of Minestom, to set the current time in the inventory's title.
 
 #### Advanced examples
 - [AllowInteractionExampleProvider](/examples/src/main/java/eu/koboo/minestom/examples/stomui/views/other/AllowInteractionExampleProvider.java)

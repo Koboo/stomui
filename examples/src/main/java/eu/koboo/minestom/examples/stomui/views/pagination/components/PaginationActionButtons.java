@@ -15,10 +15,10 @@ import org.jetbrains.annotations.NotNull;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class PaginationActionButtons extends ViewComponent {
 
-    ViewPagination pagination;
+    ViewPagination<Material> pagination;
     ViewPattern pattern;
 
-    public PaginationActionButtons(ViewPagination pagination, ViewPattern pattern) {
+    public PaginationActionButtons(ViewPagination<Material> pagination, ViewPattern pattern) {
         this.pagination = pagination;
         this.pattern = pattern;
         addChild(pagination);
@@ -62,6 +62,6 @@ public class PaginationActionButtons extends ViewComponent {
         ViewItem.bySlot(view, pattern.getSlot('Z'))
             .material(Material.NETHER_STAR)
             .name("Refresh")
-            .interaction(Interactions.reloadPagination(pagination));
+            .interaction(Interactions.updatePagination(pagination));
     }
 }

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class PaginationBorder extends ViewComponent {
 
-    public PaginationBorder(ViewPagination pagination, ViewPattern pattern) {
+    public PaginationBorder(ViewPagination<Material> pagination, ViewPattern pattern) {
         addChild(new PaginationActionButtons(pagination, pattern));
     }
 

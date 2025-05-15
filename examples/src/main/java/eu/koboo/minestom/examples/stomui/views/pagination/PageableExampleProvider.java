@@ -1,7 +1,8 @@
 package eu.koboo.minestom.examples.stomui.views.pagination;
 
 import eu.koboo.minestom.examples.stomui.views.pagination.components.PaginationBorder;
-import eu.koboo.minestom.examples.stomui.views.pagination.loader.ExampleItemLoader;
+import eu.koboo.minestom.examples.stomui.views.pagination.renderer.MaterialItemRenderer;
+import eu.koboo.minestom.stomui.api.PlayerView;
 import eu.koboo.minestom.stomui.api.ViewBuilder;
 import eu.koboo.minestom.stomui.api.ViewRegistry;
 import eu.koboo.minestom.stomui.api.ViewType;
@@ -11,10 +12,16 @@ import eu.koboo.minestom.stomui.api.slots.ViewPattern;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import net.minestom.server.entity.Player;
+import net.minestom.server.item.ItemStack;
+import net.minestom.server.item.Material;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Comparator;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class PageableExampleProvider extends ViewProvider {
+
+    ViewPagination<Material> pagination;
 
     // Hierarchy of components:
     // - this
@@ -31,8 +38,10 @@ public class PageableExampleProvider extends ViewProvider {
             "#1111111#",
             "##<###>##"
         );
-        ViewPagination pagination = registry.pageable(
-            new ExampleItemLoader(),
+        pagination = registry.pageable(
+            new MaterialItemRenderer(),
+            Comparator.comparing(Material::id),
+            ItemStack.AIR,
             pattern.getMergedSlots('1')
         );
         addChild(new PaginationBorder(pagination, pattern));
@@ -41,5 +50,11 @@ public class PageableExampleProvider extends ViewProvider {
     @Override
     public void modifyBuilder(@NotNull ViewBuilder viewBuilder, @NotNull Player player) {
         viewBuilder.title("<red>Pageable example");
+    }
+
+    @Override
+    public void onOpen(@NotNull PlayerView view, @NotNull Player player) {
+        pagination.addItems(Material.values());
+        pagination.update(view);
     }
 }

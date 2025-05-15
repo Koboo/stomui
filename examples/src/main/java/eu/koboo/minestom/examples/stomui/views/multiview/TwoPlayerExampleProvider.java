@@ -7,9 +7,9 @@ import eu.koboo.minestom.stomui.api.component.ViewProvider;
 import net.minestom.server.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class TwoPlayerComponent extends ViewProvider {
+public class TwoPlayerExampleProvider extends ViewProvider {
 
-    public TwoPlayerComponent(ViewRegistry viewRegistry) {
+    public TwoPlayerExampleProvider(ViewRegistry viewRegistry) {
         super(viewRegistry, ViewBuilder.of(ViewType.SIZE_6_X_9)
             .title("MultiView"));
     }

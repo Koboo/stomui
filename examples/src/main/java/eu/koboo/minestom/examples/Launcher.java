@@ -6,6 +6,7 @@ import eu.koboo.minestom.examples.stomui.command.CommandComponentForTwoPlayer;
 import eu.koboo.minestom.examples.stomui.command.CommandView;
 import eu.koboo.minestom.stomui.api.ViewRegistry;
 import eu.koboo.minestom.stomui.core.MinestomUI;
+import lombok.extern.slf4j.Slf4j;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.command.CommandSender;
 import net.minestom.server.coordinate.Pos;
@@ -18,12 +19,15 @@ import net.minestom.server.instance.InstanceManager;
 import net.minestom.server.instance.LightingChunk;
 import net.minestom.server.instance.block.Block;
 
+@Slf4j
 public class Launcher {
 
     public static void main(String[] args) {
         MinecraftServer minecraftServer = MinecraftServer.init();
         MojangAuth.init();
         minecraftServer.start("127.0.0.1", 25565);
+        log.info("Server-Version: " + MinecraftServer.VERSION_NAME);
+
         InstanceManager instanceManager = MinecraftServer.getInstanceManager();
         InstanceContainer defaultInstance = instanceManager.createInstanceContainer();
         defaultInstance.setGenerator(unit ->

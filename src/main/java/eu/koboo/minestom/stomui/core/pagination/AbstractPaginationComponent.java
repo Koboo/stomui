@@ -82,7 +82,7 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
     @Override
     public void update(@NotNull PlayerView playerView) {
         if(itemLoader != null) {
-            List<T> loaderItems = itemLoader.loadItems();
+            List<T> loaderItems = itemLoader.load();
             itemList.addAll(loaderItems);
         }
 
@@ -230,7 +230,7 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
             // for the currently iterated slot?
             if ((currentPageItemList.size() - 1) >= pageItemIndex) {
                 T currentItem = currentPageItemList.get(pageItemIndex);
-                PrebuiltItem prebuiltItem = itemRenderer.renderItem(currentItem);
+                PrebuiltItem prebuiltItem = itemRenderer.render(currentItem);
                 viewItem.applyPrebuilt(prebuiltItem);
                 continue;
             }

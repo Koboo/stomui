@@ -7,6 +7,9 @@ import eu.koboo.minestom.stomui.api.pagination.ViewPagination;
 import eu.koboo.minestom.stomui.api.slots.ViewPattern;
 import eu.koboo.minestom.stomui.core.CoreViewRegistry;
 import eu.koboo.minestom.stomui.core.MinestomUI;
+import eu.koboo.minestom.stomui.core.pagination.PageComponent;
+import eu.koboo.minestom.stomui.core.pagination.ScrollComponent;
+import eu.koboo.minestom.stomui.core.slots.CoreViewPattern;
 import net.minestom.server.entity.Player;
 import net.minestom.server.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -93,16 +96,18 @@ public interface ViewRegistry {
      * Reference documentation: {@link Interactions#forwardToNextView()}
      *
      * @param player The provided {@link Player}.
-     * @return An instance of {@link PlayerView}, if the {@link Player} has any next view.
-     * Otherwise, null.
+     * @return An instance of {@link PlayerView}, if the {@link Player} has had any {@link PlayerView} open before.
+     * Imagine it like a browser history. If you go back, you can go forward, too. If no next {@link PlayerView}
+     * is present it returns null.
      */
     @Nullable PlayerView getNextView(@NotNull Player player);
 
     /**
      * Creates a new instance of {@link ViewPagination} using pages.
-     * The returned instance needs to be added as child to any {@link ViewComponent}.
+     * The returned instance needs to be added as child to a {@link ViewComponent}.
      * - {@link ViewComponent#addChild(ViewComponent)}.
      * <p>
+     * Could also be created using {@link PageComponent#PageComponent(ItemRenderer, ItemStack, List)}
      *
      * @param slotList   The list of slots, which are part of the pagination.
      * @param fillerItem The filler item, if no item is present for the specific page. Defaults to Air.
@@ -114,10 +119,11 @@ public interface ViewRegistry {
 
     /**
      * Creates a new instance of {@link ViewPagination} using scrollable row/columns
-     * (depends on how you specify the slots)
-     * The returned instance needs to be added as child to any {@link ViewComponent}.
+     * (depends on how you specify the slots in the given {@link List})
+     * The returned instance needs to be added as child to a {@link ViewComponent}.
      * - {@link ViewComponent#addChild(ViewComponent)}.
      * <p>
+     * Could also be created using {@link ScrollComponent#ScrollComponent(ItemRenderer, ItemStack, List)}
      *
      * @param fillerItem      The filler item, if no item is present for the specific page. Defaults to Air.
      * @param listOfSlotLists The list of all slot-lists, which are part of the pagination.
@@ -128,24 +134,32 @@ public interface ViewRegistry {
                                               @NotNull List<List<Integer>> listOfSlotLists);
 
     /**
-     * See {@link ViewRegistry#pattern(Collection)}.
+     * See {@link ViewRegistry#pattern(Collection)} for more information.
      */
     default ViewPattern pattern(@NotNull String... pattern) {
         return pattern(List.of(pattern));
     }
 
     /**
-     * Creates a new {@link ViewPattern} instance.
+     * Creates a new {@link ViewPattern} by creating y new {@link CoreViewPattern} instance.
+     * The {@link ViewPattern} basically represents an inventory structure, somewhat similar
+     * to a crafting recipe. Every slot gets a character assigned You then can modify based on the
+     * characters instead of always relying on raw slots.
      * See {@link ViewPattern} for more information.
-     *
+     * <p>
+     * Could also be created using {@link CoreViewPattern#CoreViewPattern(Collection)}
+     * <p>
+     * See {@link ViewPattern} for more information and api methods.
      * @param pattern The pattern of the inventory.
      * @return A new instance of {@link ViewPattern}
      */
     ViewPattern pattern(@NotNull Collection<String> pattern);
 
     /**
-     * Executes the given Function recursively on all components,
-     * starting with the given component and traversing down the component tree.
+     * Executes the given Function recursively on all {@link ViewComponent} of component-tree
+     * / hierarchy, with the given {@link ViewComponent} as starting-point.
+     * It also traverses down the children of the given {@link ViewComponent} and their children,
+     * like a recursive function for the whole component-tree.
      *
      * @param component The starting point of execution.
      * @param function  The execution function.

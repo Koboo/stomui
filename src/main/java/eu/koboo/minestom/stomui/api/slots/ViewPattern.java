@@ -24,27 +24,29 @@ import java.util.Map;
 public interface ViewPattern {
 
     /**
-     * @return The provided pattern. This collection is unmodifiable.
+     * @return The provided pattern-strings in a {@link Collection}.
+     * This {@link Collection} is unmodifiable.
      */
     @NotNull Collection<String> getPattern();
 
     /**
-     * @return The mapping of slots by character. This Map if not modifiable.
+     * @return The mapping of slots to character.
+     * This {@link Map} is unmodifiable.
      */
     @NotNull Map<Integer, Character> getSlotsByCharacters();
 
     /**
      * Gets all slots of this pattern
      *
-     * @return A List with all slots.
+     * @return A {@link List} with all slots.
      */
     @NotNull List<Integer> getAllSlots();
 
     /**
-     * Gets a List of slots by the given slot character.
+     * Gets a {@link List} of slots by the given slot character.
      *
      * @param slotCharacter the slot character
-     * @return A list of all mapped slots by the character
+     * @return A {@link List} of all mapped slots by the character
      */
     @NotNull List<Integer> getSlots(@NotNull Character slotCharacter);
 
@@ -58,25 +60,28 @@ public interface ViewPattern {
     int getSlot(@NotNull Character slotCharacter);
 
     /**
-     * Gets a List of slot-lists by getting {@link ViewPattern#getSlots(Character)} and
-     * adding them into one list.
+     * Gets a {@link List} of slot-lists by calling
+     * - {@link ViewPattern#getSlots(Character)}
+     * and cumulating all returned {@link List}s with slots
+     * into a big {@link List} and returns it.
      *
      * @param slotCharacters the slot characters
-     * @return A list with all slot-lists
+     * @return A {@link List} with all slot-lists
      */
     @NotNull List<List<Integer>> getListOfSlots(@NotNull Character... slotCharacters);
 
     /**
-     * Gets all Lists of slots by {@link ViewPattern#getListOfSlots(Character...)} and
-     * merges them into one List.
+     * Gets all {@link List}s of slots by calling
+     * - {@link ViewPattern#getListOfSlots(Character...)}
+     * and merges them into one on distinct {@link List}.
      *
      * @param slotCharacters The included characters of the slot in the pattern
-     * @return The List with all slots for the included characters.
+     * @return The {@link List} with all slots for the included characters.
      */
     @NotNull List<Integer> getMergedSlots(@NotNull Character... slotCharacters);
 
     /**
-     * Offset all pattern slots by the given slot.
+     * Offset all pattern slots by the given slotOffset.
      * So basically it does:
      * patternSlot + slotOffset = newPatternSlot.
      *

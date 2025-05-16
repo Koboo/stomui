@@ -16,5 +16,5 @@ public interface ItemLoader<T> {
      * See {@link ViewPagination#setItemLoader(ItemLoader)} for more information.
      * @return A list with items
      */
-    @NotNull List<T> loadItems();
+    @NotNull List<T> load();
 }

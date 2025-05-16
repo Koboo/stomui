@@ -8,7 +8,7 @@ import net.minestom.server.item.Material;
 public class MaterialItemRenderer implements ItemRenderer<Material> {
 
     @Override
-    public PrebuiltItem renderItem(Material material) {
+    public PrebuiltItem render(Material material) {
         return PrebuiltItem.of(ItemStack.of(material));
     }
 }

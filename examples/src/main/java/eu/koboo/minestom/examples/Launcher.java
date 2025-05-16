@@ -50,6 +50,7 @@ public class Launcher {
 
         // If your server shuts down, you can disable view registries by:
         //viewRegistry.disable();
+        MinecraftServer.getSchedulerManager().buildShutdownTask(viewRegistry::disable);
 
         LiteCommands<CommandSender> liteCommands = LiteMinestomFactory.builder()
             .commands(

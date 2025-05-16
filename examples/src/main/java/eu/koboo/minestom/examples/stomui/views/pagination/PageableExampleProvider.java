@@ -40,10 +40,10 @@ public class PageableExampleProvider extends ViewProvider {
         );
         pagination = registry.pageable(
             new MaterialItemRenderer(),
-            Comparator.comparing(Material::id),
             ItemStack.AIR,
             pattern.getMergedSlots('1')
         );
+        pagination.setItemSorter(Comparator.comparing(Material::id));
         addChild(new PaginationBorder(pagination, pattern));
     }
 

@@ -1,5 +1,6 @@
 package eu.koboo.minestom.examples.stomui.views.search;
 
+import eu.koboo.minestom.examples.stomui.views.pagination.renderer.MaterialItemRenderer;
 import eu.koboo.minestom.stomui.api.PlayerView;
 import eu.koboo.minestom.stomui.api.ViewBuilder;
 import eu.koboo.minestom.stomui.api.ViewRegistry;
@@ -47,11 +48,11 @@ public class SearchExampleProvider extends ViewProvider implements AnvilInputInt
         pattern.offsetTopInventory(VIEW_TYPE);
 
         pagination = registry.pageable(
-            material -> PrebuiltItem.of(ItemStack.of(material)),
-            Comparator.comparing(Material::id),
+            new MaterialItemRenderer(),
             ItemStack.AIR,
             pattern.getSlots('#')
         );
+        pagination.setItemSorter(Comparator.comparing(Material::id));
         addChild(pagination);
     }
 

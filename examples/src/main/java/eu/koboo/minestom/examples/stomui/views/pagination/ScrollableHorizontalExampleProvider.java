@@ -40,10 +40,10 @@ public class ScrollableHorizontalExampleProvider extends ViewProvider {
         );
         pagination = registry.scrollable(
             new MaterialItemRenderer(),
-            Comparator.comparing(Material::id),
             ItemStack.AIR,
             pattern.getListOfSlots('S', 'C', 'R', 'O', 'L', 'F', 'Y')
         );
+        pagination.setItemSorter(Comparator.comparing(Material::id));
         addChild(new PaginationBorder(pagination, pattern));
     }
 

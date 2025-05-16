@@ -22,7 +22,7 @@ public class SearchItemFilter implements ItemFilter<Material> {
             return false;
         }
         // No input, display everything.
-        if(textInput == null || textInput.isEmpty()) {
+        if (textInput == null || textInput.isEmpty()) {
             return true;
         }
         // We got an input. So check materials names.

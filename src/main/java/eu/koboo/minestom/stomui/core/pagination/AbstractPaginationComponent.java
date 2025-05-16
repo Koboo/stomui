@@ -8,7 +8,6 @@ import eu.koboo.minestom.stomui.api.pagination.ItemRenderer;
 import eu.koboo.minestom.stomui.api.pagination.ViewPagination;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
-import net.minestom.server.entity.Player;
 import net.minestom.server.item.ItemStack;
 import net.minestom.server.item.Material;
 import org.jetbrains.annotations.NotNull;
@@ -96,7 +95,7 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
             currentPage = getTotalPages();
         }
         int totalFilteredItems = resultItemList.size();
-        if(currentPage == 0 && totalFilteredItems > 0) {
+        if (currentPage == 0 && totalFilteredItems > 0) {
             currentPage = 1;
         }
         renderCurrentPage(playerView, maxItemsPerPage);
@@ -110,7 +109,7 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
     @Override
     public @NotNull List<T> getAllFilteredItems() {
         List<T> resultItemList = new ArrayList<>(itemList);
-        if(itemFilter != null) {
+        if (itemFilter != null) {
             resultItemList.removeIf(item -> !itemFilter.include(item));
         }
 

@@ -135,6 +135,7 @@ public interface PlayerView {
     /**
      * This method allows to change title of the currently
      * open top-inventory by a given {@link Component}.
+     *
      * @param component The new title as {@link Component}.
      */
     void setTitle(@NotNull Component component);
@@ -142,6 +143,7 @@ public interface PlayerView {
     /**
      * This method allows to change title of the currently
      * open top-inventory by a given {@link String} as {@link MiniMessage} text.
+     *
      * @param miniMessage The new title as {@link MiniMessage} text.
      */
     void setTitle(@NotNull String miniMessage);

@@ -16,7 +16,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -150,6 +149,7 @@ public interface ViewRegistry {
      * Could also be created using {@link CoreViewPattern#CoreViewPattern(Collection)}
      * <p>
      * See {@link ViewPattern} for more information and api methods.
+     *
      * @param pattern The pattern of the inventory.
      * @return A new instance of {@link ViewPattern}
      */

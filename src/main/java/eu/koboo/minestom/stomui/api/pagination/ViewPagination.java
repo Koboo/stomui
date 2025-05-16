@@ -37,6 +37,7 @@ public abstract class ViewPagination<T> extends ViewComponent {
      * that's why the argument is annotated with {@link NotNull}.
      * Keep in mind that you need to call {@link ViewPagination#update(PlayerView)}
      * to apply the changes on the {@link PlayerView}.
+     *
      * @param itemRenderer A {@link Comparator} with the pagination generic type item.
      */
     public abstract void setItemRenderer(@NotNull ItemRenderer<T> itemRenderer);
@@ -46,6 +47,7 @@ public abstract class ViewPagination<T> extends ViewComponent {
      * If the itemSorter is set to null, the pagination just ignores it.
      * Keep in mind that you need to call {@link ViewPagination#update(PlayerView)}
      * to apply the changes on the {@link PlayerView}.
+     *
      * @param itemSorter A {@link Comparator} with the pagination generic type item.
      */
     public abstract void setItemSorter(@Nullable Comparator<T> itemSorter);
@@ -56,6 +58,7 @@ public abstract class ViewPagination<T> extends ViewComponent {
      * Keep in mind that you need to call {@link ViewPagination#update(PlayerView)}
      * to apply the changes on the {@link PlayerView}.
      * See {@link ItemFilter} for more information how the filter works.
+     *
      * @param itemFilter A {@link ItemFilter} with the pagination generic type item.
      */
     public abstract void setItemFilter(@Nullable ItemFilter<T> itemFilter);

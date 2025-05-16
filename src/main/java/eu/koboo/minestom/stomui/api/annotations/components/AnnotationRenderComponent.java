@@ -2,9 +2,9 @@ package eu.koboo.minestom.stomui.api.annotations.components;
 
 import eu.koboo.minestom.stomui.api.PlayerView;
 import eu.koboo.minestom.stomui.api.ViewType;
+import eu.koboo.minestom.stomui.api.annotations.Rebuildable;
 import eu.koboo.minestom.stomui.api.annotations.Slot;
 import eu.koboo.minestom.stomui.api.annotations.SlotPosition;
-import eu.koboo.minestom.stomui.api.annotations.Rebuildable;
 import eu.koboo.minestom.stomui.api.component.ComponentPriority;
 import eu.koboo.minestom.stomui.api.component.Priority;
 import eu.koboo.minestom.stomui.api.component.ViewComponent;

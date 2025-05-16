@@ -8,7 +8,6 @@ import eu.koboo.minestom.stomui.api.ViewType;
 import eu.koboo.minestom.stomui.api.component.ViewProvider;
 import eu.koboo.minestom.stomui.api.interaction.AnvilInputInteraction;
 import eu.koboo.minestom.stomui.api.interaction.Interactions;
-import eu.koboo.minestom.stomui.api.item.PrebuiltItem;
 import eu.koboo.minestom.stomui.api.item.ViewItem;
 import eu.koboo.minestom.stomui.api.pagination.ViewPagination;
 import eu.koboo.minestom.stomui.api.slots.ViewPattern;
@@ -18,10 +17,8 @@ import net.minestom.server.item.ItemStack;
 import net.minestom.server.item.Material;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.List;
 
 @Getter
 public class SearchExampleProvider extends ViewProvider implements AnvilInputInteraction {

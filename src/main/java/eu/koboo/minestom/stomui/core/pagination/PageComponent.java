@@ -42,7 +42,7 @@ public final class PageComponent<T> extends AbstractPaginationComponent<T> {
         }
         // Do not render if we have no to display items.
         int totalItems = getTotalFilteredItems();
-        if(currentPage == 0 || totalItems == 0) {
+        if (currentPage == 0 || totalItems == 0) {
             return;
         }
 

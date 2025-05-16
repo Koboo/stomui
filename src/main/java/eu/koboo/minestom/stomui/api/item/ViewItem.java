@@ -136,6 +136,7 @@ public final class ViewItem extends ModifiableItem {
     /**
      * Applies the {@link ItemStack} and the {@link Interaction} of the {@link PrebuiltItem}
      * onto the instance of this {@link ViewItem}.
+     *
      * @param prebuiltItem The {@link PrebuiltItem} to apply onto this {@link ViewItem}.
      */
     public void applyPrebuilt(PrebuiltItem prebuiltItem) {

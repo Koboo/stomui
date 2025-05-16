@@ -1,7 +1,6 @@
 package eu.koboo.minestom.stomui.api.utils;
 
 import eu.koboo.minestom.stomui.core.CorePlayerView;
-import eu.koboo.minestom.stomui.core.CoreViewRegistry;
 import lombok.experimental.UtilityClass;
 import net.minestom.server.event.inventory.InventoryPreClickEvent;
 import net.minestom.server.item.ItemStack;

@@ -26,7 +26,7 @@ public class TabComponentViewProvider extends ViewProvider {
     @Override
     public void onRebuild(@NotNull PlayerView view, @NotNull Player player) {
         // tabComponent is null on first rebuild triggered by opening the inventory.
-        if(tabComponent != null) {
+        if (tabComponent != null) {
             removeChild(tabComponent);
         }
         tabComponent = createComponentByTab();

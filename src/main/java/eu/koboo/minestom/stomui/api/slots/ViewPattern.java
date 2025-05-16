@@ -20,6 +20,7 @@ import java.util.Map;
  * deeply integrated into the framework itself. So users still can choose,
  * how they want to resolve their wanted slots.
  * Implementation: {@link CoreViewPattern}
+ * Can be created using {@link CoreViewPattern#CoreViewPattern(Collection)}
  */
 public interface ViewPattern {
 

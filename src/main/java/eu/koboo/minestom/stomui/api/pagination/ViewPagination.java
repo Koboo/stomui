@@ -18,8 +18,8 @@ import java.util.List;
 /**
  * Represents the abstraction of any implementing {@link ViewPagination}.
  * See more information, on how to create or use it:
- * - {@link ViewRegistry#pageable(ItemRenderer, Comparator, ItemStack, List)}
- * - {@link ViewRegistry#scrollable(ItemRenderer, Comparator, ItemStack, List)}
+ * - {@link ViewRegistry#pageable(ItemRenderer, ItemStack, List)}
+ * - {@link ViewRegistry#scrollable(ItemRenderer, ItemStack, List)}
  * To use the created instance of {@link ViewPagination} you need to add it
  * as child to any {@link ViewComponent} Using {@link ViewComponent#addChild(ViewComponent)}.
  * Implementations:

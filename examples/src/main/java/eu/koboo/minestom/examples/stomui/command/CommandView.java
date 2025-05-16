@@ -11,6 +11,7 @@ import eu.koboo.minestom.examples.stomui.views.SimpleExampleProvider;
 import eu.koboo.minestom.examples.stomui.views.other.AllowInteractionExampleProvider;
 import eu.koboo.minestom.examples.stomui.views.other.AnnotatedTabExampleProvider;
 import eu.koboo.minestom.examples.stomui.views.other.AnvilInputExampleProvider;
+import eu.koboo.minestom.examples.stomui.views.pagination.AsyncPageableExampleProvider;
 import eu.koboo.minestom.examples.stomui.views.pagination.PageableExampleProvider;
 import eu.koboo.minestom.examples.stomui.views.pagination.ScrollableHorizontalExampleProvider;
 import eu.koboo.minestom.examples.stomui.views.pagination.ScrollableVerticalExampleProvider;
@@ -46,6 +47,7 @@ public final class CommandView {
         put("history", registry -> new ViewHistoryExampleProvider(registry, 1));
         put("counter", CounterExampleProvider::new);
         put("time", CurrentTimeExampleProvider::new);
+        put("asyncpage", AsyncPageableExampleProvider::new);
     }};
 
     ViewRegistry registry;

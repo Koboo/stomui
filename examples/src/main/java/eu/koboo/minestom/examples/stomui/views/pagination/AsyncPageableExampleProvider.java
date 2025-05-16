@@ -93,6 +93,7 @@ public class AsyncPageableExampleProvider extends ViewProvider {
                 pagination.update(view);
             }
         });
+        pagination.update(view);
     }
 
     public CompletableFuture<Collection<Material>> loadSomethingAsync() {

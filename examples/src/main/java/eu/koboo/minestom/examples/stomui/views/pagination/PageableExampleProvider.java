@@ -44,6 +44,7 @@ public class PageableExampleProvider extends ViewProvider {
             pattern.getMergedSlots('1')
         );
         pagination.setItemSorter(Comparator.comparing(Material::id));
+        pagination.addItems(Material.values());
         addChild(new PaginationBorder(pagination, pattern));
     }
 
@@ -54,7 +55,6 @@ public class PageableExampleProvider extends ViewProvider {
 
     @Override
     public void onOpen(@NotNull PlayerView view, @NotNull Player player) {
-        pagination.addItems(Material.values());
         pagination.update(view);
     }
 }

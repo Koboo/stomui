@@ -30,6 +30,7 @@ public class SearchExampleProvider extends ViewProvider implements AnvilInputInt
     private static final ViewType VIEW_TYPE = ViewType.ANVIL;
 
     ViewPattern pattern;
+    SearchItemFilter filter;
     ViewPagination<Material> pagination;
 
     public SearchExampleProvider(ViewRegistry registry) {
@@ -53,6 +54,9 @@ public class SearchExampleProvider extends ViewProvider implements AnvilInputInt
             pattern.getSlots('#')
         );
         pagination.setItemSorter(Comparator.comparing(Material::id));
+        filter = new SearchItemFilter();
+        pagination.setItemFilter(filter);
+        pagination.addItems(ALL_MATERIALS);
         addChild(pagination);
     }
 
@@ -73,7 +77,6 @@ public class SearchExampleProvider extends ViewProvider implements AnvilInputInt
         }
 
         // Adding initial values
-        pagination.addItems(ALL_MATERIALS);
         pagination.update(view);
     }
 
@@ -113,30 +116,8 @@ public class SearchExampleProvider extends ViewProvider implements AnvilInputInt
     @Override
     public void onAnvilInput(@NotNull PlayerView playerView, @NotNull Player player, @NotNull String searchInput) {
         player.sendMessage("Received input: " + searchInput);
-        if (searchInput.isEmpty()) {
-            // No input, so we need to reset the searchable materials.
-            pagination.clearItems();
-            pagination.addItems(ALL_MATERIALS);
-            pagination.update(playerView);
-            return;
-        }
-        List<Material> resultMaterials = new ArrayList<>();
-        for (Material value : ALL_MATERIALS) {
-            // Only blocks please.
-            // Why only blocks?
-            // To show filtering on categories or other parameters
-            // using a removal-list.
-            if (value == Material.AIR || !value.isBlock()) {
-                continue;
-            }
-            // We got an input. So check materials names.
-            if (!value.name().toLowerCase().contains(searchInput.toLowerCase())) {
-                continue;
-            }
-            resultMaterials.add(value);
-        }
-        pagination.clearItems();
-        pagination.addItems(resultMaterials);
+        filter.setTextInput(searchInput);
         pagination.update(playerView);
+        playerView.executeRebuild();
     }
 }

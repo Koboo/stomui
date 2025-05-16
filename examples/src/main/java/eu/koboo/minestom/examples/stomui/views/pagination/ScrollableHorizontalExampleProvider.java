@@ -44,6 +44,7 @@ public class ScrollableHorizontalExampleProvider extends ViewProvider {
             pattern.getListOfSlots('S', 'C', 'R', 'O', 'L', 'F', 'Y')
         );
         pagination.setItemSorter(Comparator.comparing(Material::id));
+        pagination.addItems(Material.values());
         addChild(new PaginationBorder(pagination, pattern));
     }
 
@@ -54,7 +55,6 @@ public class ScrollableHorizontalExampleProvider extends ViewProvider {
 
     @Override
     public void onOpen(@NotNull PlayerView view, @NotNull Player player) {
-        pagination.addItems(Material.values());
         pagination.update(view);
     }
 }

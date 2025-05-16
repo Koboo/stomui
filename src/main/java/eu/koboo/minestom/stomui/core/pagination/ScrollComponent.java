@@ -59,6 +59,11 @@ public final class ScrollComponent<T> extends AbstractPaginationComponent<T> {
             for (Integer itemSlot : slotList) {
                 ViewItem.bySlot(playerView, itemSlot).material(Material.AIR);
             }
+            // Do not render if we have no to display items.
+            int totalItems = getTotalFilteredItems();
+            if(currentPage == 0 || totalItems == 0) {
+                continue;
+            }
 
             // Sets the items of the current page.
             List<T> currentPageItemList = getPageByNumber(scrollPageTracker);

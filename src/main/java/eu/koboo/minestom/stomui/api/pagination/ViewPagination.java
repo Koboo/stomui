@@ -42,20 +42,6 @@ public abstract class ViewPagination<T> extends ViewComponent {
     public abstract void setItemRenderer(@NotNull ItemRenderer<T> itemRenderer);
 
     /**
-     * Allows the setting and loading by an {@link ItemLoader},
-     * which should return a list of the given generic type "item".
-     * If the itemLoader is set to null, the pagination just ignores it.
-     * This {@link ItemLoader} doesn't override any item modifications
-     * by {@link ViewPagination#removeItems(Collection)},
-     * {@link ViewPagination#addItems(Collection)} or
-     * {@link ViewPagination#clearItems()}. If any {@link ItemLoader}
-     * was set, it's loaded on the {@link ViewPagination#update(PlayerView)} call.
-     * and just adds the returned list to the pagination.
-     * @param itemLoader A {@link ItemLoader} instance to load from.
-     */
-    public abstract void setItemLoader(@Nullable ItemLoader<T> itemLoader);
-
-    /**
      * This method allows you to change the sorting for the pagination.
      * If the itemSorter is set to null, the pagination just ignores it.
      * Keep in mind that you need to call {@link ViewPagination#update(PlayerView)}
@@ -115,9 +101,15 @@ public abstract class ViewPagination<T> extends ViewComponent {
     public abstract void update(@NotNull PlayerView playerView);
 
     /**
-     * @return An unmodifiable List of all items, within the pagination.
+     * @return An unmodifiable {@link List} of all items, within the pagination.
      */
     public abstract @NotNull List<T> getAllItems();
+
+    /**
+     * @return An unmodifiable {@link List} of all items, within the pagination,
+     * after applying the set {@link ItemFilter}
+     */
+    public abstract @NotNull List<T> getAllFilteredItems();
 
     /**
      * @return An unmodifiable List of all items of the given page, using the index. Starts at 0.
@@ -146,6 +138,11 @@ public abstract class ViewPagination<T> extends ViewComponent {
      * @return the number of total items this pagination has.
      */
     public abstract int getTotalItems();
+
+    /**
+     * @return the number of total items this pagination has, after applying the {@link ItemFilter}.
+     */
+    public abstract int getTotalFilteredItems();
 
     /**
      * @return true, if there is a next page.

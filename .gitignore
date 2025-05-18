@@ -4,6 +4,7 @@
 **/logs/**
 **/configuration.yml*
 **/favicon.png
+**/.idea/**
 
 # Created by https://www.toptal.com/developers/gitignore/api/vim,java,linux,macos,emacs,windows,eclipse,notepadpp,intellij+all,visualstudiocode,maven
 # Edit at https://www.toptal.com/developers/gitignore?templates=vim,java,linux,macos,emacs,windows,eclipse,notepadpp,intellij+all,visualstudiocode,maven

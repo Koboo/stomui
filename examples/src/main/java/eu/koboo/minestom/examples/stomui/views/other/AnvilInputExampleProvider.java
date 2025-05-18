@@ -22,9 +22,9 @@ public class AnvilInputExampleProvider extends ViewProvider implements AnvilInpu
 
     @Override
     public void onOpen(@NotNull PlayerView view, @NotNull Player player) {
-        // Anvil only allows slots from 0-2
-        // But with every input the client predicts changes and the item in slot "2" starts to flicker.
-        // We somewhat fixed that, but it's still flickering.
+        // An inventory of type ANVIL only allows slots to range from 0 to 2.
+        // With every text input, the client predicts the result
+        // and that results in some items flickering.
         ViewItem.bySlot(view, 0)
             .material(Material.REDSTONE)
             .name("Close")
@@ -33,8 +33,8 @@ public class AnvilInputExampleProvider extends ViewProvider implements AnvilInpu
 
     @Override
     public void onAnvilInput(@NotNull PlayerView playerView, @NotNull Player player, @NotNull String input) {
-        // The player enter or removed a character from the anvil input field.
-        // This method is implemented by the AnvilInputInteraction interface
+        // The player entered or removed a character from the anvil text input field.
+        // This method is provided by the AnvilInputInteraction interface
         player.sendMessage("Received input: " + input);
     }
 }

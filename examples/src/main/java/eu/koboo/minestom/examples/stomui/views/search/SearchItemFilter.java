@@ -14,21 +14,20 @@ public class SearchItemFilter implements ItemFilter<Material> {
 
     @Override
     public boolean include(@NotNull Material item) {
-        // Only blocks please.
-        // Why only blocks?
-        // To show filtering on categories or other parameters
-        // using a removal-list.
+        // Only blocks please.  Why only blocks?
+        // To show filtering based on categories or other parameters
         if (item == Material.AIR || !item.isBlock()) {
             return false;
         }
-        // No input, display everything.
+        // No text input → display all items.
         if (textInput == null || textInput.isEmpty()) {
             return true;
         }
-        // We got an input. So check materials names.
+        // We got an input, so we check materials names.
         if (!item.name().toLowerCase().contains(textInput.toLowerCase())) {
             return false;
         }
+        // Got that in your name material? Good for you, have fun paginated!
         return true;
     }
 }

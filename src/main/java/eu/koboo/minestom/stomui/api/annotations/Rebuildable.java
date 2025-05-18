@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
  * That means the annotated method gets executed, everytime the method
  * {@link PlayerView#executeRebuild()} is called.
  * This results in a rebuilt of the {@link PrebuiltItem} returned by the annotated method.
- * So you could use stateful variables in the components in the {@link PrebuiltItem}, which
+ * So you could use stateful/rebuildable variables in the components in the {@link PrebuiltItem}, which
  * you build in the method.
  */
 @Retention(RetentionPolicy.RUNTIME)

@@ -67,7 +67,7 @@ These examples can help to understand some advanced behaviours of the framework.
 - [AllowInteractionExampleProvider](/examples/src/main/java/eu/koboo/minestom/examples/stomui/views/other/AllowInteractionExampleProvider.java)
     - Shows how to allow clicks on specific slots using ``Flag`` and `ViewItem` api.
 - [AnnotatedTabExampleProvider](/examples/src/main/java/eu/koboo/minestom/examples/stomui/views/other/AnnotatedTabExampleProvider.java)
-    - Shows how to use annotations to render and modify `PrebuiltItem` and listen to state changes.
+    - Shows how to use annotations to render and modify `PrebuiltItem` and listen to state/build changes.
 - [AnvilInputExampleProvider](/examples/src/main/java/eu/koboo/minestom/examples/stomui/views/other/AnvilInputExampleProvider.java)
     - Heavy simplified example, which shows how to get the text input from an anvil inventory.
 

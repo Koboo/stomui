@@ -53,7 +53,7 @@ public class AnnotatedTabExampleProvider extends ViewProvider {
     }
 
     @Slot(0)
-    // No @Stateful means, only build on view opening.
+    // No @Rebuildable means, only build on view opening.
     public PrebuiltItem closeItem() {
         // Closes the inventory
         return PrebuiltItem.empty()
@@ -63,21 +63,21 @@ public class AnnotatedTabExampleProvider extends ViewProvider {
     }
 
     @Slot(2)
-    @Rebuildable // Rebuilds with "onStateUpdate"
+    @Rebuildable // Rebuilds with "onRebuild"
     public PrebuiltItem profileItem() {
         // Changes the current tab to PROFILE
         return createSettingsItem(SettingsTab.PROFILE);
     }
 
     @Slot(4)
-    @Rebuildable // Rebuilds with "onStateUpdate"
+    @Rebuildable // Rebuilds with "onRebuild"
     public PrebuiltItem clanItem() {
         // Changes the current tab to CLAN
         return createSettingsItem(SettingsTab.CLAN);
     }
 
     @Slot(6)
-    @Rebuildable // Rebuilds with "onStateUpdate"
+    @Rebuildable // Rebuilds with "onRebuild"
     public PrebuiltItem friendsItem() {
         // Changes the current tab to FRIEND
         return createSettingsItem(SettingsTab.FRIEND);

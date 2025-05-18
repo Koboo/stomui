@@ -35,6 +35,13 @@ Yes, the pagination is very flexible. There are several examples on how to use i
 examples below.
 </details>
 
+<details>
+<summary>When is a rebuild executed?</summary>
+The method `PlayerView#executeRebuild()` allows view components to rebuild by themselves. Check out the example
+to see some usages for that. The method is also executed by the framework itself, if a new PlayerView is opened on a
+view component.
+</details>
+
 ## Documentation
 
 Unfortunately, the actual documentation is still very small, but available in the [Wiki](https://github.com/Koboo/stomui/wiki/Documentation).

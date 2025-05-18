@@ -35,7 +35,7 @@ public abstract class ViewPagination<T> extends ViewComponent {
      * from any generic item added in the pagination.
      * We can't update the pagination without an {@link ItemRenderer},
      * that's why the argument is annotated with {@link NotNull}.
-     * Keep in mind that you need to call {@link ViewPagination#update(PlayerView)}
+     * Keep in mind that you need to call {@link ViewPagination#rebuildItems(PlayerView)}
      * to apply the changes on the {@link PlayerView}.
      *
      * @param itemRenderer A {@link Comparator} with the pagination generic type item.
@@ -45,7 +45,7 @@ public abstract class ViewPagination<T> extends ViewComponent {
     /**
      * This method allows you to change the sorting for the pagination.
      * If the itemSorter is set to null, the pagination just ignores it.
-     * Keep in mind that you need to call {@link ViewPagination#update(PlayerView)}
+     * Keep in mind that you need to call {@link ViewPagination#rebuildItems(PlayerView)}
      * to apply the changes on the {@link PlayerView}.
      *
      * @param itemSorter A {@link Comparator} with the pagination generic type item.
@@ -55,7 +55,7 @@ public abstract class ViewPagination<T> extends ViewComponent {
     /**
      * This method allows you to change the filtering for the pagination.
      * If the itemFilter is set to null, the pagination just ignores it.
-     * Keep in mind that you need to call {@link ViewPagination#update(PlayerView)}
+     * Keep in mind that you need to call {@link ViewPagination#rebuildItems(PlayerView)}
      * to apply the changes on the {@link PlayerView}.
      * See {@link ItemFilter} for more information how the filter works.
      *
@@ -68,7 +68,7 @@ public abstract class ViewPagination<T> extends ViewComponent {
      * but it doesn't update the inventories of the players.
      * <p>
      * To update the items within the {@link PlayerView} you
-     * need to call {@link ViewPagination#update(PlayerView)}.
+     * need to call {@link ViewPagination#rebuildItems(PlayerView)}.
      *
      * @param items A collection of paginated items, which should be added.
      */
@@ -79,7 +79,7 @@ public abstract class ViewPagination<T> extends ViewComponent {
      * but it doesn't update the inventories of the players.
      * <p>
      * To update the items within the {@link PlayerView} you
-     * need to call {@link ViewPagination#update(PlayerView)}.
+     * need to call {@link ViewPagination#rebuildItems(PlayerView)}.
      *
      * @param items A collection of paginated items, which should be added.
      */
@@ -90,7 +90,7 @@ public abstract class ViewPagination<T> extends ViewComponent {
      * but it doesn't update the inventories of the players.
      * <p>
      * To update the items within the {@link PlayerView} you
-     * need to call {@link ViewPagination#update(PlayerView)}.
+     * need to call {@link ViewPagination#rebuildItems(PlayerView)}.
      */
     public abstract void clearItems();
 
@@ -101,7 +101,7 @@ public abstract class ViewPagination<T> extends ViewComponent {
      *
      * @param playerView A {@link PlayerView} which should be updated.
      */
-    public abstract void update(@NotNull PlayerView playerView);
+    public abstract void rebuildItems(@NotNull PlayerView playerView);
 
     /**
      * @return An unmodifiable {@link List} of all items, within the pagination.

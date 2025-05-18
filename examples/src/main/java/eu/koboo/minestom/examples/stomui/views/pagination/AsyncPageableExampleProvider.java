@@ -90,10 +90,9 @@ public class AsyncPageableExampleProvider extends ViewProvider {
             // We got our needed results. Now update the pagination, please!
             if (list != null) {
                 pagination.addItems(list);
-                pagination.update(view);
+                view.executeRebuild();
             }
         });
-        pagination.update(view);
     }
 
     public CompletableFuture<Collection<Material>> loadSomethingAsync() {

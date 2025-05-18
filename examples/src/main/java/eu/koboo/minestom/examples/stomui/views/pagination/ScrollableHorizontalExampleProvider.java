@@ -52,9 +52,4 @@ public class ScrollableHorizontalExampleProvider extends ViewProvider {
     public void modifyBuilder(@NotNull ViewBuilder viewBuilder, @NotNull Player player) {
         viewBuilder.title("<red>Horizontal scrollable example");
     }
-
-    @Override
-    public void onOpen(@NotNull PlayerView view, @NotNull Player player) {
-        pagination.update(view);
-    }
 }

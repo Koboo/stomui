@@ -126,7 +126,7 @@ public interface PlayerView {
      * Everytime after...
      * - ...the {@link PlayerView} was opened.
      * - ...an {@link AnvilInputInteraction} gets called.
-     * - ...{@link ViewPagination#update(PlayerView)} gets called.
+     * - ...{@link ViewPagination#rebuildItems(PlayerView)} gets called.
      * - ...{@link ViewPagination#toPage(PlayerView, int)} gets called.
      * - ...the {@link Player} types anything in the anvil text input field.
      */

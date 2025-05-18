@@ -8,6 +8,7 @@ import eu.koboo.minestom.stomui.api.pagination.ItemRenderer;
 import eu.koboo.minestom.stomui.api.pagination.ViewPagination;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
+import net.minestom.server.entity.Player;
 import net.minestom.server.item.ItemStack;
 import net.minestom.server.item.Material;
 import org.jetbrains.annotations.NotNull;
@@ -72,7 +73,7 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
     }
 
     @Override
-    public void update(@NotNull PlayerView playerView) {
+    public void rebuildItems(@NotNull PlayerView playerView) {
         int maxItemsPerPage = getMaximumItemsPerPage();
         if (maxItemsPerPage < 1) {
             throw new IllegalArgumentException("itemsPerPage must be set and positive. " +
@@ -200,12 +201,17 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
                 "(newPage=" + newPage + " > totalPages=" + totalPages + ")");
         }
         currentPage = newPage;
-        update(playerView);
+        rebuildItems(playerView);
     }
 
     @Override
     public @NotNull ItemStack getFillerItem() {
         return fillerItem;
+    }
+
+    @Override
+    public void onRebuild(@NotNull PlayerView view, @NotNull Player player) {
+        rebuildItems(view);
     }
 
     abstract void renderCurrentPage(@NotNull PlayerView playerView, int itemsPerPage);

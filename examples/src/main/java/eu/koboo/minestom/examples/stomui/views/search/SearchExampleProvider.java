@@ -72,9 +72,6 @@ public class SearchExampleProvider extends ViewProvider implements AnvilInputInt
                 .name(" ")
                 .cancelClicking();
         }
-
-        // Adding initial values
-        pagination.update(view);
     }
 
     @Override
@@ -114,7 +111,6 @@ public class SearchExampleProvider extends ViewProvider implements AnvilInputInt
     public void onAnvilInput(@NotNull PlayerView playerView, @NotNull Player player, @NotNull String searchInput) {
         player.sendMessage("Received input: " + searchInput);
         filter.setTextInput(searchInput);
-        pagination.update(playerView);
         playerView.executeRebuild();
     }
 }

@@ -7,6 +7,7 @@ import lombok.experimental.FieldDefaults;
 
 /**
  * Represents the row and column pair of a specific slot within an inventory.
+ * The conversion mostly happens using the method {@link SlotUtility#toPosition(int, int)}.
  */
 @Getter
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)

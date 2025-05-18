@@ -12,14 +12,29 @@ import java.util.List;
 @UtilityClass
 public class SlotUtility {
 
+    /**
+     * Total slot size of the bottom player inventory.
+     */
     public static final Integer BOTTOM_INVENTORY_SIZE = 36;
 
+    /**
+     * Creates a new {@link Position} by using a slot and the amount of slots per column.
+     * @param slot The slot you want to convert to a {@link Position}
+     * @param slotsPerColumn The amount of slots per one column.
+     * @return A new {@link Position} instance representing the given slot in an inventory.
+     */
     public Position toPosition(int slot, int slotsPerColumn) {
         int row = slot / slotsPerColumn;
         int column = slot % slotsPerColumn;
         return Position.of(row, column);
     }
 
+    /**
+     * Converts a @{@link Position} back to its original slot.
+     * @param position The {@link Position} to convert back.
+     * @param slotsPerColumn The amount of slots per column.
+     * @return The original slot of the given {@link Position} within an inventory.
+     */
     public int toSlot(Position position, int slotsPerColumn) {
         return toSlot(position.getRow(), position.getColumn(), slotsPerColumn);
     }

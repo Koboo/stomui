@@ -3,9 +3,7 @@ package eu.koboo.minestom.stomui.api;
 import eu.koboo.minestom.stomui.api.component.ViewComponent;
 import eu.koboo.minestom.stomui.api.component.ViewProvider;
 import eu.koboo.minestom.stomui.api.flags.Flag;
-import eu.koboo.minestom.stomui.api.interaction.AnvilInputInteraction;
 import eu.koboo.minestom.stomui.api.interaction.Interaction;
-import eu.koboo.minestom.stomui.api.pagination.ViewPagination;
 import eu.koboo.minestom.stomui.core.CorePlayerView;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -125,10 +123,6 @@ public interface PlayerView {
      * This method gets also called by the following actions and conditions:
      * Everytime after...
      * - ...the {@link PlayerView} was opened.
-     * - ...an {@link AnvilInputInteraction} gets called.
-     * - ...{@link ViewPagination#rebuildItems(PlayerView)} gets called.
-     * - ...{@link ViewPagination#toPage(PlayerView, int)} gets called.
-     * - ...the {@link Player} types anything in the anvil text input field.
      */
     void executeRebuild();
 

@@ -2,7 +2,6 @@ package eu.koboo.minestom.examples.stomui.views.pagination;
 
 import eu.koboo.minestom.examples.stomui.views.pagination.components.PaginationBorder;
 import eu.koboo.minestom.examples.stomui.views.pagination.renderer.MaterialItemRenderer;
-import eu.koboo.minestom.stomui.api.PlayerView;
 import eu.koboo.minestom.stomui.api.ViewBuilder;
 import eu.koboo.minestom.stomui.api.ViewRegistry;
 import eu.koboo.minestom.stomui.api.ViewType;

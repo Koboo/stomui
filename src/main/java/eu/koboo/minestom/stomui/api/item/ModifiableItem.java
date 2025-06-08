@@ -7,15 +7,16 @@ import lombok.experimental.FieldDefaults;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.minestom.server.component.DataComponent;
-import net.minestom.server.item.ItemComponent;
+import net.minestom.server.component.DataComponents;
 import net.minestom.server.item.ItemStack;
 import net.minestom.server.item.Material;
-import net.minestom.server.utils.Unit;
+import net.minestom.server.item.component.TooltipDisplay;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * This abstract class represents a {@link PrebuiltItem} or a {@link ViewItem}
@@ -90,7 +91,7 @@ public abstract sealed class ModifiableItem permits PrebuiltItem, ViewItem {
     public <T extends ModifiableItem> T loreLine(int lineIndex, @Nullable Component component) {
         ItemStack itemStack = getItem();
         List<Component> newComponentList = new ArrayList<>();
-        List<Component> loreComponentList = itemStack.get(ItemComponent.LORE);
+        List<Component> loreComponentList = itemStack.get(DataComponents.LORE);
         if (loreComponentList != null) {
             newComponentList.addAll(loreComponentList);
         }
@@ -140,7 +141,7 @@ public abstract sealed class ModifiableItem permits PrebuiltItem, ViewItem {
     }
 
     public <T extends ModifiableItem> T glint(boolean isGlint) {
-        return addComponent(ItemComponent.ENCHANTMENT_GLINT_OVERRIDE, isGlint);
+        return addComponent(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, isGlint);
     }
 
     public <T extends ModifiableItem> T glint() {
@@ -152,15 +153,29 @@ public abstract sealed class ModifiableItem permits PrebuiltItem, ViewItem {
     }
 
     public boolean hasGlint() {
-        return hasComponentValue(ItemComponent.ENCHANTMENT_GLINT_OVERRIDE, true);
+        return hasComponentValue(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true);
     }
 
     public <T extends ModifiableItem> T hideTooltip(boolean hide) {
         T ret;
         if (hide) {
-            ret = addComponent(ItemComponent.HIDE_TOOLTIP, Unit.INSTANCE);
+            ret = addComponent(DataComponents.TOOLTIP_DISPLAY, new TooltipDisplay(true, Set.of(
+                DataComponents.BANNER_PATTERNS, DataComponents.BEES, DataComponents.BLOCK_ENTITY_DATA,
+                DataComponents.BLOCK_STATE, DataComponents.BUNDLE_CONTENTS, DataComponents.CHARGED_PROJECTILES,
+                DataComponents.CONTAINER, DataComponents.CONTAINER_LOOT, DataComponents.FIREWORK_EXPLOSION,
+                DataComponents.FIREWORKS, DataComponents.INSTRUMENT, DataComponents.MAP_ID,
+                DataComponents.PAINTING_VARIANT, DataComponents.POT_DECORATIONS, DataComponents.POTION_CONTENTS,
+                DataComponents.TROPICAL_FISH_PATTERN, DataComponents.WRITTEN_BOOK_CONTENT
+            )));
         } else {
-            ret = removeComponent(ItemComponent.HIDE_TOOLTIP);
+            ret = addComponent(DataComponents.TOOLTIP_DISPLAY, new TooltipDisplay(false, Set.of(
+                DataComponents.BANNER_PATTERNS, DataComponents.BEES, DataComponents.BLOCK_ENTITY_DATA,
+                DataComponents.BLOCK_STATE, DataComponents.BUNDLE_CONTENTS, DataComponents.CHARGED_PROJECTILES,
+                DataComponents.CONTAINER, DataComponents.CONTAINER_LOOT, DataComponents.FIREWORK_EXPLOSION,
+                DataComponents.FIREWORKS, DataComponents.INSTRUMENT, DataComponents.MAP_ID,
+                DataComponents.PAINTING_VARIANT, DataComponents.POT_DECORATIONS, DataComponents.POTION_CONTENTS,
+                DataComponents.TROPICAL_FISH_PATTERN, DataComponents.WRITTEN_BOOK_CONTENT
+            )));
         }
         return ret;
     }

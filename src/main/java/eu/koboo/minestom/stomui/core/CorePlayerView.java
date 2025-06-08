@@ -19,7 +19,7 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.minestom.server.entity.Player;
 import net.minestom.server.inventory.Inventory;
 import net.minestom.server.inventory.PlayerInventory;
-import net.minestom.server.inventory.click.ClickType;
+import net.minestom.server.inventory.click.Click;
 import net.minestom.server.item.ItemStack;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
@@ -44,7 +44,7 @@ public final class CorePlayerView implements PlayerView {
     final ViewProvider provider;
     final Map<Integer, Interaction> interactions;
     final Set<Flag> addedFlags;
-    final Set<ClickType> disabledClickTypes;
+    final Set<Class<? extends Click>> disabledClickTypes;
 
     final long clickCooldown;
     final long slotClickCooldown;

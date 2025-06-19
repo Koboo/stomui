@@ -144,6 +144,22 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
     }
 
     @Override
+    public int getNextPage() {
+        if(!hasNextPage()) {
+            return -1;
+        }
+        return currentPage + 1;
+    }
+
+    @Override
+    public int getPreviousPage() {
+        if(!hasPreviousPage()) {
+            return -1;
+        }
+        return currentPage - 1;
+    }
+
+    @Override
     public int getTotalPages() {
         return pagedItemList.size();
     }

@@ -125,9 +125,19 @@ public abstract class ViewPagination<T> extends ViewComponent {
     public abstract @NotNull List<T> getPageByNumber(int pageNumber);
 
     /**
-     * @return the currently set page. It starts from 1.
+     * @return the currently set page. Starts with 1.
      */
     public abstract int getCurrentPage();
+
+    /**
+     * @return the next page if available. If no next page is available, it returns -1.
+     */
+    public abstract int getNextPage();
+
+    /**
+     * @return the previous page if available. If no previous page is available, it returns -1.
+     */
+    public abstract int getPreviousPage();
 
     /**
      * This method is also an equivalent for "getLastPage()".

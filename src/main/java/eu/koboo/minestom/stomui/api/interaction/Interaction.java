@@ -21,4 +21,9 @@ public interface Interaction {
      *               See {@link ViewAction} for more and detailed information.
      */
     void interact(ViewAction action);
+
+    default Interaction with(Interaction otherInteraction) {
+        InteractionChain chain = new InteractionChain();
+        return chain.with(otherInteraction);
+    }
 }

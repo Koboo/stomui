@@ -51,13 +51,13 @@ public final class ViewInventoryPreClickListener implements Consumer<InventoryPr
         int clickedSlot = event.getSlot();
         Click click = event.getClick();
         Class<? extends @NotNull Click> clickClass = click.getClass();
-        log.debug("{} -> Clicked slot {} with type {}", player.getUsername(), clickedSlot, clickClass.getSimpleName());
+        log.trace("{} -> Clicked slot {} with type {}", player.getUsername(), clickedSlot, clickClass.getSimpleName());
         if (clickedSlot == CURSOR) {
             if (!playerView.hasFlags(Flags.CONVERT_CURSOR_TO_MAGIC_SLOT)) {
-                log.debug("{} -> Detected cursor click.", player.getUsername());
+                log.trace("{} -> Detected cursor click.", player.getUsername());
                 return;
             }
-            log.debug("{} -> Converted {} to {}", player.getUsername(), clickedSlot, MAGIC);
+            log.trace("{} -> Converted {} to {}", player.getUsername(), clickedSlot, MAGIC);
             clickedSlot = MAGIC;
         }
 
@@ -66,12 +66,12 @@ public final class ViewInventoryPreClickListener implements Consumer<InventoryPr
             int normalizedBottomSlot = BottomSlotUtility.normalizeBottomSlot(clickedSlot);
             int topOffset = playerView.getType().getLastTopSlot() + 1;
             rawSlot = normalizedBottomSlot + topOffset;
-            log.debug("{} -> Converted to rawSlot {} in inventory {}", player.getUsername(), rawSlot, inventory.getClass().getSimpleName());
+            log.trace("{} -> Converted to rawSlot {} in inventory {}", player.getUsername(), rawSlot, inventory.getClass().getSimpleName());
         }
 
         if (playerView.hasCooldown(rawSlot)) {
             cooldownExecution(playerView, rawSlot);
-            log.debug("{} -> Cooldown execution {}", player.getUsername(),  rawSlot);
+            log.trace("{} -> Cooldown execution {}", player.getUsername(),  rawSlot);
             return;
         }
 
@@ -84,10 +84,10 @@ public final class ViewInventoryPreClickListener implements Consumer<InventoryPr
             if(clickClass.equals(Click.LeftDrag.class) || clickClass.equals(Click.RightDrag.class)) {
                 if (playerView.hasFlags(Flags.ALLOW_ITEM_DRAGGING)) {
                     event.setCancelled(false);
-                    log.debug("{} -> Allowed item dragging click", player.getUsername());
+                    log.trace("{} -> Allowed item dragging click", player.getUsername());
                     return;
                 }
-                log.debug("{} -> Cancelled item dragging click", player.getUsername());
+                log.trace("{} -> Cancelled item dragging click", player.getUsername());
                 event.setCancelled(true);
                 return;
             }
@@ -96,19 +96,19 @@ public final class ViewInventoryPreClickListener implements Consumer<InventoryPr
         if (playerView.getType().isBottomSlot(rawSlot)) {
             if (playerView.hasFlags(Flags.ALLOW_BOTTOM_INTERACTION)) {
                 event.setCancelled(false);
-                log.debug("{} -> Allowed bottom click", player.getUsername());
+                log.trace("{} -> Allowed bottom click", player.getUsername());
                 return;
             }
             if (playerView.hasFlags(Flags.CLOSE_ON_BOTTOM_INTERACTION)) {
                 player.closeInventory();
-                log.debug("{} -> Closing on bottom click", player.getUsername());
+                log.trace("{} -> Closing on bottom click", player.getUsername());
                 return;
             }
         }
 
         if (playerView.getDisabledClickTypes().contains(clickClass)) {
             event.setCancelled(true);
-            log.debug("{} -> Click with disabled click type {}", player.getUsername(), clickClass.getSimpleName());
+            log.trace("{} -> Click with disabled click type {}", player.getUsername(), clickClass.getSimpleName());
             return;
         }
 

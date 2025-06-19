@@ -173,6 +173,7 @@ public final class CorePlayerView implements PlayerView {
 
     @Override
     public void executeRebuild() {
+        log.trace("{} -> Executing rebuild.", player.getUsername());
         registry.executeComponents(
             provider,
             component -> component.onRebuild(this, player)

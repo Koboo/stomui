@@ -23,10 +23,13 @@ public class AllowInteractionExampleProvider extends ViewProvider {
     public AllowInteractionExampleProvider(ViewRegistry registry) {
         super(registry, ViewBuilder.of(ViewType.SIZE_6_X_9)
             .title("Allow interactions example")
-            // This Flag makes it easier to allow bottom interactions
-            // instead of iterating over every bottom slot
-            // and marking it interactable/allowing interactions.
-            .withFlags(Flags.ALLOW_BOTTOM_INTERACTION));
+            // These Flags make it easier to allow overall interactions
+            // instead of iterating over every slot
+            // and marking it interactable / allowing their interactions.
+            .withFlags(
+                Flags.ALLOW_BOTTOM_INTERACTION,
+                Flags.ALLOW_ITEM_DRAGGING
+            ));
 
         // This is the pattern, we want to fill with logic and items.
         // '#' = Placeholder item

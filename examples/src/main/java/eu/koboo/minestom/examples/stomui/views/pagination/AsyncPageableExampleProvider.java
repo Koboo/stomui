@@ -80,17 +80,22 @@ public class AsyncPageableExampleProvider extends ViewProvider {
         // and await the completion of the future.
         // In the completion we can add the items to the pagination and
         // update the pagination on the given PlayerView.
+        player.sendMessage("Loading async items..");
         CompletableFuture<Collection<Material>> future = loadSomethingAsync();
         future.whenComplete((list, exception) -> {
+            player.sendMessage("Finished future!");
+
             // Exception caught. Something went wrong. Notify your players about that.
             if (exception != null) {
                 player.sendMessage("An error occurred while loading async pagination: " + exception.getMessage());
                 return;
             }
+
             // We got our needed results. Now update the pagination, please!
             if (list != null) {
+                player.sendMessage("Found items!");
                 pagination.addItems(list);
-                view.executeRebuild();
+                pagination.toPage(view, pagination.getCurrentPage());
             }
         });
     }

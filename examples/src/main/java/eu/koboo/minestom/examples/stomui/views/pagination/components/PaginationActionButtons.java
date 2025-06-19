@@ -29,7 +29,7 @@ public class PaginationActionButtons extends ViewComponent {
         // Sets the "previous" and "next" page buttons, based on the current page.
         // That's why these items are set in "onStateUpdate" instead of "onOpen".
 
-        String nextName = "<green>Next (" + pagination.getCurrentPage() + ")";
+        String nextName = "<green>Next (" + pagination.getNextPage() + ")";
         if (!pagination.hasNextPage()) {
             nextName = "<red> No next page";
         }
@@ -38,7 +38,7 @@ public class PaginationActionButtons extends ViewComponent {
             .name(nextName)
             .interaction(Interactions.toNextPage(pagination));
 
-        String previousName = "<green>Previous (" + pagination.getCurrentPage() + ")";
+        String previousName = "<green>Previous (" + pagination.getPreviousPage() + ")";
         if (!pagination.hasPreviousPage()) {
             previousName = "<red>No previous page";
         }

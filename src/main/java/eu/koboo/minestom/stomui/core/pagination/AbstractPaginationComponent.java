@@ -8,14 +8,17 @@ import eu.koboo.minestom.stomui.api.pagination.ItemRenderer;
 import eu.koboo.minestom.stomui.api.pagination.ViewPagination;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import net.minestom.server.entity.Player;
 import net.minestom.server.item.ItemStack;
 import net.minestom.server.item.Material;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
+@Slf4j
 @FieldDefaults(level = AccessLevel.PROTECTED)
 public abstract sealed class AbstractPaginationComponent<T> extends ViewPagination<T> permits PageComponent, ScrollComponent {
 
@@ -24,7 +27,6 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
     final List<T> itemList;
     final List<List<T>> pagedItemList;
 
-    boolean rebuildOnNavigation;
     ItemRenderer<T> itemRenderer;
     Comparator<T> itemSorter;
     ItemFilter<T> itemFilter;
@@ -35,7 +37,6 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
         if (fillerItem == null) {
             fillerItem = ItemStack.of(Material.AIR);
         }
-        this.rebuildOnNavigation = true;
         this.fillerItem = fillerItem;
         this.itemList = new ArrayList<>();
         this.pagedItemList = new ArrayList<>();
@@ -47,35 +48,41 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
     @Override
     public void setItemRenderer(@NotNull ItemRenderer<T> itemRenderer) {
         this.itemRenderer = itemRenderer;
+        updatePagedItems();
     }
 
     @Override
     public void setItemSorter(@Nullable Comparator<T> itemSorter) {
         this.itemSorter = itemSorter;
+        updatePagedItems();
     }
 
     @Override
     public void setItemFilter(ItemFilter<T> itemFilter) {
         this.itemFilter = itemFilter;
+        updatePagedItems();
     }
 
     @Override
     public void addItems(@NotNull Collection<T> itemCollection) {
         itemList.addAll(itemCollection);
+        updatePagedItems();
     }
 
     @Override
     public void removeItems(@NotNull Collection<T> itemCollection) {
         itemList.removeAll(itemCollection);
+        updatePagedItems();
     }
 
     @Override
     public void clearItems() {
         itemList.clear();
+        updatePagedItems();
     }
 
-    @Override
-    public void update(@NotNull PlayerView playerView) {
+    @ApiStatus.Internal
+    private void updatePagedItems() {
         int maxItemsPerPage = getMaximumItemsPerPage();
         if (maxItemsPerPage < 1) {
             throw new IllegalArgumentException("itemsPerPage must be set and positive. " +
@@ -85,7 +92,7 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
         List<T> resultItemList = getAllFilteredItems();
         int totalItemAmount = resultItemList.size();
         pagedItemList.clear();
-        // No items -> We don't need to rebuild the pagination.
+        // No items -> We don't need to refill the backed list.
         if (totalItemAmount > 0) {
             for (int pageIndex = 0; pageIndex < totalItemAmount; pageIndex += maxItemsPerPage) {
                 int end = Math.min(pageIndex + maxItemsPerPage, totalItemAmount);
@@ -101,7 +108,6 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
         if (currentPage == 0 && totalFilteredItems > 0) {
             currentPage = 1;
         }
-        renderCurrentPage(playerView, maxItemsPerPage);
     }
 
     @Override
@@ -218,11 +224,10 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
             throw new IllegalArgumentException("newPage must be less than getTotalPages() " +
                 "(newPage=" + newPage + " > totalPages=" + totalPages + ")");
         }
+        log.trace("{} -> Navigating pagination to page {}.", playerView.getPlayer().getUsername(), newPage);
         currentPage = newPage;
-        update(playerView);
-        if(rebuildOnNavigation) {
-            playerView.executeRebuild();
-        }
+        renderCurrentPage(playerView, getMaximumItemsPerPage());
+        playerView.executeRebuild();
     }
 
     @Override
@@ -231,22 +236,14 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
     }
 
     @Override
-    public void onRebuild(@NotNull PlayerView view, @NotNull Player player) {
-        update(view);
+    public void onOpen(@NotNull PlayerView playerView, @NotNull Player player) {
+        renderCurrentPage(playerView, getMaximumItemsPerPage());
     }
 
-    @Override
-    public boolean rebuildsOnNavigation() {
-        return rebuildOnNavigation;
-    }
-
-    @Override
-    public void setRebuildOnNavigation(boolean rebuildOnNavigation) {
-        this.rebuildOnNavigation = rebuildOnNavigation;
-    }
-
+    @ApiStatus.Internal
     abstract void renderCurrentPage(@NotNull PlayerView playerView, int itemsPerPage);
 
+    @ApiStatus.Internal
     void updatePageBySlots(PlayerView playerView,
                            int itemsPerPage,
                            List<T> currentPageItemList,

@@ -35,8 +35,10 @@ public abstract class ViewPagination<T> extends ViewComponent {
      * from any generic item added in the pagination.
      * We can't update the pagination without an {@link ItemRenderer},
      * that's why the argument is annotated with {@link NotNull}.
-     * Keep in mind that you need to call {@link ViewPagination#update(PlayerView)}
-     * to apply the changes on the {@link PlayerView}.
+     * <p>
+     * The backed itemList gets filtered, sorted and updated automatically.
+     * To apply the changes on a {@link PlayerView} you need to call
+     * {@link ViewPagination#refreshPage(PlayerView)}.
      *
      * @param itemRenderer A {@link Comparator} with the pagination generic type item.
      */
@@ -45,8 +47,10 @@ public abstract class ViewPagination<T> extends ViewComponent {
     /**
      * This method allows you to change the sorting for the pagination.
      * If the itemSorter is set to null, the pagination just ignores it.
-     * Keep in mind that you need to call {@link ViewPagination#update(PlayerView)}
-     * to apply the changes on the {@link PlayerView}.
+     * <p>
+     * The backed itemList gets filtered, sorted and updated automatically.
+     * To apply the changes on a {@link PlayerView} you need to call
+     * {@link ViewPagination#refreshPage(PlayerView)}.
      *
      * @param itemSorter A {@link Comparator} with the pagination generic type item.
      */
@@ -55,9 +59,11 @@ public abstract class ViewPagination<T> extends ViewComponent {
     /**
      * This method allows you to change the filtering for the pagination.
      * If the itemFilter is set to null, the pagination just ignores it.
-     * Keep in mind that you need to call {@link ViewPagination#update(PlayerView)}
-     * to apply the changes on the {@link PlayerView}.
      * See {@link ItemFilter} for more information how the filter works.
+     * <p>
+     * The backed itemList gets filtered, sorted and updated automatically.
+     * To apply the changes on a {@link PlayerView} you need to call
+     * {@link ViewPagination#refreshPage(PlayerView)}.
      *
      * @param itemFilter A {@link ItemFilter} with the pagination generic type item.
      */
@@ -67,8 +73,9 @@ public abstract class ViewPagination<T> extends ViewComponent {
      * This method adds the given items to the pagination,
      * but it doesn't update the inventories of the players.
      * <p>
-     * To update the items within the {@link PlayerView} you
-     * need to call {@link ViewPagination#update(PlayerView)}.
+     * The backed itemList gets filtered, sorted and updated automatically.
+     * To apply the changes on a {@link PlayerView} you need to call
+     * {@link ViewPagination#refreshPage(PlayerView)}.
      *
      * @param items A collection of paginated items, which should be added.
      */
@@ -78,8 +85,9 @@ public abstract class ViewPagination<T> extends ViewComponent {
      * This method removes the given items from the pagination,
      * but it doesn't update the inventories of the players.
      * <p>
-     * To update the items within the {@link PlayerView} you
-     * need to call {@link ViewPagination#update(PlayerView)}.
+     * The backed itemList gets filtered, sorted and updated automatically.
+     * To apply the changes on a {@link PlayerView} you need to call
+     * {@link ViewPagination#refreshPage(PlayerView)}.
      *
      * @param items A collection of paginated items, which should be added.
      */
@@ -89,21 +97,13 @@ public abstract class ViewPagination<T> extends ViewComponent {
      * This method clears all items in the pagination,
      * but it doesn't update the inventories of the players.
      * <p>
-     * To update the items within the {@link PlayerView} you
-     * need to call {@link ViewPagination#update(PlayerView)}.
+     * The backed itemList gets filtered, sorted and updated automatically.
+     * To apply the changes on a {@link PlayerView} you need to call
+     * {@link ViewPagination#refreshPage(PlayerView)}.
      */
     public abstract void clearItems();
 
-    /**
-     * This method update the items within the given {@link PlayerView}.
-     * Without calling that method, the inventories will not be updated,
-     * no matter how often you modify or update the item list.
-     *
-     * @param playerView A {@link PlayerView} which should be updated.
-     */
-    public abstract void update(@NotNull PlayerView playerView);
-
-    /**
+        /**
      * @return An unmodifiable {@link List} of all items, within the pagination.
      */
     public abstract @NotNull List<T> getAllItems();
@@ -164,6 +164,8 @@ public abstract class ViewPagination<T> extends ViewComponent {
 
     /**
      * Increments the current page and updates the view to show the items of that page.
+     * <p>
+     * This method also executes a rebuild using {@link PlayerView#executeRebuild()}.
      *
      * @param playerView The {@link PlayerView}, which changes page of the pagination.
      */
@@ -176,6 +178,8 @@ public abstract class ViewPagination<T> extends ViewComponent {
 
     /**
      * Decrements the current page and updates the view to show the items of that page.
+     * <p>
+     * This method also executes a rebuild using {@link PlayerView#executeRebuild()}.
      *
      * @param playerView The {@link PlayerView}, which changes page of the pagination.
      */
@@ -195,11 +199,23 @@ public abstract class ViewPagination<T> extends ViewComponent {
      * Navigates the pagination to the new given page.
      * If the page doesn't exist, is too high or too less,
      * an exception is thrown.
+     * <p>
+     * This method also executes a rebuild using {@link PlayerView#executeRebuild()}.
      *
      * @param newPage    must be 1 or greater.
      * @param playerView The {@link PlayerView}, which changes page of the pagination.
      */
     public abstract void toPage(@NotNull PlayerView playerView, int newPage);
+
+    /**
+     * Refreshes the current page. It's basically a shortcut for:
+     * pagination.toPage(view, pagination.getCurrentPage())
+     * <p>
+     * This method also executes a rebuild using {@link PlayerView#executeRebuild()}.
+     *
+     * @param playerView The {@link PlayerView} where the page should be refreshed.
+     */
+    public abstract void refreshPage(@NotNull PlayerView playerView);
 
     /**
      * @return the given fillerItem or AIR if no filler was set.
@@ -214,17 +230,4 @@ public abstract class ViewPagination<T> extends ViewComponent {
      * @return The number of maximum items per page/scroll row/column.
      */
     public abstract int getMaximumItemsPerPage();
-
-    /**
-     * @return true, if the pagination should execute a rebuild on page navigation / switching
-     * within the opened {@link PlayerView}.
-     * .
-     */
-    public abstract boolean rebuildsOnNavigation();
-
-    /**
-     * Allows you to disable / enable the rebuilding on a page navigation/switch.
-     * @param value true, to enable rebuilding on page navigation.
-     */
-    public abstract void setRebuildOnNavigation(boolean value);
 }

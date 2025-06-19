@@ -20,7 +20,7 @@ allprojects {
     }
 
     dependencies {
-        def lombokVersion = "1.18.36"
+        def lombokVersion = "1.18.38"
         compileOnly("org.projectlombok:lombok:$lombokVersion")
         annotationProcessor("org.projectlombok:lombok:$lombokVersion")
     }

@@ -24,6 +24,7 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
     final List<T> itemList;
     final List<List<T>> pagedItemList;
 
+    boolean rebuildOnNavigation;
     ItemRenderer<T> itemRenderer;
     Comparator<T> itemSorter;
     ItemFilter<T> itemFilter;
@@ -34,6 +35,7 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
         if (fillerItem == null) {
             fillerItem = ItemStack.of(Material.AIR);
         }
+        this.rebuildOnNavigation = true;
         this.fillerItem = fillerItem;
         this.itemList = new ArrayList<>();
         this.pagedItemList = new ArrayList<>();
@@ -73,7 +75,7 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
     }
 
     @Override
-    public void rebuildItems(@NotNull PlayerView playerView) {
+    public void update(@NotNull PlayerView playerView) {
         int maxItemsPerPage = getMaximumItemsPerPage();
         if (maxItemsPerPage < 1) {
             throw new IllegalArgumentException("itemsPerPage must be set and positive. " +
@@ -217,7 +219,10 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
                 "(newPage=" + newPage + " > totalPages=" + totalPages + ")");
         }
         currentPage = newPage;
-        rebuildItems(playerView);
+        update(playerView);
+        if(rebuildOnNavigation) {
+            playerView.executeRebuild();
+        }
     }
 
     @Override
@@ -227,7 +232,17 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
 
     @Override
     public void onRebuild(@NotNull PlayerView view, @NotNull Player player) {
-        rebuildItems(view);
+        update(view);
+    }
+
+    @Override
+    public boolean rebuildsOnNavigation() {
+        return rebuildOnNavigation;
+    }
+
+    @Override
+    public void setRebuildOnNavigation(boolean rebuildOnNavigation) {
+        this.rebuildOnNavigation = rebuildOnNavigation;
     }
 
     abstract void renderCurrentPage(@NotNull PlayerView playerView, int itemsPerPage);

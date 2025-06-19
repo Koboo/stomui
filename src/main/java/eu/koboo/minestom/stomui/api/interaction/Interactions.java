@@ -96,7 +96,7 @@ public class Interactions {
                                             @Nullable Consumer<Player> afterRefreshing) {
         return action -> {
             action.getEvent().setCancelled(true);
-            pagination.rebuildItems(action.getView());
+            pagination.update(action.getView());
             if (afterRefreshing == null) {
                 return;
             }

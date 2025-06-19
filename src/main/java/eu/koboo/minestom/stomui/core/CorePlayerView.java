@@ -5,7 +5,6 @@ import eu.koboo.minestom.stomui.api.ViewBuilder;
 import eu.koboo.minestom.stomui.api.ViewType;
 import eu.koboo.minestom.stomui.api.component.ViewProvider;
 import eu.koboo.minestom.stomui.api.flags.Flag;
-import eu.koboo.minestom.stomui.api.flags.Flags;
 import eu.koboo.minestom.stomui.api.interaction.Interaction;
 import eu.koboo.minestom.stomui.api.interaction.Interactions;
 import eu.koboo.minestom.stomui.api.utils.BottomSlotUtility;
@@ -78,8 +77,6 @@ public final class CorePlayerView implements PlayerView {
 
         this.slotClickCooldownMap = new HashMap<>();
         this.clickCooldownUntil = Instant.now().toEpochMilli();
-
-        addFlags(Flags.CONVERT_CURSOR_TO_OUTSIDE_INTERACTION);
     }
 
     @ApiStatus.Internal

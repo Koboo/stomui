@@ -103,6 +103,16 @@ public abstract class ViewPagination<T> extends ViewComponent {
      */
     public abstract void clearItems();
 
+    /**
+     * This method sets all items of the pagination,
+     * but it doesn't update the inventories of the players.
+     * <p>
+     * The backed itemList gets filtered, sorted and updated automatically.
+     * To apply the changes on a {@link PlayerView} you need to call
+     * {@link ViewPagination#refreshPage(PlayerView)}.
+     */
+    public abstract void setItems(Collection<T> items);
+
         /**
      * @return An unmodifiable {@link List} of all items, within the pagination.
      */
@@ -115,17 +125,19 @@ public abstract class ViewPagination<T> extends ViewComponent {
     public abstract @NotNull List<T> getAllFilteredItems();
 
     /**
-     * @return An unmodifiable List of all items of the given page, using the index. Starts at 0.
+     * @return An unmodifiable List of all items of the given page, using the index.
+     * Starts at 0. Can't be null but can be empty.
      */
     public abstract @NotNull List<T> getPageByIndex(int pageIndex);
 
     /**
-     * @return An unmodifiable List of all items of the given page, using the page number. Starts at 1.
+     * @return An unmodifiable List of all items of the given page, using the page number.
+     * Starts at 1. Can't be null but can be empty.
      */
     public abstract @NotNull List<T> getPageByNumber(int pageNumber);
 
     /**
-     * @return the currently set page. Starts with 1.
+     * @return the currently set page, starting with 1.
      */
     public abstract int getCurrentPage();
 

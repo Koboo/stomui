@@ -81,6 +81,13 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
         updatePagedItems();
     }
 
+    @Override
+    public void setItems(Collection<T> items) {
+        itemList.clear();
+        itemList.addAll(items);
+        updatePagedItems();
+    }
+
     @ApiStatus.Internal
     private void updatePagedItems() {
         int maxItemsPerPage = getMaximumItemsPerPage();
@@ -101,10 +108,13 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
                 pagedItemList.add(page);
             }
         }
+        // Pagination is already at the last page.
+        // Reassign the "new" last page.
         if (currentPage > getTotalPages()) {
             currentPage = getTotalPages();
         }
         int totalFilteredItems = resultItemList.size();
+        // No items, so we navigate to the first page.
         if (currentPage == 0 && totalFilteredItems > 0) {
             currentPage = 1;
         }
@@ -226,8 +236,13 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
         }
         log.trace("{} -> Navigating pagination to page {}.", playerView.getPlayer().getUsername(), newPage);
         currentPage = newPage;
-        renderCurrentPage(playerView, getMaximumItemsPerPage());
+        updatePagedItems();
         playerView.executeRebuild();
+    }
+
+    @Override
+    public void refreshPage(@NotNull PlayerView playerView) {
+        toPage(playerView, getCurrentPage());
     }
 
     @Override
@@ -237,6 +252,13 @@ public abstract sealed class AbstractPaginationComponent<T> extends ViewPaginati
 
     @Override
     public void onOpen(@NotNull PlayerView playerView, @NotNull Player player) {
+        updatePagedItems();
+        renderCurrentPage(playerView, getMaximumItemsPerPage());
+    }
+
+    @Override
+    public void onRebuild(@NotNull PlayerView playerView, @NotNull Player player) {
+        updatePagedItems();
         renderCurrentPage(playerView, getMaximumItemsPerPage());
     }
 

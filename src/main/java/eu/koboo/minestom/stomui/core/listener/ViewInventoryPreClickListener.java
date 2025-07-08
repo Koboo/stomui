@@ -85,7 +85,7 @@ public final class ViewInventoryPreClickListener implements Consumer<InventoryPr
             }
         }
 
-        if (playerView.getDisabledClickTypes().contains(event.getClickType())) {
+        if (playerView.getDisabledClickTypes().contains(event.getClick().getClass())) {
             event.setCancelled(true);
             return;
         }

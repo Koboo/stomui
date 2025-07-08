@@ -12,7 +12,7 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.minestom.server.entity.Player;
 import net.minestom.server.event.inventory.InventoryPreClickEvent;
 import net.minestom.server.inventory.Inventory;
-import net.minestom.server.inventory.click.ClickType;
+import net.minestom.server.inventory.click.Click;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
@@ -30,7 +30,7 @@ public final class ViewBuilder {
 
     final ViewType type;
     final Set<Flag> flags;
-    final Set<ClickType> disabledClickTypes;
+    final Set<Class<? extends Click>> disabledClickTypes;
     ViewProvider provider;
     Component title;
     int clickCooldownInMillis;
@@ -122,14 +122,15 @@ public final class ViewBuilder {
     }
 
     /**
-     * Adds the given {@link ClickType}s as disabled/cancelled, which results in
-     * ignoring any {@link Interaction} if the specific {@link ClickType} is used
+     * Adds the given {@link Click}s as disabled/cancelled, which results in
+     * ignoring any {@link Interaction} if the specific {@link Click} is used
      * and just cancelling the {@link InventoryPreClickEvent}.
      *
-     * @param clickTypes The {@link ClickType}s, which will be cancelled.
+     * @param clickTypes The {@link Click}s, which will be cancelled.
      * @return This {@link ViewBuilder} instance.
      */
-    public @NotNull ViewBuilder disableClickTypes(@NotNull ClickType... clickTypes) {
+    @SafeVarargs
+    public final @NotNull ViewBuilder disableClickTypes(@NotNull Class<? extends Click>... clickTypes) {
         this.disabledClickTypes.addAll(List.of(clickTypes));
         return this;
     }

@@ -12,7 +12,7 @@
 
     <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
 
-    <root level="info">
+    <root level="trace">
         <appender-ref ref="ROOT_CONSOLE_APPENDER"/>
     </root>
 

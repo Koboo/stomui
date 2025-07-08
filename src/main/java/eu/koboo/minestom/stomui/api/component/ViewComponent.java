@@ -53,7 +53,6 @@ public abstract class ViewComponent {
      * @return This {@link ViewComponent}
      */
     public @NotNull ViewComponent addChild(@NotNull ViewComponent child) {
-        System.out.println(String.join(", ", children.stream().map(ViewComponent::toString).toList()));
         if (hasChild(child)) {
             throw new IllegalArgumentException("Child already exists: \n" +
                 "  - this: " + this + "\n" +

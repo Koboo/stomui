@@ -1,5 +1,6 @@
 package eu.koboo.minestom.examples.stomui.views.pagination;
 
+import eu.koboo.minestom.examples.stomui.views.pagination.components.PaginationActionButtons;
 import eu.koboo.minestom.examples.stomui.views.pagination.components.PaginationBorder;
 import eu.koboo.minestom.examples.stomui.views.pagination.renderer.MaterialItemRenderer;
 import eu.koboo.minestom.stomui.api.PlayerView;
@@ -27,12 +28,12 @@ import java.util.concurrent.TimeUnit;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AsyncPageableExampleProvider extends ViewProvider {
 
-    ViewPattern pattern;
     ViewPagination<Material> pagination;
 
     public AsyncPageableExampleProvider(ViewRegistry registry) {
         super(registry, ViewType.SIZE_6_X_9);
-        pattern = registry.pattern(
+        addChild(new PaginationBorder());
+        ViewPattern pattern = registry.pattern(
             "K#######Z",
             "#1111111#",
             "#1111111#",
@@ -46,7 +47,8 @@ public class AsyncPageableExampleProvider extends ViewProvider {
             pattern.getMergedSlots('1')
         );
         pagination.setItemSorter(Comparator.comparing(Material::id));
-        addChild(new PaginationBorder(pagination, pattern));
+        addChild(pagination);
+        addChild(new PaginationActionButtons(pagination, pattern));
     }
 
     @Override
@@ -56,41 +58,26 @@ public class AsyncPageableExampleProvider extends ViewProvider {
 
     @Override
     public void onOpen(@NotNull PlayerView view, @NotNull Player player) {
-
-        List<Integer> topSlots = view.getType().getTopSlots();
-        for (ViewItem viewItem : ViewItem.bySlotList(view, topSlots)) {
-            viewItem.material(Material.GRAY_STAINED_GLASS_PANE)
-                .displayName(" ");
-        }
-
-        // Add close and refresh buttons to the top inventory.
-        // Since these items don't update on rebuilds (e.g. "next page navigation"),
-        // we can add them in "onOpen" instead of "onRebuild".
-        ViewItem.bySlot(view, pattern.getSlot('K'))
-            .material(Material.REDSTONE)
-            .name("Close")
-            .closeInventoryInteraction();
-
-        ViewItem.bySlot(view, pattern.getSlot('Z'))
-            .material(Material.NETHER_STAR)
-            .name("Refresh")
-            .interaction(Interactions.updatePagination(pagination));
-
         // Now we can execute the async loading method
         // and await the completion of the future.
         // In the completion we can add the items to the pagination and
         // update the pagination on the given PlayerView.
+        player.sendMessage("Loading async items..");
         CompletableFuture<Collection<Material>> future = loadSomethingAsync();
         future.whenComplete((list, exception) -> {
+            player.sendMessage("Finished future!");
+
             // Exception caught. Something went wrong. Notify your players about that.
             if (exception != null) {
                 player.sendMessage("An error occurred while loading async pagination: " + exception.getMessage());
                 return;
             }
+
             // We got our needed results. Now update the pagination, please!
             if (list != null) {
+                player.sendMessage("Found items!");
                 pagination.addItems(list);
-                view.executeRebuild();
+                pagination.refreshPage(view);
             }
         });
     }
@@ -102,29 +89,5 @@ public class AsyncPageableExampleProvider extends ViewProvider {
             future.complete(Material.values());
         });
         return future;
-    }
-
-    @Override
-    public void onRebuild(@NotNull PlayerView view, @NotNull Player player) {
-        // Sets the "previous" and "next" page buttons, based on the current page.
-        // That's why these items are set in "onStateUpdate" instead of "onOpen".
-
-        String nextName = "<green>Next (" + pagination.getCurrentPage() + ")";
-        if (!pagination.hasNextPage()) {
-            nextName = "<red> No next page";
-        }
-        ViewItem.bySlot(view, pattern.getSlot('>'))
-            .material(Material.ARROW)
-            .name(nextName)
-            .interaction(Interactions.toNextPage(pagination));
-
-        String previousName = "<green>Previous (" + pagination.getCurrentPage() + ")";
-        if (!pagination.hasPreviousPage()) {
-            previousName = "<red>No previous page";
-        }
-        ViewItem.bySlot(view, pattern.getSlot('<'))
-            .material(Material.ARROW)
-            .name(previousName)
-            .interaction(Interactions.toPreviousPage(pagination));
     }
 }

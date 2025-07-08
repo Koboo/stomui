@@ -96,7 +96,7 @@ public class Interactions {
                                             @Nullable Consumer<Player> afterRefreshing) {
         return action -> {
             action.getEvent().setCancelled(true);
-            pagination.rebuildItems(action.getView());
+            pagination.refreshPage(action.getView());
             if (afterRefreshing == null) {
                 return;
             }
@@ -180,15 +180,15 @@ public class Interactions {
         };
     }
 
-    public Interaction merge(@NotNull Interaction... interactions) {
-        return merge(List.of(interactions));
+    public Interaction chain(@NotNull Interaction... interactions) {
+        return chain(List.of(interactions));
     }
 
-    public Interaction merge(@NotNull Collection<Interaction> interactionCollection) {
-        return action -> {
-            for (Interaction interaction : interactionCollection) {
-                interaction.interact(action);
-            }
-        };
+    public Interaction chain(@NotNull Collection<Interaction> interactionCollection) {
+        InteractionChain chain = new InteractionChain();
+        for (Interaction interaction : interactionCollection) {
+            chain.with(interaction);
+        }
+        return chain;
     }
 }

@@ -154,21 +154,12 @@ public final class ViewBuilder {
     }
 
     /**
-     * Adds the {@link Flag} {@link Flags#ALLOW_OUTSIDE_INTERACTION}.
+     * Adds the {@link Flag} {@link Flags#ALLOW_ITEM_DRAGGING}.
      *
      * @return This {@link ViewBuilder} instance.
      */
-    public @NotNull ViewBuilder allowOutsideInteractions() {
-        return withFlags(Flags.ALLOW_OUTSIDE_INTERACTION);
-    }
-
-    /**
-     * Adds the {@link Flag} {@link Flags#ALLOW_OUTSIDE_INTERACTION}.
-     *
-     * @return This {@link ViewBuilder} instance.
-     */
-    public @NotNull ViewBuilder closeOutsideOnInteractions() {
-        return withFlags(Flags.ALLOW_OUTSIDE_INTERACTION);
+    public @NotNull ViewBuilder allowItemDragging() {
+        return withFlags(Flags.ALLOW_ITEM_DRAGGING);
     }
 
     /**
@@ -190,9 +181,6 @@ public final class ViewBuilder {
         }
         if (flags.contains(Flags.ALLOW_BOTTOM_INTERACTION) && flags.contains(Flags.CLOSE_ON_BOTTOM_INTERACTION)) {
             throw new IllegalArgumentException("Cannot use both Flags ALLOW_BOTTOM_INTERACTION and CLOSE_ON_BOTTOM_INTERACTION at the same time");
-        }
-        if (flags.contains(Flags.ALLOW_OUTSIDE_INTERACTION) && flags.contains(Flags.CLOSE_ON_OUTSIDE_INTERACTION)) {
-            throw new IllegalArgumentException("Cannot use both Flags ALLOW_OUTSIDE_INTERACTION and CLOSE_ON_OUTSIDE_INTERACTION at the same time");
         }
     }
 

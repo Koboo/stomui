@@ -20,7 +20,7 @@ allprojects {
     }
 
     dependencies {
-        def lombokVersion = "1.18.36"
+        def lombokVersion = "1.18.38"
         compileOnly("org.projectlombok:lombok:$lombokVersion")
         annotationProcessor("org.projectlombok:lombok:$lombokVersion")
     }
@@ -45,7 +45,7 @@ allprojects {
 
 dependencies {
     compileOnlyApi("net.minestom:minestom-snapshots:$minestomVersion")
-    api("net.kyori:adventure-text-minimessage:4.18.0")
+    api("net.kyori:adventure-text-minimessage:4.20.0")
 }
 
 tasks.register('sourcesJar', Jar) {

@@ -81,7 +81,7 @@ public class SearchExampleProvider extends ViewProvider implements AnvilInputInt
 
     @Override
     public void onRebuild(@NotNull PlayerView view, @NotNull Player player) {
-        String nextName = "<green>Next (" + pagination.getCurrentPage() + ")";
+        String nextName = "<green>Next (" + pagination.getNextPage() + ")";
         if (!pagination.hasNextPage()) {
             nextName = "<red> No next page";
         }
@@ -91,7 +91,7 @@ public class SearchExampleProvider extends ViewProvider implements AnvilInputInt
             .glint(pagination.hasNextPage())
             .interaction(Interactions.toNextPage(pagination));
 
-        String previousName = "<green>Previous (" + pagination.getCurrentPage() + ")";
+        String previousName = "<green>Previous (" + pagination.getPreviousPage() + ")";
         if (!pagination.hasPreviousPage()) {
             previousName = "<red>No previous page";
         }
@@ -111,6 +111,6 @@ public class SearchExampleProvider extends ViewProvider implements AnvilInputInt
     public void onAnvilInput(@NotNull PlayerView playerView, @NotNull Player player, @NotNull String searchInput) {
         player.sendMessage("Received input: " + searchInput);
         filter.setTextInput(searchInput);
-        playerView.executeRebuild();
+        pagination.refreshPage(playerView);
     }
 }

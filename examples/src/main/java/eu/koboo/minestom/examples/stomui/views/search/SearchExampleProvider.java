@@ -111,6 +111,6 @@ public class SearchExampleProvider extends ViewProvider implements AnvilInputInt
     public void onAnvilInput(@NotNull PlayerView playerView, @NotNull Player player, @NotNull String searchInput) {
         player.sendMessage("Received input: " + searchInput);
         filter.setTextInput(searchInput);
-        playerView.executeRebuild();
+        pagination.refreshPage(playerView);
     }
 }

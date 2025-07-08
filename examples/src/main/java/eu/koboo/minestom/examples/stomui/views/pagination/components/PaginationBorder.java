@@ -13,10 +13,6 @@ import java.util.List;
 
 public class PaginationBorder extends ViewComponent {
 
-    public PaginationBorder(ViewPagination<Material> pagination, ViewPattern pattern) {
-        addChild(new PaginationActionButtons(pagination, pattern));
-    }
-
     @Override
     public void onOpen(@NotNull PlayerView view, @NotNull Player player) {
         // Sets the material to gray stained-glass pane for all border slots in the top inventory.

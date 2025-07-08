@@ -1,5 +1,6 @@
 package eu.koboo.minestom.examples.stomui.views.pagination;
 
+import eu.koboo.minestom.examples.stomui.views.pagination.components.PaginationActionButtons;
 import eu.koboo.minestom.examples.stomui.views.pagination.components.PaginationBorder;
 import eu.koboo.minestom.examples.stomui.views.pagination.renderer.MaterialItemRenderer;
 import eu.koboo.minestom.stomui.api.ViewBuilder;
@@ -20,15 +21,14 @@ import java.util.Comparator;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ScrollableVerticalExampleProvider extends ViewProvider {
 
-    ViewPagination<Material> pagination;
-
     // Hierarchy of components:
     // - this
     //   - PaginationBorder
-    //     - PaginationActionButtons
-    //       - ViewPagination
+    //   - ViewPagination
+    //   - PaginationActionButtons
     public ScrollableVerticalExampleProvider(ViewRegistry registry) {
         super(registry, ViewType.SIZE_6_X_9);
+        addChild(new PaginationBorder());
         ViewPattern pattern = registry.pattern(
             "K###>###Z",
             "#SSSSSSS#",
@@ -37,14 +37,15 @@ public class ScrollableVerticalExampleProvider extends ViewProvider {
             "#OOOOOOO#",
             "####<####"
         );
-        pagination = registry.scrollable(
+        ViewPagination<Material> pagination = registry.scrollable(
             new MaterialItemRenderer(),
             ItemStack.AIR,
             pattern.getListOfSlots('S', 'C', 'R', 'O')
         );
         pagination.setItemSorter(Comparator.comparing(Material::id));
         pagination.addItems(Material.values());
-        addChild(new PaginationBorder(pagination, pattern));
+        addChild(pagination);
+        addChild(new PaginationActionButtons(pagination, pattern));
     }
 
     @Override
